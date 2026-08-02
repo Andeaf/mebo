@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "title": "Mebo — Keukens en meubels op maat | IJmuiden",
+    "description": "Keuken op maat of meubels op maat laten maken? Mebo ontwerpt, produceert met moderne technieken en monteert met een eigen team, door heel Nederland.",
+    "ogAlt": "Mebo — maatwerk meubels en keukens"
+  },
+  "nav": {
+    "projects": "Projecten",
+    "process": "Werkwijze",
+    "contact": "Contact",
+    "cta": "Offerte aanvragen",
+    "menuOpen": "Menu openen",
+    "menuClose": "Menu sluiten",
+    "homeAria": "Mebo — naar boven",
+    "langAria": "Taal kiezen"
+  },
+  "hero": {
+    "title": "Maatwerk meubels, gemaakt voor uw huis.",
+    "subtitle": "Mebo ontwerpt, produceert en monteert keukens en meubels op maat. Vakwerk uit IJmuiden, geplaatst door ons eigen team — door heel Nederland.",
+    "cta": "Offerte aanvragen",
+    "imageAlt": "Maatwerk keuken van eikenhout met kookeiland, gemaakt door Mebo"
+  },
+  "statement": {
+    "text": "Wij maken keukens en meubels op maat — samen met u ontworpen, geproduceerd met moderne technieken en gemonteerd door ons eigen team."
+  },
+  "process": {
+    "heading": "Onze werkwijze",
+    "cards": [
+      {
+        "label": "Ontwerp",
+        "title": "Samen met u, van eerste schets tot definitief plan",
+        "imageAlt": "Ontwerpgesprek in de showroom van Mebo met materiaalstalen op tafel"
+      },
+      {
+        "label": "Productie",
+        "title": "Modern machinepark, millimeterwerk in eigen productie",
+        "imageAlt": "CNC-productie van maatwerk kastdelen in de werkplaats van Mebo"
+      },
+      {
+        "label": "Montage",
+        "title": "Ons eigen team monteert, door heel Nederland",
+        "imageAlt": "Monteur van Mebo plaatst een keuken op maat bij een klant thuis"
+      }
+    ]
+  },
+  "showcase": {
+    "heading": "Projecten",
+    "title": "Eén team. Van schets tot montage.",
+    "imageAlt": "Zwarte maatwerk keuken met houten nis en verlichting, project van Mebo"
+  },
+  "features": [
+    {
+      "eyebrow": "Materialen",
+      "title": "Materialen die het verschil maken",
+      "body": "Van massief eiken tot mat gelakte fronten: in onze showroom kiest u uit honderden kleuren en afwerkingen. Wij werken alleen met materialen die mooi blijven — jaar na jaar.",
+      "link": "Bekijk projecten",
+      "imageAlt": "Fronten en houtstalen in eiken en walnoot in de showroom van Mebo"
+    },
+    {
+      "eyebrow": "Werkwijze",
+      "title": "Van eerste schets tot laatste schroef",
+      "body": "Eén aanspreekpunt voor het hele traject: wij ontwerpen, produceren in eigen beheer en monteren op de afgesproken dag. Duidelijke afspraken, geen verrassingen.",
+      "link": "Neem contact op",
+      "imageAlt": "Technische tekening en montage van een maatwerk kast door Mebo"
+    }
+  ],
+  "moment": {
+    "word": "Maatwerk.",
+    "sub": "Geen standaardmaten. Geen concessies.",
+    "imageAlt": "Werkplaats van Mebo met maatwerk meubels in productie"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "heading": "Laten we kennismaken",
+    "intro": "Vertel ons over uw project — we denken graag mee. Bel, app of mail ons, of laat uw gegevens achter via het formulier.",
+    "phoneLabel": "Bel ons",
+    "whatsappLabel": "WhatsApp",
+    "whatsappValue": "Stuur een bericht",
+    "emailLabel": "E-mail",
+    "visitLabel": "Showroom",
+    "areaLabel": "Werkgebied",
+    "areaValue": "IJmuiden en omgeving — montage door heel Nederland",
+    "hoursLabel": "Openingstijden",
+    "hoursValue": "Ma–vr 09.00–17.30 · za op afspraak",
+    "form": {
+      "title": "Offerte aanvragen",
+      "name": "Naam",
+      "contact": "E-mail of telefoonnummer",
+      "message": "Uw project",
+      "messagePlaceholder": "Bijv. een keuken op maat met kookeiland, of een kastenwand van 3 meter…",
+      "submit": "Verstuur aanvraag",
+      "note": "Het formulier opent uw e-mailprogramma — er wordt niets automatisch verzonden. Liever direct contact? Bel of app ons.",
+      "subject": "Offerteaanvraag via mebokeukens.nl"
+    }
+  },
+  "footer": {
+    "tagline": "Keukens en meubels op maat, uit IJmuiden.",
+    "contactHeading": "Contact",
+    "followHeading": "Volg ons",
+    "address": "Plein 1945 50, 1971 GC IJmuiden",
+    "kvk": "KvK 00000000",
+    "rights": "Alle rechten voorbehouden."
+  }
+}

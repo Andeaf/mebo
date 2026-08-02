@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "title": "Mebo — Custom kitchens and furniture, made to measure | IJmuiden",
+    "description": "Looking for a custom kitchen or made-to-measure furniture? Mebo designs, produces with modern technology and installs with its own team, throughout the Netherlands.",
+    "ogAlt": "Mebo — custom furniture and kitchens"
+  },
+  "nav": {
+    "projects": "Projects",
+    "process": "Process",
+    "contact": "Contact",
+    "cta": "Request a quote",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "homeAria": "Mebo — back to top",
+    "langAria": "Choose language"
+  },
+  "hero": {
+    "title": "Custom furniture, made for your home.",
+    "subtitle": "Mebo designs, produces and installs custom kitchens and furniture. Craftsmanship from IJmuiden, installed by our own team — throughout the Netherlands.",
+    "cta": "Request a quote",
+    "imageAlt": "Custom oak kitchen with cooking island, made by Mebo"
+  },
+  "statement": {
+    "text": "We build custom kitchens and furniture — designed together with you, produced with modern technology and installed by our own team."
+  },
+  "process": {
+    "heading": "How we work",
+    "cards": [
+      {
+        "label": "Design",
+        "title": "Together with you, from first sketch to final plan",
+        "imageAlt": "Design consultation in the Mebo showroom with material samples on the table"
+      },
+      {
+        "label": "Production",
+        "title": "Modern machinery, millimetre precision in-house",
+        "imageAlt": "CNC production of custom cabinet parts in the Mebo workshop"
+      },
+      {
+        "label": "Installation",
+        "title": "Our own team installs, throughout the Netherlands",
+        "imageAlt": "Mebo installer fitting a custom kitchen at a client's home"
+      }
+    ]
+  },
+  "showcase": {
+    "heading": "Projects",
+    "title": "One team. From sketch to installation.",
+    "imageAlt": "Black custom kitchen with wooden niche and lighting, a Mebo project"
+  },
+  "features": [
+    {
+      "eyebrow": "Materials",
+      "title": "Materials that make the difference",
+      "body": "From solid oak to matte lacquered fronts: in our showroom you choose from hundreds of colours and finishes. We only work with materials that keep looking good — year after year.",
+      "link": "View projects",
+      "imageAlt": "Fronts and wood samples in oak and walnut in the Mebo showroom"
+    },
+    {
+      "eyebrow": "Process",
+      "title": "From first sketch to final screw",
+      "body": "One point of contact for the entire project: we design, produce in-house and install on the agreed day. Clear agreements, no surprises.",
+      "link": "Get in touch",
+      "imageAlt": "Technical drawing and installation of a custom cabinet by Mebo"
+    }
+  ],
+  "moment": {
+    "word": "Made to measure.",
+    "sub": "No standard sizes. No compromises.",
+    "imageAlt": "Mebo workshop with custom furniture in production"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "heading": "Let's get acquainted",
+    "intro": "Tell us about your project — we're happy to think along. Call, message or email us, or leave your details using the form.",
+    "phoneLabel": "Call us",
+    "whatsappLabel": "WhatsApp",
+    "whatsappValue": "Send a message",
+    "emailLabel": "Email",
+    "visitLabel": "Showroom",
+    "areaLabel": "Service area",
+    "areaValue": "IJmuiden and surroundings — installation throughout the Netherlands",
+    "hoursLabel": "Opening hours",
+    "hoursValue": "Mon–Fri 9.00–17.30 · Sat by appointment",
+    "form": {
+      "title": "Request a quote",
+      "name": "Name",
+      "contact": "Email or phone number",
+      "message": "Your project",
+      "messagePlaceholder": "E.g. a custom kitchen with a cooking island, or a 3-metre wall of cabinets…",
+      "submit": "Send request",
+      "note": "The form opens your email app — nothing is sent automatically. Prefer direct contact? Call or message us.",
+      "subject": "Quote request via mebokeukens.nl"
+    }
+  },
+  "footer": {
+    "tagline": "Custom kitchens and furniture, from IJmuiden.",
+    "contactHeading": "Contact",
+    "followHeading": "Follow us",
+    "address": "Plein 1945 50, 1971 GC IJmuiden, the Netherlands",
+    "kvk": "CoC 00000000",
+    "rights": "All rights reserved."
+  }
+}

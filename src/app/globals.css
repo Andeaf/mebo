@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #f7f6f3;
+  --color-cream-dark: #efede8;
+  --color-ink: #212121;
+  --color-ink-soft: #4a4a48;
+  --color-muted: #6f6b64;
+  --color-line: #e3e0da;
+  --font-sans: var(--font-hanken), system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --tracking-tight-3: -0.03em;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Slow settle-zoom on the hero image (1.05 -> 1) */
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.hero-zoom {
+  animation: hero-zoom 2.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero-zoom {
+    animation: none;
+  }
+}
