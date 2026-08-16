@@ -1,86 +1,63 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import LanguageSwitcher from "./LanguageSwitcher";
+import MeboLogo from "./MeboLogo";
 
+// Hash links carry the "/" prefix so they also work from subpages like /about.
 const LINKS = [
-  { key: "projects", href: "#projecten" },
-  { key: "process", href: "#werkwijze" },
-  { key: "contact", href: "#contact" },
+  { key: "projects", href: "/#projecten" },
+  { key: "process", href: "/#werkwijze" },
+  { key: "about", href: "/about" },
+  { key: "contact", href: "/#contact" },
 ] as const;
 
 export default function Nav() {
   const t = useTranslations("nav");
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Solid style once scrolled or when the mobile menu is open
-  const solid = scrolled || open;
-
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        solid
-          ? "border-b border-line bg-cream/85 backdrop-blur-md"
-          : "border-b border-transparent bg-transparent"
-      }`}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-[rgba(35,32,27,0.07)] bg-[rgba(242,232,214,0.68)] backdrop-blur-[10px]">
       <nav
-        className="mx-auto flex h-16 max-w-350 items-center justify-between px-5 md:px-8"
+        className="relative flex h-16 items-center justify-between px-5 md:px-8"
         aria-label="Mebo"
       >
-        <a
-          href="#top"
+        <Link
+          href="/"
           aria-label={t("homeAria")}
           onClick={() => setOpen(false)}
-          className={`text-xl font-semibold lowercase tracking-tight-3 transition-colors ${
-            solid ? "text-ink" : "text-white"
-          }`}
+          className="text-[#23201B]"
         >
-          mebo
-        </a>
+          <MeboLogo className="h-4.5 w-auto" />
+        </Link>
 
-        {/* Desktop links */}
-        <div className="hidden items-center gap-8 md:flex">
+        {/* Desktop links — absolutely centered so uneven logo/CTA widths can't skew them */}
+        <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 md:flex">
           {LINKS.map((link) => (
-            <a
+            <Link
               key={link.key}
               href={link.href}
-              className={`group relative text-sm font-medium transition-colors ${
-                solid ? "text-ink-soft hover:text-ink" : "text-white/80 hover:text-white"
-              }`}
+              className="group relative text-sm font-medium text-[#23201B]"
             >
               {t(link.key)}
               <span
                 aria-hidden
-                className={`absolute -bottom-1 left-0 h-px w-0 transition-all duration-300 group-hover:w-full ${
-                  solid ? "bg-ink" : "bg-white"
-                }`}
+                className="absolute -bottom-1 left-0 h-px w-0 bg-[#23201B] transition-all duration-300 group-hover:w-full"
               />
-            </a>
+            </Link>
           ))}
         </div>
 
         <div className="hidden items-center gap-6 md:flex">
-          <LanguageSwitcher onDark={!solid} />
-          <a
-            href="#contact"
-            className={`rounded-sm px-4 py-2 text-sm font-medium transition-colors ${
-              solid
-                ? "bg-ink text-cream hover:bg-ink-soft"
-                : "bg-white text-ink hover:bg-cream"
-            }`}
+          <LanguageSwitcher />
+          <Link
+            href="/#contact"
+            className="rounded-sm bg-[#1D1A16] px-4 py-2 text-sm font-medium text-[#F7F3EC] transition-colors hover:bg-[#332C24]"
           >
             {t("cta")}
-          </a>
+          </Link>
         </div>
 
         {/* Mobile menu button */}
@@ -89,9 +66,7 @@ export default function Nav() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-label={open ? t("menuClose") : t("menuOpen")}
-          className={`flex h-10 w-10 items-center justify-center md:hidden ${
-            solid ? "text-ink" : "text-white"
-          }`}
+          className="flex h-10 w-10 items-center justify-center text-[#23201B] md:hidden"
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
             {open ? (
@@ -103,29 +78,29 @@ export default function Nav() {
         </button>
       </nav>
 
-      {/* Mobile panel */}
+      {/* Mobile panel — shares the header's translucent, blurred background */}
       {open && (
-        <div className="border-t border-line bg-cream px-5 pt-2 pb-6 md:hidden">
+        <div className="border-t border-[rgba(35,32,27,0.07)] px-5 pt-2 pb-6 md:hidden">
           <div className="flex flex-col">
             {LINKS.map((link) => (
-              <a
+              <Link
                 key={link.key}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-line py-4 text-base font-medium text-ink"
+                className="border-b border-[rgba(35,32,27,0.07)] py-4 text-base font-medium text-[#23201B]"
               >
                 {t(link.key)}
-              </a>
+              </Link>
             ))}
           </div>
           <div className="mt-5 flex items-center justify-between">
-            <a
-              href="#contact"
+            <Link
+              href="/#contact"
               onClick={() => setOpen(false)}
-              className="rounded-sm bg-ink px-4 py-2.5 text-sm font-medium text-cream"
+              className="rounded-sm bg-[#1D1A16] px-4 py-2.5 text-sm font-medium text-[#F7F3EC] transition-colors hover:bg-[#332C24]"
             >
               {t("cta")}
-            </a>
+            </Link>
             <LanguageSwitcher />
           </div>
         </div>

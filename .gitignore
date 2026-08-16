@@ -12,6 +12,9 @@
 .DS_Store
 *.pem
 
+# design reference material (screenshots of third-party sites)
+/design-refs/
+
 # debug
 npm-debug.log*
 

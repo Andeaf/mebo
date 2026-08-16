@@ -10,10 +10,34 @@
   --font-sans: var(--font-hanken), system-ui, -apple-system, "Segoe UI",
     sans-serif;
   --tracking-tight-3: -0.03em;
+
+  /* Design-variant palettes (m1–m4 preview routes) */
+  --color-m1-cream: #fff7e9;
+  --color-m1-ink: #2b1c0f;
+  --color-m1-line: #ecdfc8;
+  --color-m1-orange: #ec5c1e;
+  --color-m1-dark: #1c1206;
+  --color-m2-paper: #fdfdfa;
+  --color-m2-ink: #1a1a1a;
+  --color-m2-soft: #6d6d6d;
+  --color-m2-dim: #b0b0ab;
+  --color-m2-red: #b01212;
+  --color-m3-orange: #f44f05;
+  --color-m3-gray: #8a8a8a;
+  --font-m1-display: var(--font-m1-serif), Georgia, serif;
+  --font-m2-mono: var(--font-m2-courier), "Courier New", monospace;
+  --font-m3-sans: var(--font-m3-inter), Helvetica, Arial, sans-serif;
+  --font-m4-serif: var(--font-m4-cormorant), Georgia, serif;
 }
 
 html {
   scroll-behavior: smooth;
+  /* Hide the scrollbar without disabling scrolling */
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 body {
@@ -49,11 +73,30 @@ body {
   animation: hero-zoom 2.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Blinking caret for the m4 typewriter intro */
+@keyframes caret-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.caret-blink {
+  animation: caret-blink 0.9s steps(1) infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
   .hero-zoom {
+    animation: none;
+  }
+  .caret-blink {
     animation: none;
   }
 }

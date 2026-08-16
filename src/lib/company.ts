@@ -10,6 +10,7 @@ export const company = {
   whatsappUrl: "https://wa.me/31616932233",
   email: "info@mebokeukens.nl",
   instagramUrl: "https://www.instagram.com/mebo.keukens/",
+  instagramHandle: "@mebo.keukens",
   address: {
     street: "Plein 1945 50",
     postalCode: "1971 GC",

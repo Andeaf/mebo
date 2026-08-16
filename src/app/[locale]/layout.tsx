@@ -5,6 +5,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { company } from "@/lib/company";
+import { variantFontClasses } from "@/lib/variantFonts";
 import "../globals.css";
 
 const hanken = Hanken_Grotesk({
@@ -70,7 +71,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={hanken.variable}>
+    <html lang={locale} className={`${hanken.variable} ${variantFontClasses}`}>
       <body>
         <NextIntlClientProvider messages={messages}>
           {children}

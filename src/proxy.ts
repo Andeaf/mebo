@@ -4,6 +4,7 @@ import { routing } from "./i18n/routing";
 export default createMiddleware(routing);
 
 export const config = {
-  // Skip all paths that should not be internationalized
-  matcher: ["/", "/(nl|en)/:path*"],
+  // Match everything except Next.js internals and static files (paths with a
+  // dot), so unprefixed routes like /m1 get their locale rewrite too.
+  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
 };

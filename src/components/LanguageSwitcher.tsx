@@ -4,11 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 
-type Props = {
-  onDark?: boolean;
-};
-
-export default function LanguageSwitcher({ onDark = false }: Props) {
+export default function LanguageSwitcher() {
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
@@ -24,9 +20,7 @@ export default function LanguageSwitcher({ onDark = false }: Props) {
   return (
     <div
       aria-label={t("langAria")}
-      className={`flex items-center gap-1 text-xs font-medium tracking-wide ${
-        onDark ? "text-white/70" : "text-muted"
-      }`}
+      className="flex items-center gap-1 text-xs font-medium tracking-wide text-[#A79A82]"
     >
       {routing.locales.map((l, i) => (
         <span key={l} className="flex items-center gap-1">
@@ -36,13 +30,7 @@ export default function LanguageSwitcher({ onDark = false }: Props) {
             onClick={() => switchTo(l)}
             aria-current={l === locale ? "true" : undefined}
             className={`cursor-pointer rounded-xs px-1 py-0.5 uppercase transition-colors ${
-              l === locale
-                ? onDark
-                  ? "text-white"
-                  : "text-ink"
-                : onDark
-                  ? "hover:text-white"
-                  : "hover:text-ink"
+              l === locale ? "text-[#23201B]" : "hover:text-[#23201B]"
             }`}
           >
             {l}

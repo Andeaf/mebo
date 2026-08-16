@@ -5,6 +5,7 @@ import BrandStatement from "@/components/BrandStatement";
 import ProcessCards from "@/components/ProcessCards";
 import Showcase from "@/components/Showcase";
 import FeatureBlocks from "@/components/FeatureBlocks";
+import MaterialColors from "@/components/MaterialColors";
 import StatementMoment from "@/components/StatementMoment";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -43,8 +44,8 @@ export default async function HomePage({
       {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "09:00",
-        closes: "17:30",
+        opens: "11:00",
+        closes: "16:30",
       },
     ],
     sameAs: [company.instagramUrl],
@@ -63,6 +64,7 @@ export default async function HomePage({
         <ProcessCards />
         <Showcase />
         <FeatureBlocks />
+        <MaterialColors />
         <StatementMoment />
         <ContactSection />
       </main>

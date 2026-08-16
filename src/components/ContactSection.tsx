@@ -30,6 +30,8 @@ const ICONS = {
   whatsapp:
     "M3 21l1.6-4.7A8.4 8.4 0 1 1 8 19.4L3 21zM8.5 9.5c1 2.5 3.5 5 6 6l1.5-1.5 2.5 1c.2 1.5-1 2.5-2.5 2.5-4.5 0-9.5-5-9.5-9.5C6 6.5 7 5.3 8.5 5.5l1 2.5-1 1.5z",
   mail: "M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM22 6l-10 7L2 6",
+  instagram:
+    "M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM17.5 6.5v.01",
   pin: "M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z",
   area: "M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4zM8 2v16M16 6v16",
   clock: "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 6v6l4 2",
@@ -110,6 +112,20 @@ export default function ContactSection() {
                     className="font-medium text-ink hover:underline"
                   >
                     {company.email}
+                  </a>
+                </div>
+              </li>
+              <li className="flex gap-4 py-4">
+                <Icon path={ICONS.instagram} />
+                <div>
+                  <p className="text-sm text-muted">{t("instagramLabel")}</p>
+                  <a
+                    href={company.instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-ink hover:underline"
+                  >
+                    {company.instagramHandle}
                   </a>
                 </div>
               </li>

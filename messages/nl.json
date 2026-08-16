@@ -7,6 +7,7 @@
   "nav": {
     "projects": "Projecten",
     "process": "Werkwijze",
+    "about": "Over ons",
     "contact": "Contact",
     "cta": "Offerte aanvragen",
     "menuOpen": "Menu openen",
@@ -46,6 +47,7 @@
   "showcase": {
     "heading": "Projecten",
     "title": "Eén team. Van schets tot montage.",
+    "instagram": "Bekijk meer projecten op Instagram",
     "imageAlt": "Zwarte maatwerk keuken met houten nis en verlichting, project van Mebo"
   },
   "features": [
@@ -64,10 +66,67 @@
       "imageAlt": "Technische tekening en montage van een maatwerk kast door Mebo"
     }
   ],
+  "materials": {
+    "eyebrow": "Kleuren",
+    "title": "Melamine of fineer? Vergelijk de kleuren.",
+    "intro": "Twee afwerkingen, elk met een eigen karakter: melamine is praktisch en verkrijgbaar in vrijwel elke kleur, fineer heeft de warmte van echt hout. Klik op een staal en vergelijk.",
+    "note": "Kleuren op het scherm zijn indicatief. In onze showroom bekijkt u de echte stalen bij daglicht.",
+    "palLabel": "Melamine",
+    "veneerLabel": "Fineer",
+    "palColors": [
+      "Alpine wit",
+      "Kasjmier",
+      "Greige",
+      "Lichtgrijs",
+      "Steengrijs",
+      "Saliegroen",
+      "Antraciet",
+      "Mat zwart"
+    ],
+    "veneerColors": [
+      "Essen licht",
+      "Naturel eiken",
+      "Gerookt eiken",
+      "Kersen",
+      "Walnoot",
+      "Wengé",
+      "Zwart eiken"
+    ]
+  },
   "moment": {
     "word": "Maatwerk.",
     "sub": "Geen standaardmaten. Geen concessies.",
     "imageAlt": "Werkplaats van Mebo met maatwerk meubels in productie"
+  },
+  "about": {
+    "metaTitle": "Over ons — Mebo | Keukens en meubels op maat uit IJmuiden",
+    "metaDescription": "Maak kennis met Mebo: een werkplaats in IJmuiden waar keukens en meubels op maat worden ontworpen, geproduceerd en gemonteerd door één team.",
+    "eyebrow": "Over ons",
+    "title": "Eén werkplaats, één team, werk om trots op te zijn.",
+    "intro": "Mebo is een werkplaats in IJmuiden waar ontwerp, productie en montage onder één dak gebeuren. Elke keuken en elk meubel wordt op maat gemaakt — voor echte huizen en de mensen die er wonen.",
+    "heroImageAlt": "De werkplaats van Mebo in IJmuiden met maatwerk meubels in productie",
+    "storyHeading": "Ons verhaal",
+    "p1": "Mebo begon als een kleine meubelmakerij in IJmuiden. Wat startte met één werkbank en een handvol gereedschap, groeide uit tot een moderne werkplaats met een eigen machinepark en een vast team.",
+    "p2": "Vandaag ontwerpen, produceren en monteren we keukens en meubels op maat door heel Nederland. De mentaliteit van die eerste werkbank is gebleven: de tijd nemen om het goed te doen, twee keer meten, en niets afleveren dat we niet in ons eigen huis zouden zetten.",
+    "p3": "Achter elk project staat een klein team van ontwerpers, makers en monteurs. Eén aanspreekpunt, van de eerste schets tot de laatste schroef.",
+    "imageAlt1": "Ontwerpgesprek in de showroom van Mebo",
+    "imageAlt2": "CNC-productie in de werkplaats van Mebo",
+    "imageAlt3": "Montageteam van Mebo aan het werk",
+    "values": [
+      {
+        "title": "Op maat",
+        "body": "Geen standaardmaten: elk ontwerp begint bij uw ruimte en hoe u er leeft."
+      },
+      {
+        "title": "Eigen productie",
+        "body": "We produceren alles zelf in IJmuiden, met moderne machines en millimeterwerk."
+      },
+      {
+        "title": "Eén team",
+        "body": "Van schets tot montage heeft u met dezelfde mensen te maken. Duidelijke afspraken, geen verrassingen."
+      }
+    ],
+    "cta": "Neem contact op"
   },
   "contact": {
     "eyebrow": "Contact",
@@ -77,11 +136,12 @@
     "whatsappLabel": "WhatsApp",
     "whatsappValue": "Stuur een bericht",
     "emailLabel": "E-mail",
+    "instagramLabel": "Instagram",
     "visitLabel": "Showroom",
     "areaLabel": "Werkgebied",
     "areaValue": "IJmuiden en omgeving — montage door heel Nederland",
     "hoursLabel": "Openingstijden",
-    "hoursValue": "Ma–vr 09.00–17.30 · za op afspraak",
+    "hoursValue": "Ma–vr 11.00–16.30",
     "form": {
       "title": "Offerte aanvragen",
       "name": "Naam",
@@ -91,6 +151,76 @@
       "submit": "Verstuur aanvraag",
       "note": "Het formulier opent uw e-mailprogramma — er wordt niets automatisch verzonden. Liever direct contact? Bel of app ons.",
       "subject": "Offerteaanvraag via mebokeukens.nl"
+    }
+  },
+  "v": {
+    "designLabel": "Design",
+    "m1": {
+      "labels": {
+        "intro": "Maatwerk uit IJmuiden",
+        "process": "Onze werkwijze",
+        "materials": "Materialen & aanpak",
+        "contact": "Contact"
+      },
+      "ctaNote": "Showroom: Plein 1945 50, IJmuiden"
+    },
+    "m2": {
+      "about": "Wij ontwerpen en produceren <i>keukens</i> en <i>meubels</i> op maat, voor woningen door heel Nederland. Van eerste schets tot laatste schroef houden we het proces in eigen hand - helder ontwerp, <i>precieze</i> productie, montage door ons eigen team. Geen standaardmaten, geen concessies: alleen <i>vakwerk</i> dat past.",
+      "toast": "Mebo is nu ook op Instagram",
+      "clockCity": "IJMUIDEN",
+      "worksNote": "Selectie van recent werk - beweeg over de lijst",
+      "works": [
+        { "year": "[2026]", "tag": "[KEUKEN]", "title": "Eiken met kookeiland" },
+        { "year": "[2026]", "tag": "[KEUKEN]", "title": "Mat zwart & hout" },
+        { "year": "[2025]", "tag": "[SHOWROOM]", "title": "Ontwerpgesprek" },
+        { "year": "[2025]", "tag": "[PRODUCTIE]", "title": "CNC-millimeterwerk" },
+        { "year": "[2025]", "tag": "[MONTAGE]", "title": "Eigen montageteam" },
+        { "year": "[2024-26]", "tag": "[MATERIALEN]", "title": "Eiken fronten" },
+        { "year": "[2024]", "tag": "[PROCES]", "title": "Van tekening tot montage" },
+        { "year": "[2024]", "tag": "[ATELIER]", "title": "Werkplaats IJmuiden" }
+      ]
+    },
+    "m3": {
+      "headline": "Geselecteerd werk",
+      "discover": "Meer op Instagram",
+      "menuAria": "Menu openen",
+      "projects": [
+        {
+          "title": "Eiken keuken met kookeiland",
+          "tags": "ONTWERP  PRODUCTIE  MONTAGE",
+          "text": "Massief eiken keuken met royaal kookeiland - samen met de klant ontworpen, in eigen werkplaats geproduceerd en door ons team gemonteerd."
+        },
+        {
+          "title": "Mat zwarte keuken met houten nis",
+          "tags": "ONTWERP  MAATWERK  VERLICHTING",
+          "text": "Mat zwarte fronten met een warme houten nis en geïntegreerde verlichting. Strak millimeterwerk, tot in het laatste detail."
+        },
+        {
+          "title": "Eigen productie in IJmuiden",
+          "tags": "CNC  MACHINEPARK  VAKWERK",
+          "text": "Modern machinepark en CNC-precisie in onze eigen werkplaats. Elke kast, elk front en elke lade op maat gemaakt."
+        },
+        {
+          "title": "Montage door eigen team",
+          "tags": "MONTAGE  HEEL NEDERLAND",
+          "text": "Ons eigen montageteam plaatst elk project, door heel Nederland. Eén aanspreekpunt, duidelijke afspraken, geen verrassingen."
+        }
+      ]
+    },
+    "m4": {
+      "tagline": "MEUBELS + KEUKENS OP MAAT",
+      "location": "IJMUIDEN / 52.46° N 4.61° O",
+      "skip": "Intro overslaan",
+      "captions": [
+        "EIKEN KOOKEILAND",
+        "MAT ZWART & HOUT",
+        "ONTWERP IN DE SHOWROOM",
+        "CNC-PRODUCTIE",
+        "MONTAGE DOOR EIGEN TEAM",
+        "EIKEN FRONTEN",
+        "DE WERKPLAATS",
+        "VAN TEKENING TOT MONTAGE"
+      ]
     }
   },
   "footer": {

@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { company } from "@/lib/company";
+import MeboLogo from "./MeboLogo";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -10,7 +11,7 @@ export default function Footer() {
       <div className="mx-auto max-w-350">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
-            <p className="text-xl font-semibold lowercase tracking-tight-3">mebo</p>
+            <MeboLogo label="Mebo" className="h-4.5 w-auto" />
             <p className="mt-2 max-w-60 text-sm text-pretty text-muted">
               {t("tagline")}
             </p>

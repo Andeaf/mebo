@@ -7,6 +7,7 @@
   "nav": {
     "projects": "Projects",
     "process": "Process",
+    "about": "About us",
     "contact": "Contact",
     "cta": "Request a quote",
     "menuOpen": "Open menu",
@@ -46,6 +47,7 @@
   "showcase": {
     "heading": "Projects",
     "title": "One team. From sketch to installation.",
+    "instagram": "See more projects on Instagram",
     "imageAlt": "Black custom kitchen with wooden niche and lighting, a Mebo project"
   },
   "features": [
@@ -64,10 +66,67 @@
       "imageAlt": "Technical drawing and installation of a custom cabinet by Mebo"
     }
   ],
+  "materials": {
+    "eyebrow": "Colours",
+    "title": "Melamine or veneer? Compare the colours.",
+    "intro": "Two finishes, each with its own character: melamine is practical and available in nearly any colour, veneer has the warmth of real wood. Click a swatch and compare.",
+    "note": "On-screen colours are indicative. Visit our showroom to see the real samples in daylight.",
+    "palLabel": "Melamine",
+    "veneerLabel": "Veneer",
+    "palColors": [
+      "Alpine white",
+      "Cashmere",
+      "Greige",
+      "Light grey",
+      "Stone grey",
+      "Sage green",
+      "Anthracite",
+      "Matte black"
+    ],
+    "veneerColors": [
+      "Light ash",
+      "Natural oak",
+      "Smoked oak",
+      "Cherry",
+      "Walnut",
+      "Wenge",
+      "Black oak"
+    ]
+  },
   "moment": {
     "word": "Made to measure.",
     "sub": "No standard sizes. No compromises.",
     "imageAlt": "Mebo workshop with custom furniture in production"
+  },
+  "about": {
+    "metaTitle": "About us — Mebo | Custom kitchens and furniture from IJmuiden",
+    "metaDescription": "Get to know Mebo: a workshop in IJmuiden where custom kitchens and furniture are designed, produced and installed by one team.",
+    "eyebrow": "About us",
+    "title": "One workshop, one team, work to be proud of.",
+    "intro": "Mebo is a workshop in IJmuiden where design, production and installation happen under one roof. Every kitchen and every piece of furniture is made to measure — for real homes and the people who live in them.",
+    "heroImageAlt": "The Mebo workshop in IJmuiden with custom furniture in production",
+    "storyHeading": "Our story",
+    "p1": "Mebo started as a small furniture workshop in IJmuiden. What began with a single workbench and a handful of tools has grown into a modern workshop with its own machinery and a dedicated team.",
+    "p2": "Today we design, produce and install custom kitchens and furniture throughout the Netherlands. The mindset of that first workbench never left: take the time to do it right, measure twice, and never deliver anything we wouldn't put in our own homes.",
+    "p3": "Behind every project is a small team of designers, makers and installers. One point of contact, from the first sketch to the final screw.",
+    "imageAlt1": "Design consultation in the Mebo showroom",
+    "imageAlt2": "CNC production in the Mebo workshop",
+    "imageAlt3": "Mebo installation team at work",
+    "values": [
+      {
+        "title": "Made to measure",
+        "body": "No standard sizes: every design starts from your space and how you live in it."
+      },
+      {
+        "title": "In-house production",
+        "body": "We produce everything ourselves in IJmuiden, with modern machinery and millimetre precision."
+      },
+      {
+        "title": "One team",
+        "body": "From sketch to installation you deal with the same people. Clear agreements, no surprises."
+      }
+    ],
+    "cta": "Get in touch"
   },
   "contact": {
     "eyebrow": "Contact",
@@ -77,11 +136,12 @@
     "whatsappLabel": "WhatsApp",
     "whatsappValue": "Send a message",
     "emailLabel": "Email",
+    "instagramLabel": "Instagram",
     "visitLabel": "Showroom",
     "areaLabel": "Service area",
     "areaValue": "IJmuiden and surroundings — installation throughout the Netherlands",
     "hoursLabel": "Opening hours",
-    "hoursValue": "Mon–Fri 9.00–17.30 · Sat by appointment",
+    "hoursValue": "Mon–Fri 11.00–16.30",
     "form": {
       "title": "Request a quote",
       "name": "Name",
@@ -91,6 +151,76 @@
       "submit": "Send request",
       "note": "The form opens your email app — nothing is sent automatically. Prefer direct contact? Call or message us.",
       "subject": "Quote request via mebokeukens.nl"
+    }
+  },
+  "v": {
+    "designLabel": "Design",
+    "m1": {
+      "labels": {
+        "intro": "Made to measure in IJmuiden",
+        "process": "How we work",
+        "materials": "Materials & approach",
+        "contact": "Contact"
+      },
+      "ctaNote": "Showroom: Plein 1945 50, IJmuiden"
+    },
+    "m2": {
+      "about": "We design and produce custom <i>kitchens</i> and <i>furniture</i> for homes throughout the Netherlands. From first sketch to final screw we keep the process in our own hands - clear design, <i>precise</i> production, installation by our own team. No standard sizes, no compromises: only <i>craftsmanship</i> that fits.",
+      "toast": "Mebo is now on Instagram",
+      "clockCity": "IJMUIDEN",
+      "worksNote": "Selection of recent work - hover over the list",
+      "works": [
+        { "year": "[2026]", "tag": "[KITCHEN]", "title": "Oak with cooking island" },
+        { "year": "[2026]", "tag": "[KITCHEN]", "title": "Matte black & wood" },
+        { "year": "[2025]", "tag": "[SHOWROOM]", "title": "Design consultation" },
+        { "year": "[2025]", "tag": "[PRODUCTION]", "title": "CNC millimetre precision" },
+        { "year": "[2025]", "tag": "[INSTALLATION]", "title": "Our own install team" },
+        { "year": "[2024-26]", "tag": "[MATERIALS]", "title": "Oak fronts" },
+        { "year": "[2024]", "tag": "[PROCESS]", "title": "From drawing to installation" },
+        { "year": "[2024]", "tag": "[WORKSHOP]", "title": "IJmuiden workshop" }
+      ]
+    },
+    "m3": {
+      "headline": "Selected works",
+      "discover": "More on Instagram",
+      "menuAria": "Open menu",
+      "projects": [
+        {
+          "title": "Oak kitchen with cooking island",
+          "tags": "DESIGN  PRODUCTION  INSTALLATION",
+          "text": "Solid oak kitchen with a generous cooking island - designed together with the client, produced in our own workshop and installed by our team."
+        },
+        {
+          "title": "Matte black kitchen with wooden niche",
+          "tags": "DESIGN  CUSTOM WORK  LIGHTING",
+          "text": "Matte black fronts with a warm wooden niche and integrated lighting. Tight millimetre work, down to the last detail."
+        },
+        {
+          "title": "In-house production in IJmuiden",
+          "tags": "CNC  MACHINERY  CRAFTSMANSHIP",
+          "text": "Modern machinery and CNC precision in our own workshop. Every cabinet, front and drawer made to measure."
+        },
+        {
+          "title": "Installation by our own team",
+          "tags": "INSTALLATION  ALL OF THE NETHERLANDS",
+          "text": "Our own installation team fits every project, throughout the Netherlands. One point of contact, clear agreements, no surprises."
+        }
+      ]
+    },
+    "m4": {
+      "tagline": "FURNITURE + KITCHENS, MADE TO MEASURE",
+      "location": "IJMUIDEN / 52.46° N 4.61° E",
+      "skip": "Skip intro",
+      "captions": [
+        "OAK COOKING ISLAND",
+        "MATTE BLACK & WOOD",
+        "DESIGN IN THE SHOWROOM",
+        "CNC PRODUCTION",
+        "INSTALLED BY OUR OWN TEAM",
+        "OAK FRONTS",
+        "THE WORKSHOP",
+        "FROM DRAWING TO INSTALLATION"
+      ]
     }
   },
   "footer": {
