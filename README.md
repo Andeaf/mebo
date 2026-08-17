@@ -37,13 +37,14 @@ worden: map `src/app/[locale]/m*` + `src/components/variants/` weggooien, het
 
 ## Voor livegang nog invullen/controleren
 
-- [ ] **KvK-nummer** — staat nu als `00000000` in `src/lib/company.ts` en in de
-      message-bestanden (`footer.kvk`).
+- [x] **KvK-nummer** — 91028248 (Mebo CNS, vof, IJmuiden; geverifieerd in het
+      KvK-register 2026-08-18) in `src/lib/company.ts` en de message-bestanden
+      (`footer.kvk`).
 - [x] **Openingstijden** — bevestigd door eigenaar (2026-08-11): ma–vr
       11.00–16.30. Verwerkt in `messages/*.json` en de JSON-LD. Let op: het
       Google Business-profiel staat op di–vr — dag-bereik daar nog gelijktrekken.
-- [ ] **Domein** — overal is uitgegaan van `https://www.mebokeukens.nl`
-      (`src/lib/company.ts`).
+- [x] **Domein** — `https://www.mebokeukens.nl` is live: domein bij TransIP,
+      DNS wijst naar Vercel (2026-08-17).
 - [ ] **Contactformulier** — opent nu het e-mailprogramma van de bezoeker
       (mailto). Later aansluiten op Formspree/Resend: zie `TODO` in
       `src/components/ContactSection.tsx`.

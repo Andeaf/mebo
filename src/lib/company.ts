@@ -18,5 +18,5 @@ export const company = {
     countryCode: "NL",
   },
   // TODO: confirm with owner
-  kvk: "00000000",
+  kvk: "91028248",
 } as const;
