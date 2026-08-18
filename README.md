@@ -40,9 +40,9 @@ worden: map `src/app/[locale]/m*` + `src/components/variants/` weggooien, het
 - [x] **KvK-nummer** — 91028248 (Mebo CNS, vof, IJmuiden; geverifieerd in het
       KvK-register 2026-08-18) in `src/lib/company.ts` en de message-bestanden
       (`footer.kvk`).
-- [x] **Openingstijden** — bevestigd door eigenaar (2026-08-11): ma–vr
-      11.00–16.30. Verwerkt in `messages/*.json` en de JSON-LD. Let op: het
-      Google Business-profiel staat op di–vr — dag-bereik daar nog gelijktrekken.
+- [x] **Openingstijden** — di–vr 11.00–16.30 (conform het Google
+      Business-profiel, bevestigd 2026-08-18). Verwerkt in `messages/*.json`
+      en de JSON-LD.
 - [x] **Domein** — `https://www.mebokeukens.nl` is live: domein bij TransIP,
       DNS wijst naar Vercel (2026-08-17).
 - [ ] **Contactformulier** — opent nu het e-mailprogramma van de bezoeker

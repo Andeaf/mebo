@@ -43,7 +43,7 @@ export default async function HomePage({
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday"],
         opens: "11:00",
         closes: "16:30",
       },
