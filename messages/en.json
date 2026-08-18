@@ -50,6 +50,16 @@
     "instagram": "See more projects on Instagram",
     "imageAlt": "Black custom kitchen with wooden niche and lighting, a Mebo project"
   },
+  "gallery": {
+    "projectLabel": "Project {number}",
+    "photoCount": "{count, plural, one {# photo} other {# photos}}",
+    "photoAlt": "Project {number}, photo {index} of {count}",
+    "alt01": "Greige custom kitchen with island, a Mebo project",
+    "alt02": "Custom kitchen in walnut and stone, a Mebo project",
+    "close": "Close",
+    "prev": "Previous photo",
+    "next": "Next photo"
+  },
   "features": [
     {
       "eyebrow": "Materials",

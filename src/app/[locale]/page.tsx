@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import BrandStatement from "@/components/BrandStatement";
 import ProcessCards from "@/components/ProcessCards";
 import Showcase from "@/components/Showcase";
+import ProjectsGrid from "@/components/ProjectsGrid";
 import FeatureBlocks from "@/components/FeatureBlocks";
 import MaterialColors from "@/components/MaterialColors";
 import StatementMoment from "@/components/StatementMoment";
@@ -63,6 +64,7 @@ export default async function HomePage({
         <BrandStatement />
         <ProcessCards />
         <Showcase />
+        <ProjectsGrid />
         <FeatureBlocks />
         <MaterialColors />
         <StatementMoment />

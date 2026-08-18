@@ -50,6 +50,16 @@
     "instagram": "Bekijk meer projecten op Instagram",
     "imageAlt": "Zwarte maatwerk keuken met houten nis en verlichting, project van Mebo"
   },
+  "gallery": {
+    "projectLabel": "Project {number}",
+    "photoCount": "{count, plural, one {# foto} other {# foto's}}",
+    "photoAlt": "Project {number}, foto {index} van {count}",
+    "alt01": "Greige maatwerkkeuken met kookeiland, project van Mebo",
+    "alt02": "Maatwerkkeuken in walnoot en natuursteen, project van Mebo",
+    "close": "Sluiten",
+    "prev": "Vorige foto",
+    "next": "Volgende foto"
+  },
   "features": [
     {
       "eyebrow": "Materialen",
