@@ -27,5 +27,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
+    {
+      url: `${company.siteUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          nl: `${company.siteUrl}/about`,
+          en: `${company.siteUrl}/en/about`,
+        },
+      },
+    },
+    {
+      url: `${company.siteUrl}/en/about`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+      alternates: {
+        languages: {
+          nl: `${company.siteUrl}/about`,
+          en: `${company.siteUrl}/en/about`,
+        },
+      },
+    },
   ];
 }

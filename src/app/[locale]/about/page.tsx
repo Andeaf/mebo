@@ -23,6 +23,14 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
+    alternates: {
+      canonical: locale === "nl" ? "/about" : `/${locale}/about`,
+      languages: {
+        nl: "/about",
+        en: "/en/about",
+        "x-default": "/about",
+      },
+    },
   };
 }
 
