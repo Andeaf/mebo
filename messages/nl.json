@@ -155,11 +155,31 @@
     "form": {
       "title": "Offerte aanvragen",
       "name": "Naam",
-      "contact": "E-mail of telefoonnummer",
+      "phone": "Telefoonnummer",
+      "email": "E-mailadres (optioneel)",
+      "projectType": "Type project",
+      "projectTypeOptions": {
+        "keuken": "Keuken op maat",
+        "meubel": "Meubel op maat",
+        "beide": "Keuken én meubels",
+        "anders": "Iets anders"
+      },
+      "budget": "Indicatief budget",
+      "budgetOptions": {
+        "b1": "Tot € 10.000",
+        "b2": "€ 10.000 – € 20.000",
+        "b3": "€ 20.000 – € 35.000",
+        "b4": "Meer dan € 35.000",
+        "b5": "Weet ik nog niet"
+      },
+      "selectPlaceholder": "Maak een keuze",
       "message": "Uw project",
       "messagePlaceholder": "Bijv. een keuken op maat met kookeiland, of een kastenwand van 3 meter…",
       "submit": "Verstuur aanvraag",
-      "note": "Het formulier opent uw e-mailprogramma — er wordt niets automatisch verzonden. Liever direct contact? Bel of app ons.",
+      "sending": "Versturen…",
+      "success": "Bedankt voor uw aanvraag! We nemen binnen 1–2 werkdagen contact met u op.",
+      "errorMailto": "Direct verzenden lukte niet — we hebben uw bericht klaargezet in uw e-mailprogramma. U kunt ons ook bellen of appen.",
+      "note": "We reageren binnen 1–2 werkdagen. Liever direct contact? Bel of app ons.",
       "subject": "Offerteaanvraag via mebokeukens.nl"
     }
   },

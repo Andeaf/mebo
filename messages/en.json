@@ -155,11 +155,31 @@
     "form": {
       "title": "Request a quote",
       "name": "Name",
-      "contact": "Email or phone number",
+      "phone": "Phone number",
+      "email": "Email address (optional)",
+      "projectType": "Project type",
+      "projectTypeOptions": {
+        "keuken": "Custom kitchen",
+        "meubel": "Custom furniture",
+        "beide": "Kitchen and furniture",
+        "anders": "Something else"
+      },
+      "budget": "Indicative budget",
+      "budgetOptions": {
+        "b1": "Up to €10,000",
+        "b2": "€10,000 – €20,000",
+        "b3": "€20,000 – €35,000",
+        "b4": "More than €35,000",
+        "b5": "Not sure yet"
+      },
+      "selectPlaceholder": "Select an option",
       "message": "Your project",
       "messagePlaceholder": "E.g. a custom kitchen with a cooking island, or a 3-metre wall of cabinets…",
       "submit": "Send request",
-      "note": "The form opens your email app — nothing is sent automatically. Prefer direct contact? Call or message us.",
+      "sending": "Sending…",
+      "success": "Thank you for your request! We will contact you within 1–2 working days.",
+      "errorMailto": "Direct sending didn't work — we've prepared your message in your email app instead. You can also call or message us.",
+      "note": "We respond within 1–2 working days. Prefer direct contact? Call or message us.",
       "subject": "Quote request via mebokeukens.nl"
     }
   },

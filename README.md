@@ -30,9 +30,13 @@ npm run placeholders  # grijze placeholder-foto's opnieuw genereren
       en de JSON-LD.
 - [x] **Domein** — `https://www.mebokeukens.nl` is live: domein bij TransIP,
       DNS wijst naar Vercel (2026-08-17).
-- [ ] **Contactformulier** — opent nu het e-mailprogramma van de bezoeker
-      (mailto). Later aansluiten op Formspree/Resend: zie `TODO` in
-      `src/components/ContactSection.tsx`.
+- [ ] **Offerteformulier activeren** — het formulier verstuurt via
+      `/api/offerte` (Resend); zonder `RESEND_API_KEY` valt het automatisch
+      terug op mailto. Nog doen: Resend-account aanmaken, domein
+      `mebokeukens.nl` verifiëren (DNS bij TransIP) en in Vercel de env vars
+      zetten: `RESEND_API_KEY` (verplicht), optioneel `QUOTE_TO_EMAIL`
+      (standaard info@mebokeukens.nl) en `QUOTE_FROM_EMAIL` (standaard
+      `onboarding@resend.dev` totdat het domein geverifieerd is).
 - [ ] Echte foto's plaatsen (zie hierboven).
 
 Contactgegevens (telefoon, e-mail, adres, Instagram) komen van het openbare

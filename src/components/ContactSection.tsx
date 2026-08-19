@@ -1,7 +1,7 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import type { FormEvent } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import { useRef, useState, type FormEvent } from "react";
 import { company } from "@/lib/company";
 import FadeUp from "./FadeUp";
 
@@ -39,22 +39,55 @@ const ICONS = {
 
 export default function ContactSection() {
   const t = useTranslations("contact");
+  const locale = useLocale();
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  // The server drops submissions that arrive within 2s of page load (bots).
+  const startedAt = useRef(Date.now());
 
-  // TODO: connect to Formspree/Resend later. Until then the form composes an
-  // email in the visitor's own mail app, so no message can get lost silently.
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const body = [
-      `${t("form.name")}: ${data.get("name")}`,
-      `${t("form.contact")}: ${data.get("contact")}`,
-      "",
-      `${data.get("message")}`,
-    ].join("\n");
-    const url = `mailto:${company.email}?subject=${encodeURIComponent(
-      t("form.subject"),
-    )}&body=${encodeURIComponent(body)}`;
-    window.location.href = url;
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const projectTypeKey = String(data.get("projectType") ?? "");
+    const budgetKey = String(data.get("budget") ?? "");
+    const payload = {
+      name: String(data.get("name") ?? ""),
+      phone: String(data.get("phone") ?? ""),
+      email: String(data.get("email") ?? ""),
+      projectType: projectTypeKey ? t(`form.projectTypeOptions.${projectTypeKey}`) : "",
+      budget: budgetKey ? t(`form.budgetOptions.${budgetKey}`) : "",
+      message: String(data.get("message") ?? ""),
+      locale,
+      website: String(data.get("website") ?? ""),
+      startedAt: startedAt.current,
+    };
+
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/offerte", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error(`status ${res.status}`);
+      setStatus("success");
+    } catch {
+      // Server unavailable or not configured — compose the email in the
+      // visitor's own mail app instead, so the request is never lost.
+      setStatus("error");
+      const body = [
+        `${t("form.name")}: ${payload.name}`,
+        `${t("form.phone")}: ${payload.phone}`,
+        `${t("form.email")}: ${payload.email || "-"}`,
+        `${t("form.projectType")}: ${payload.projectType || "-"}`,
+        `${t("form.budget")}: ${payload.budget || "-"}`,
+        "",
+        payload.message,
+      ].join("\n");
+      window.location.href = `mailto:${company.email}?subject=${encodeURIComponent(
+        t("form.subject"),
+      )}&body=${encodeURIComponent(body)}`;
+    }
   }
 
   const inputClass =
@@ -157,36 +190,113 @@ export default function ContactSection() {
           </FadeUp>
 
           <FadeUp delay={0.1}>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-              <h3 className="text-lg font-medium tracking-tight-3">
-                {t("form.title")}
-              </h3>
-              <label className="flex flex-col gap-1.5">
-                <span className="text-sm text-muted">{t("form.name")}</span>
-                <input name="name" type="text" required className={inputClass} />
-              </label>
-              <label className="flex flex-col gap-1.5">
-                <span className="text-sm text-muted">{t("form.contact")}</span>
-                <input name="contact" type="text" required className={inputClass} />
-              </label>
-              <label className="flex flex-col gap-1.5">
-                <span className="text-sm text-muted">{t("form.message")}</span>
-                <textarea
-                  name="message"
-                  rows={5}
-                  required
-                  placeholder={t("form.messagePlaceholder")}
-                  className={inputClass}
-                />
-              </label>
-              <button
-                type="submit"
-                className="mt-1 cursor-pointer self-start rounded-sm bg-ink px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:bg-ink-soft"
-              >
-                {t("form.submit")}
-              </button>
-              <p className="text-sm text-pretty text-muted">{t("form.note")}</p>
-            </form>
+            {status === "success" ? (
+              <div className="flex flex-col gap-3 rounded-sm border border-line bg-white p-6">
+                <h3 className="text-lg font-medium tracking-tight-3">
+                  {t("form.title")}
+                </h3>
+                <p className="text-base leading-relaxed text-pretty text-ink-soft">
+                  {t("form.success")}
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <h3 className="text-lg font-medium tracking-tight-3">
+                  {t("form.title")}
+                </h3>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <label className="flex flex-col gap-1.5">
+                    <span className="text-sm text-muted">{t("form.name")}</span>
+                    <input
+                      name="name"
+                      type="text"
+                      required
+                      autoComplete="name"
+                      className={inputClass}
+                    />
+                  </label>
+                  <label className="flex flex-col gap-1.5">
+                    <span className="text-sm text-muted">{t("form.phone")}</span>
+                    <input
+                      name="phone"
+                      type="tel"
+                      required
+                      autoComplete="tel"
+                      className={inputClass}
+                    />
+                  </label>
+                </div>
+                <label className="flex flex-col gap-1.5">
+                  <span className="text-sm text-muted">{t("form.email")}</span>
+                  <input
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    className={inputClass}
+                  />
+                </label>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <label className="flex flex-col gap-1.5">
+                    <span className="text-sm text-muted">{t("form.projectType")}</span>
+                    <select
+                      name="projectType"
+                      required
+                      defaultValue=""
+                      className={inputClass}
+                    >
+                      <option value="" disabled>
+                        {t("form.selectPlaceholder")}
+                      </option>
+                      <option value="keuken">{t("form.projectTypeOptions.keuken")}</option>
+                      <option value="meubel">{t("form.projectTypeOptions.meubel")}</option>
+                      <option value="beide">{t("form.projectTypeOptions.beide")}</option>
+                      <option value="anders">{t("form.projectTypeOptions.anders")}</option>
+                    </select>
+                  </label>
+                  <label className="flex flex-col gap-1.5">
+                    <span className="text-sm text-muted">{t("form.budget")}</span>
+                    <select name="budget" defaultValue="" className={inputClass}>
+                      <option value="">{t("form.selectPlaceholder")}</option>
+                      <option value="b1">{t("form.budgetOptions.b1")}</option>
+                      <option value="b2">{t("form.budgetOptions.b2")}</option>
+                      <option value="b3">{t("form.budgetOptions.b3")}</option>
+                      <option value="b4">{t("form.budgetOptions.b4")}</option>
+                      <option value="b5">{t("form.budgetOptions.b5")}</option>
+                    </select>
+                  </label>
+                </div>
+                <label className="flex flex-col gap-1.5">
+                  <span className="text-sm text-muted">{t("form.message")}</span>
+                  <textarea
+                    name="message"
+                    rows={5}
+                    required
+                    placeholder={t("form.messagePlaceholder")}
+                    className={inputClass}
+                  />
+                </label>
+                {/* Honeypot — invisible to visitors, tempting for bots */}
+                <div className="hidden" aria-hidden="true">
+                  <label>
+                    Website
+                    <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+                  </label>
+                </div>
+                <button
+                  type="submit"
+                  disabled={status === "sending"}
+                  className="mt-1 cursor-pointer self-start rounded-sm bg-ink px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:bg-ink-soft disabled:cursor-default disabled:opacity-60"
+                >
+                  {status === "sending" ? t("form.sending") : t("form.submit")}
+                </button>
+                {status === "error" && (
+                  <p className="text-sm text-pretty text-[#9a3324]">
+                    {t("form.errorMailto")}
+                  </p>
+                )}
+                <p className="text-sm text-pretty text-muted">{t("form.note")}</p>
+              </form>
+            )}
           </FadeUp>
         </div>
       </div>
