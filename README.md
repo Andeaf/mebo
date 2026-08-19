@@ -16,24 +16,9 @@ npm run placeholders  # grijze placeholder-foto's opnieuw genereren
 - Alle teksten staan in `messages/nl.json` en `messages/en.json`.
 - Echte projectfoto's: zie `public/images/projects/README.md` — bestand met
   dezelfde naam neerzetten is genoeg.
-
-## Design-varianten (klantpresentatie)
-
-Naast het huidige design (`/`) staan er vier alternatieve voorstellen op
-`/m1` t/m `/m4` (zelfde teksten, foto's en talen; alleen het design verschilt):
-
-| Route | Richting | Referentie |
-| ----- | -------- | ---------- |
-| `/m1` | Warm crème + oranje, serif, scroll-animaties (in én uit) | godaylight.com |
-| `/m2` | Full-screen foto, typemachine-letter, hover-lijst met wisselende foto's | bureaurouge.com |
-| `/m3` | Zwart portfolio, vaste kop links, genummerd werk, radiaal menu | caverzasio.ch |
-| `/m4` | Wit minimalistisch, typemachine-intro, fotocollage, groot woordmerk | danielblue.com |
-
-Onderaan elke variant zit een zwevende switcher (0 = huidig design) om snel te
-vergelijken. De varianten staan op `noindex` en kunnen na de keuze verwijderd
-worden: map `src/app/[locale]/m*` + `src/components/variants/` weggooien, het
-`v`-blok uit beide message-bestanden halen en de m1–m4-tokens uit
-`globals.css`/`variantFonts.ts` opruimen.
+- De homepage opent met een typemachine-intro
+  (`src/components/IntroTypewriter.tsx`): speelt één keer per browsersessie en
+  is overslaanbaar met een klik of toets.
 
 ## Voor livegang nog invullen/controleren
 

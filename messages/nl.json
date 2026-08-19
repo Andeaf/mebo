@@ -163,75 +163,16 @@
       "subject": "Offerteaanvraag via mebokeukens.nl"
     }
   },
-  "v": {
-    "designLabel": "Design",
-    "m1": {
-      "labels": {
-        "intro": "Maatwerk uit IJmuiden",
-        "process": "Onze werkwijze",
-        "materials": "Materialen & aanpak",
-        "contact": "Contact"
-      },
-      "ctaNote": "Showroom: Plein 1945 50, IJmuiden"
-    },
-    "m2": {
-      "about": "Wij ontwerpen en produceren <i>keukens</i> en <i>meubels</i> op maat, voor woningen door heel Nederland. Van eerste schets tot laatste schroef houden we het proces in eigen hand - helder ontwerp, <i>precieze</i> productie, montage door ons eigen team. Geen standaardmaten, geen concessies: alleen <i>vakwerk</i> dat past.",
-      "toast": "Mebo is nu ook op Instagram",
-      "clockCity": "IJMUIDEN",
-      "worksNote": "Selectie van recent werk - beweeg over de lijst",
-      "works": [
-        { "year": "[2026]", "tag": "[KEUKEN]", "title": "Eiken met kookeiland" },
-        { "year": "[2026]", "tag": "[KEUKEN]", "title": "Mat zwart & hout" },
-        { "year": "[2025]", "tag": "[SHOWROOM]", "title": "Ontwerpgesprek" },
-        { "year": "[2025]", "tag": "[PRODUCTIE]", "title": "CNC-millimeterwerk" },
-        { "year": "[2025]", "tag": "[MONTAGE]", "title": "Eigen montageteam" },
-        { "year": "[2024-26]", "tag": "[MATERIALEN]", "title": "Eiken fronten" },
-        { "year": "[2024]", "tag": "[PROCES]", "title": "Van tekening tot montage" },
-        { "year": "[2024]", "tag": "[ATELIER]", "title": "Werkplaats IJmuiden" }
-      ]
-    },
-    "m3": {
-      "headline": "Geselecteerd werk",
-      "discover": "Meer op Instagram",
-      "menuAria": "Menu openen",
-      "projects": [
-        {
-          "title": "Eiken keuken met kookeiland",
-          "tags": "ONTWERP  PRODUCTIE  MONTAGE",
-          "text": "Massief eiken keuken met royaal kookeiland - samen met de klant ontworpen, in eigen werkplaats geproduceerd en door ons team gemonteerd."
-        },
-        {
-          "title": "Mat zwarte keuken met houten nis",
-          "tags": "ONTWERP  MAATWERK  VERLICHTING",
-          "text": "Mat zwarte fronten met een warme houten nis en geïntegreerde verlichting. Strak millimeterwerk, tot in het laatste detail."
-        },
-        {
-          "title": "Eigen productie in IJmuiden",
-          "tags": "CNC  MACHINEPARK  VAKWERK",
-          "text": "Modern machinepark en CNC-precisie in onze eigen werkplaats. Elke kast, elk front en elke lade op maat gemaakt."
-        },
-        {
-          "title": "Montage door eigen team",
-          "tags": "MONTAGE  HEEL NEDERLAND",
-          "text": "Ons eigen montageteam plaatst elk project, door heel Nederland. Eén aanspreekpunt, duidelijke afspraken, geen verrassingen."
-        }
-      ]
-    },
-    "m4": {
-      "tagline": "MEUBELS + KEUKENS OP MAAT",
-      "location": "IJMUIDEN / 52.46° N 4.61° O",
-      "skip": "Intro overslaan",
-      "captions": [
-        "EIKEN KOOKEILAND",
-        "MAT ZWART & HOUT",
-        "ONTWERP IN DE SHOWROOM",
-        "CNC-PRODUCTIE",
-        "MONTAGE DOOR EIGEN TEAM",
-        "EIKEN FRONTEN",
-        "DE WERKPLAATS",
-        "VAN TEKENING TOT MONTAGE"
-      ]
-    }
+  "intro": {
+    "skip": "Intro overslaan",
+    "captions": [
+      "EIKEN KOOKEILAND",
+      "MAT ZWART & HOUT",
+      "ONTWERP IN DE SHOWROOM",
+      "CNC-PRODUCTIE",
+      "MONTAGE DOOR EIGEN TEAM",
+      "EIKEN FRONTEN"
+    ]
   },
   "footer": {
     "tagline": "Keukens en meubels op maat, uit IJmuiden.",

@@ -4,14 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 
 /**
- * Opening sequence after danielblue.com, compressed to ~4.5s: project
- * captions type in letter by letter at their collage positions, hold, delete
- * again, then the brand name types in the centre and the page fades in.
+ * Opening sequence after danielblue.com, compressed to ~2.5s: project
+ * captions type in letter by letter at their collage positions, hold and
+ * delete again, while the brand name types in the centre from the 1s mark;
+ * once both are done the page fades in.
  *
  * Skippable with a click/keypress and plays once per browser session.
  */
 
-const SEEN_KEY = "mebo-m4-intro-seen";
+const SEEN_KEY = "mebo-intro-seen";
 
 // Scattered caption positions (viewport percentages), like the reference.
 const SPOTS: React.CSSProperties[] = [
@@ -23,14 +24,16 @@ const SPOTS: React.CSSProperties[] = [
   { bottom: "16%", right: "13%" },
 ];
 
-const TYPE_MS = 34; // per character while typing
-const DELETE_MS = 16; // per character while deleting
-const STAGGER = 8; // characters of head start between captions
-const HOLD_TICKS = 16; // pause with everything typed
-const BRAND_TYPE_MS = 130;
+const TYPE_MS = 14; // per character while typing
+const DELETE_MS = 8; // per character while deleting
+const STAGGER = 4; // characters of head start between captions
+const HOLD_TICKS = 8; // pause with everything typed
+const BRAND_DELAY = 1000; // brand starts typing at the 1s mark
+const BRAND_TYPE_MS = 110;
+const BRAND_HOLD_TICKS = 5; // hold with the brand fully typed
 
-export default function M4Intro() {
-  const t = useTranslations("v.m4");
+export default function IntroTypewriter() {
+  const t = useTranslations("intro");
   const [visible, setVisible] = useState(true);
   const [fading, setFading] = useState(false);
   const [counts, setCounts] = useState<number[]>(Array(SPOTS.length).fill(0));
@@ -38,7 +41,7 @@ export default function M4Intro() {
   const timers = useRef<number[]>([]);
 
   const captions = SPOTS.map((_, i) => t(`captions.${i}`));
-  const brand = "MEBO";
+  const brand = "mebo";
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -49,15 +52,22 @@ export default function M4Intro() {
 
     const maxLen = Math.max(...captions.map((c) => c.length));
     const totalTicks = maxLen + STAGGER * (captions.length - 1);
-    let tick = 0;
-    let phase: "type" | "hold" | "delete" | "brand" | "fade" = "type";
+    let captionsDone = false;
+    let brandDone = false;
 
     const finish = () => {
       sessionStorage.setItem(SEEN_KEY, "1");
       setFading(true);
-      timers.current.push(window.setTimeout(() => setVisible(false), 850));
+      timers.current.push(window.setTimeout(() => setVisible(false), 520));
     };
 
+    const maybeFinish = () => {
+      if (captionsDone && brandDone) finish();
+    };
+
+    // Captions: type in, hold, delete again.
+    let tick = 0;
+    let phase: "type" | "hold" | "delete" = "type";
     const step = () => {
       tick += 1;
       if (phase === "type") {
@@ -73,29 +83,35 @@ export default function M4Intro() {
           tick = 0;
         }
         timers.current.push(window.setTimeout(step, TYPE_MS));
-      } else if (phase === "delete") {
+      } else {
         setCounts(
           captions.map((c, i) =>
             Math.max(0, Math.min(c.length, totalTicks - i * STAGGER - tick)),
           ),
         );
         if (tick >= totalTicks) {
-          phase = "brand";
-          tick = 0;
-        }
-        timers.current.push(window.setTimeout(step, DELETE_MS));
-      } else if (phase === "brand") {
-        setBrandCount(Math.min(brand.length, tick));
-        if (tick >= brand.length + 4) {
-          phase = "fade";
-          finish();
+          captionsDone = true;
+          maybeFinish();
           return;
         }
-        timers.current.push(window.setTimeout(step, BRAND_TYPE_MS));
+        timers.current.push(window.setTimeout(step, DELETE_MS));
       }
     };
+    timers.current.push(window.setTimeout(step, 100));
 
-    timers.current.push(window.setTimeout(step, 400));
+    // Brand: runs in parallel, starting at the 1s mark.
+    let brandTick = 0;
+    const brandStep = () => {
+      brandTick += 1;
+      setBrandCount(Math.min(brand.length, brandTick));
+      if (brandTick >= brand.length + BRAND_HOLD_TICKS) {
+        brandDone = true;
+        maybeFinish();
+        return;
+      }
+      timers.current.push(window.setTimeout(brandStep, BRAND_TYPE_MS));
+    };
+    timers.current.push(window.setTimeout(brandStep, BRAND_DELAY));
 
     const skip = () => {
       timers.current.forEach(clearTimeout);
@@ -117,7 +133,7 @@ export default function M4Intro() {
   return (
     <div
       aria-hidden
-      className={`fixed inset-0 z-90 bg-white transition-opacity duration-700 ${
+      className={`fixed inset-0 z-90 bg-white transition-opacity duration-500 ${
         fading ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
     >
@@ -125,12 +141,12 @@ export default function M4Intro() {
         <span
           key={i}
           style={style}
-          className="absolute font-m4-serif text-[11px] font-medium tracking-[0.18em] text-neutral-800 uppercase md:text-[13px]"
+          className="absolute font-intro-serif text-[11px] font-medium tracking-[0.18em] text-neutral-800 uppercase md:text-[13px]"
         >
           {captions[i].slice(0, counts[i])}
         </span>
       ))}
-      <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-m4-serif text-3xl font-medium tracking-[0.42em] text-neutral-900 md:text-4xl">
+      <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-intro-serif text-3xl font-medium tracking-[0.42em] text-neutral-900 md:text-4xl">
         {brand.slice(0, brandCount)}
         {brandCount > 0 && brandCount < brand.length && (
           <span className="caret-blink" aria-hidden>

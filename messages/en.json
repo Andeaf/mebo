@@ -163,75 +163,16 @@
       "subject": "Quote request via mebokeukens.nl"
     }
   },
-  "v": {
-    "designLabel": "Design",
-    "m1": {
-      "labels": {
-        "intro": "Made to measure in IJmuiden",
-        "process": "How we work",
-        "materials": "Materials & approach",
-        "contact": "Contact"
-      },
-      "ctaNote": "Showroom: Plein 1945 50, IJmuiden"
-    },
-    "m2": {
-      "about": "We design and produce custom <i>kitchens</i> and <i>furniture</i> for homes throughout the Netherlands. From first sketch to final screw we keep the process in our own hands - clear design, <i>precise</i> production, installation by our own team. No standard sizes, no compromises: only <i>craftsmanship</i> that fits.",
-      "toast": "Mebo is now on Instagram",
-      "clockCity": "IJMUIDEN",
-      "worksNote": "Selection of recent work - hover over the list",
-      "works": [
-        { "year": "[2026]", "tag": "[KITCHEN]", "title": "Oak with cooking island" },
-        { "year": "[2026]", "tag": "[KITCHEN]", "title": "Matte black & wood" },
-        { "year": "[2025]", "tag": "[SHOWROOM]", "title": "Design consultation" },
-        { "year": "[2025]", "tag": "[PRODUCTION]", "title": "CNC millimetre precision" },
-        { "year": "[2025]", "tag": "[INSTALLATION]", "title": "Our own install team" },
-        { "year": "[2024-26]", "tag": "[MATERIALS]", "title": "Oak fronts" },
-        { "year": "[2024]", "tag": "[PROCESS]", "title": "From drawing to installation" },
-        { "year": "[2024]", "tag": "[WORKSHOP]", "title": "IJmuiden workshop" }
-      ]
-    },
-    "m3": {
-      "headline": "Selected works",
-      "discover": "More on Instagram",
-      "menuAria": "Open menu",
-      "projects": [
-        {
-          "title": "Oak kitchen with cooking island",
-          "tags": "DESIGN  PRODUCTION  INSTALLATION",
-          "text": "Solid oak kitchen with a generous cooking island - designed together with the client, produced in our own workshop and installed by our team."
-        },
-        {
-          "title": "Matte black kitchen with wooden niche",
-          "tags": "DESIGN  CUSTOM WORK  LIGHTING",
-          "text": "Matte black fronts with a warm wooden niche and integrated lighting. Tight millimetre work, down to the last detail."
-        },
-        {
-          "title": "In-house production in IJmuiden",
-          "tags": "CNC  MACHINERY  CRAFTSMANSHIP",
-          "text": "Modern machinery and CNC precision in our own workshop. Every cabinet, front and drawer made to measure."
-        },
-        {
-          "title": "Installation by our own team",
-          "tags": "INSTALLATION  ALL OF THE NETHERLANDS",
-          "text": "Our own installation team fits every project, throughout the Netherlands. One point of contact, clear agreements, no surprises."
-        }
-      ]
-    },
-    "m4": {
-      "tagline": "FURNITURE + KITCHENS, MADE TO MEASURE",
-      "location": "IJMUIDEN / 52.46° N 4.61° E",
-      "skip": "Skip intro",
-      "captions": [
-        "OAK COOKING ISLAND",
-        "MATTE BLACK & WOOD",
-        "DESIGN IN THE SHOWROOM",
-        "CNC PRODUCTION",
-        "INSTALLED BY OUR OWN TEAM",
-        "OAK FRONTS",
-        "THE WORKSHOP",
-        "FROM DRAWING TO INSTALLATION"
-      ]
-    }
+  "intro": {
+    "skip": "Skip intro",
+    "captions": [
+      "OAK COOKING ISLAND",
+      "MATTE BLACK & WOOD",
+      "DESIGN IN THE SHOWROOM",
+      "CNC PRODUCTION",
+      "INSTALLED BY OUR OWN TEAM",
+      "OAK FRONTS"
+    ]
   },
   "footer": {
     "tagline": "Custom kitchens and furniture, from IJmuiden.",

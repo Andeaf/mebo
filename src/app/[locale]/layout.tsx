@@ -1,17 +1,24 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Hanken_Grotesk } from "next/font/google";
+import { Cormorant, Hanken_Grotesk } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { company } from "@/lib/company";
-import { variantFontClasses } from "@/lib/variantFonts";
 import "../globals.css";
 
 const hanken = Hanken_Grotesk({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-hanken",
+});
+
+// Serif for the typewriter intro overlay on the homepage.
+const cormorant = Cormorant({
+  weight: "500",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-intro-cormorant",
 });
 
 export function generateStaticParams() {
@@ -71,7 +78,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${hanken.variable} ${variantFontClasses}`}>
+    <html lang={locale} className={`${hanken.variable} ${cormorant.variable}`}>
       <body>
         <NextIntlClientProvider messages={messages}>
           {children}

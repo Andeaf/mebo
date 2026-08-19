@@ -1,4 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import IntroTypewriter from "@/components/IntroTypewriter";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import BrandStatement from "@/components/BrandStatement";
@@ -58,6 +59,7 @@ export default async function HomePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <IntroTypewriter />
       <Nav />
       <main>
         <Hero />
