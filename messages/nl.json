@@ -9,7 +9,7 @@
     "process": "Werkwijze",
     "about": "Over ons",
     "contact": "Contact",
-    "cta": "Offerte aanvragen",
+    "cta": "Maak een afspraak",
     "menuOpen": "Menu openen",
     "menuClose": "Menu sluiten",
     "homeAria": "Mebo — naar boven",
@@ -18,7 +18,7 @@
   "hero": {
     "title": "Maatwerk meubels, gemaakt voor uw huis.",
     "subtitle": "Mebo ontwerpt, produceert en monteert keukens en meubels op maat. Vakwerk uit IJmuiden, geplaatst door ons eigen team — door heel Nederland.",
-    "cta": "Offerte aanvragen",
+    "cta": "Maak een afspraak",
     "imageAlt": "Maatwerk keuken van eikenhout met kookeiland, gemaakt door Mebo"
   },
   "statement": {
@@ -157,7 +157,7 @@
     "hoursLabel": "Openingstijden",
     "hoursValue": "Di–vr 11.00–16.30",
     "form": {
-      "title": "Offerte aanvragen",
+      "title": "Maak een afspraak",
       "name": "Naam",
       "phone": "Telefoonnummer",
       "email": "E-mailadres (optioneel)",
@@ -184,7 +184,7 @@
       "success": "Bedankt voor uw aanvraag! We nemen binnen 1–2 werkdagen contact met u op.",
       "errorMailto": "Direct verzenden lukte niet — we hebben uw bericht klaargezet in uw e-mailprogramma. U kunt ons ook bellen of appen.",
       "note": "We reageren binnen 1–2 werkdagen. Liever direct contact? Bel of app ons.",
-      "subject": "Offerteaanvraag via mebokeukens.nl"
+      "subject": "Afspraakaanvraag via mebokeukens.nl"
     }
   },
   "intro": {

@@ -9,7 +9,7 @@
     "process": "Process",
     "about": "About us",
     "contact": "Contact",
-    "cta": "Request a quote",
+    "cta": "Make an appointment",
     "menuOpen": "Open menu",
     "menuClose": "Close menu",
     "homeAria": "Mebo — back to top",
@@ -18,7 +18,7 @@
   "hero": {
     "title": "Custom furniture, made for your home.",
     "subtitle": "Mebo designs, produces and installs custom kitchens and furniture. Craftsmanship from IJmuiden, installed by our own team — throughout the Netherlands.",
-    "cta": "Request a quote",
+    "cta": "Make an appointment",
     "imageAlt": "Custom oak kitchen with cooking island, made by Mebo"
   },
   "statement": {
@@ -157,7 +157,7 @@
     "hoursLabel": "Opening hours",
     "hoursValue": "Tue–Fri 11.00–16.30",
     "form": {
-      "title": "Request a quote",
+      "title": "Make an appointment",
       "name": "Name",
       "phone": "Phone number",
       "email": "Email address (optional)",
@@ -184,7 +184,7 @@
       "success": "Thank you for your request! We will contact you within 1–2 working days.",
       "errorMailto": "Direct sending didn't work — we've prepared your message in your email app instead. You can also call or message us.",
       "note": "We respond within 1–2 working days. Prefer direct contact? Call or message us.",
-      "subject": "Quote request via mebokeukens.nl"
+      "subject": "Appointment request via mebokeukens.nl"
     }
   },
   "intro": {

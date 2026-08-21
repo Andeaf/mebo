@@ -58,7 +58,7 @@ export async function POST(request: Request) {
     "",
     message,
     "",
-    `— Verzonden via het offerteformulier op ${company.siteUrl} (${locale || "nl"})`,
+    `— Verzonden via het afsprakenformulier op ${company.siteUrl} (${locale || "nl"})`,
   ].join("\n");
 
   const res = await fetch("https://api.resend.com/emails", {
@@ -71,7 +71,7 @@ export async function POST(request: Request) {
       from: process.env.QUOTE_FROM_EMAIL || "Mebo offerteformulier <onboarding@resend.dev>",
       to: [process.env.QUOTE_TO_EMAIL || company.email],
       reply_to: email || undefined,
-      subject: `Offerteaanvraag van ${name}`,
+      subject: `Afspraakaanvraag van ${name}`,
       text,
     }),
   });
