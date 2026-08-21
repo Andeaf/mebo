@@ -50,7 +50,7 @@ export default function ProjectsGrid() {
               <button
                 type="button"
                 onClick={() => setLightbox({ project: i, photo: 0 })}
-                className="group relative block aspect-[3/2] w-full cursor-pointer overflow-hidden rounded-sm"
+                className="group relative block aspect-[3/2] w-full cursor-pointer overflow-hidden rounded-sm sm:aspect-[3/4]"
               >
                 <Image
                   src={p.images[0]}
