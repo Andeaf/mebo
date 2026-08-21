@@ -174,10 +174,10 @@ export default function ContactSection() {
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="grid items-start gap-12 lg:grid-cols-[1fr_440px] lg:gap-16"
+            className="grid items-start gap-8 lg:grid-cols-[1fr_440px] lg:gap-x-16 lg:gap-y-0"
           >
             {/* --- Left column: the form ----------------------------------- */}
-            <FadeUp>
+            <FadeUp className="lg:col-start-1 lg:row-start-1">
               <h2 className="text-3xl font-medium tracking-tight-3 text-balance md:text-[2.75rem] md:leading-[1.16]">
                 {t("form.title")}
               </h2>
@@ -186,7 +186,7 @@ export default function ContactSection() {
               </p>
 
               <div className="mt-10 flex flex-col gap-4">
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid gap-4 md:grid-cols-2">
                   <label className="flex flex-col gap-1.5">
                     <span className={labelClass}>{t("form.name")}</span>
                     <input
@@ -239,7 +239,7 @@ export default function ContactSection() {
                 </div>
 
                 {showOptional && (
-                  <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="grid gap-4 md:grid-cols-2">
                     <label className="flex flex-col gap-1.5">
                       <span className={labelClass}>{t("form.projectType")}</span>
                       <select name="projectType" defaultValue="" className={inputClass}>
@@ -272,49 +272,18 @@ export default function ContactSection() {
                   </label>
                 </div>
 
-                {/* Direct channels — the form is never a blocker */}
-                <div className="mt-2 grid gap-x-8 gap-y-4 sm:grid-cols-2">
-                  <div className="flex gap-3">
-                    <Icon path={ICONS.phone} />
-                    <a
-                      href={`tel:${company.phone}`}
-                      className="font-medium text-ink hover:underline"
-                    >
-                      {company.phoneDisplay}
-                    </a>
-                  </div>
-                  <div className="flex gap-3">
-                    <Icon path={ICONS.whatsapp} />
-                    <a
-                      href={company.whatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-medium text-ink hover:underline"
-                    >
-                      {t("whatsappLabel")} — {t("whatsappValue")}
-                    </a>
-                  </div>
-                  <div className="flex gap-3">
-                    <Icon path={ICONS.pin} />
-                    <p className="font-medium text-ink">
-                      {company.address.street}, {company.address.postalCode}{" "}
-                      {company.address.city}
-                    </p>
-                  </div>
-                  <div className="flex gap-3">
-                    <Icon path={ICONS.clock} />
-                    <p className="font-medium text-ink">{t("hoursValue")}</p>
-                  </div>
-                </div>
               </div>
             </FadeUp>
 
-            {/* --- Right column: booking card ------------------------------ */}
-            <FadeUp delay={0.1} className="self-start lg:sticky lg:top-24">
+            {/* --- Booking card (mobile: after the form, desktop: right column) --- */}
+            <FadeUp
+              delay={0.1}
+              className="self-start lg:sticky lg:top-24 lg:col-start-2 lg:row-start-1 lg:row-span-2"
+            >
               <div className="rounded-2xl border border-[#E6DFCE] bg-white p-[30px] shadow-[0_18px_40px_-24px_rgba(33,33,33,0.18)]">
                 <div className="flex items-baseline justify-between gap-4">
                   <h3 className="text-lg font-medium tracking-tight-3">{t("booking.title")}</h3>
-                  <span className="text-sm text-muted">{t("booking.duration")}</span>
+                  <span className="text-sm whitespace-nowrap text-muted">{t("booking.duration")}</span>
                 </div>
 
                 {/* Month navigation */}
@@ -363,7 +332,7 @@ export default function ContactSection() {
                           setSelectedDate(new Date(viewYear, viewMonth, day));
                           setDateError(false);
                         }}
-                        className={`h-10 cursor-pointer rounded-lg text-sm transition-colors ${
+                        className={`h-11 cursor-pointer rounded-lg text-sm transition-colors lg:h-10 ${
                           selected
                             ? "bg-[#1D1A16] font-medium text-[#F7F3EC]"
                             : enabled
@@ -383,7 +352,7 @@ export default function ContactSection() {
                 <p className="mt-5 text-[11px] font-medium uppercase tracking-wide text-muted">
                   {t("booking.availableTimes")}
                 </p>
-                <div className="mt-3 flex flex-wrap gap-2">
+                <div className="mt-3 grid grid-cols-3 gap-2 lg:flex lg:flex-wrap">
                   {times.map((time) => {
                     const selected = selectedTime === time;
                     return (
@@ -394,7 +363,7 @@ export default function ContactSection() {
                           setSelectedTime(time);
                           setDateError(false);
                         }}
-                        className={`cursor-pointer rounded-full border px-4 py-2 text-sm transition-colors ${
+                        className={`cursor-pointer rounded-lg border px-2 py-3 text-center text-sm transition-colors lg:rounded-full lg:px-4 lg:py-2 ${
                           selected
                             ? "border-[#1D1A16] bg-[#1D1A16] font-medium text-[#F7F3EC]"
                             : "border-[#E0D9C7] text-ink hover:bg-[#E7DFCC]"
@@ -445,6 +414,43 @@ export default function ContactSection() {
                 <p className="mt-3 text-center text-sm text-muted">
                   {t("booking.microcopy")} · {company.address.street}, {company.address.city}
                 </p>
+              </div>
+            </FadeUp>
+
+            {/* Direct channels — the form is never a blocker */}
+            <FadeUp className="lg:col-start-1 lg:row-start-2 lg:mt-6">
+              <div className="grid gap-x-8 gap-y-4 md:grid-cols-2">
+                <div className="flex gap-3">
+                  <Icon path={ICONS.phone} />
+                  <a
+                    href={`tel:${company.phone}`}
+                    className="font-medium text-ink hover:underline"
+                  >
+                    {company.phoneDisplay}
+                  </a>
+                </div>
+                <div className="flex gap-3">
+                  <Icon path={ICONS.whatsapp} />
+                  <a
+                    href={company.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-ink hover:underline"
+                  >
+                    {t("whatsappLabel")} — {t("whatsappValue")}
+                  </a>
+                </div>
+                <div className="flex gap-3">
+                  <Icon path={ICONS.pin} />
+                  <p className="font-medium text-ink">
+                    {company.address.street}, {company.address.postalCode}{" "}
+                    {company.address.city}
+                  </p>
+                </div>
+                <div className="flex gap-3">
+                  <Icon path={ICONS.clock} />
+                  <p className="font-medium text-ink">{t("hoursValue")}</p>
+                </div>
               </div>
             </FadeUp>
           </form>
