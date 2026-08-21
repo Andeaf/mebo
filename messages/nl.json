@@ -161,14 +161,14 @@
       "name": "Naam",
       "phone": "Telefoonnummer",
       "email": "E-mailadres (optioneel)",
-      "projectType": "Type project",
+      "projectType": "Type project (optioneel)",
       "projectTypeOptions": {
         "keuken": "Keuken op maat",
         "meubel": "Meubel op maat",
         "beide": "Keuken én meubels",
         "anders": "Iets anders"
       },
-      "budget": "Indicatief budget",
+      "budget": "Indicatief budget (optioneel)",
       "budgetOptions": {
         "b1": "Tot € 10.000",
         "b2": "€ 10.000 – € 20.000",
@@ -184,7 +184,21 @@
       "success": "Bedankt voor uw aanvraag! We nemen binnen 1–2 werkdagen contact met u op.",
       "errorMailto": "Direct verzenden lukte niet — we hebben uw bericht klaargezet in uw e-mailprogramma. U kunt ons ook bellen of appen.",
       "note": "We reageren binnen 1–2 werkdagen. Liever direct contact? Bel of app ons.",
-      "subject": "Afspraakaanvraag via mebokeukens.nl"
+      "subject": "Afspraakaanvraag via mebokeukens.nl",
+      "moreOptional": "Meer optionele gegevens",
+      "hideOptional": "Verberg optionele gegevens"
+    },
+    "booking": {
+      "title": "Kies een datum en tijd",
+      "duration": "±45 min",
+      "prevMonth": "Vorige maand",
+      "nextMonth": "Volgende maand",
+      "availableTimes": "Beschikbare tijden",
+      "yourAppointment": "Uw afspraak",
+      "pickDate": "Kies een datum om de beschikbaarheid te zien",
+      "pickTimeFor": "{date} — kies een tijd",
+      "missingDateTime": "Kies een datum en tijd voor uw afspraak.",
+      "microcopy": "Gratis showroomadvies"
     }
   },
   "intro": {

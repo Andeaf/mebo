@@ -23,6 +23,8 @@ export async function POST(request: Request) {
   const email = field(data.email, 120);
   const projectType = field(data.projectType, 60);
   const budget = field(data.budget, 60);
+  const appointmentDate = field(data.appointmentDate, 10);
+  const appointmentTime = field(data.appointmentTime, 5);
   const locale = field(data.locale, 5);
   const website = field(data.website, 200); // honeypot
   const startedAt = typeof data.startedAt === "number" ? data.startedAt : 0;
@@ -38,6 +40,12 @@ export async function POST(request: Request) {
   if (!name || !phone || !message) {
     return NextResponse.json({ error: "missing_fields" }, { status: 400 });
   }
+  if (
+    !/^\d{4}-\d{2}-\d{2}$/.test(appointmentDate) ||
+    !/^\d{2}:\d{2}$/.test(appointmentTime)
+  ) {
+    return NextResponse.json({ error: "missing_appointment" }, { status: 400 });
+  }
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return NextResponse.json({ error: "invalid_email" }, { status: 400 });
   }
@@ -49,10 +57,17 @@ export async function POST(request: Request) {
 
   // The owner reads Dutch — the notification email is always in Dutch,
   // whichever language the visitor used.
+  const appointmentDisplay = new Intl.DateTimeFormat("nl-NL", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(new Date(`${appointmentDate}T${appointmentTime}:00`));
   const text = [
     `Naam: ${name}`,
     `Telefoon: ${phone}`,
     `E-mail: ${email || "-"}`,
+    `Gewenste afspraak: ${appointmentDisplay} om ${appointmentTime}`,
     `Type project: ${projectType || "-"}`,
     `Indicatief budget: ${budget || "-"}`,
     "",
@@ -71,7 +86,7 @@ export async function POST(request: Request) {
       from: process.env.QUOTE_FROM_EMAIL || "Mebo offerteformulier <onboarding@resend.dev>",
       to: [process.env.QUOTE_TO_EMAIL || company.email],
       reply_to: email || undefined,
-      subject: `Afspraakaanvraag van ${name}`,
+      subject: `Afspraakaanvraag van ${name} — ${appointmentDate} ${appointmentTime}`,
       text,
     }),
   });

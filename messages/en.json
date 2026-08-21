@@ -161,14 +161,14 @@
       "name": "Name",
       "phone": "Phone number",
       "email": "Email address (optional)",
-      "projectType": "Project type",
+      "projectType": "Project type (optional)",
       "projectTypeOptions": {
         "keuken": "Custom kitchen",
         "meubel": "Custom furniture",
         "beide": "Kitchen and furniture",
         "anders": "Something else"
       },
-      "budget": "Indicative budget",
+      "budget": "Indicative budget (optional)",
       "budgetOptions": {
         "b1": "Up to €10,000",
         "b2": "€10,000 – €20,000",
@@ -184,7 +184,21 @@
       "success": "Thank you for your request! We will contact you within 1–2 working days.",
       "errorMailto": "Direct sending didn't work — we've prepared your message in your email app instead. You can also call or message us.",
       "note": "We respond within 1–2 working days. Prefer direct contact? Call or message us.",
-      "subject": "Appointment request via mebokeukens.nl"
+      "subject": "Appointment request via mebokeukens.nl",
+      "moreOptional": "More optional details",
+      "hideOptional": "Hide optional details"
+    },
+    "booking": {
+      "title": "Pick a date & time",
+      "duration": "±45 min",
+      "prevMonth": "Previous month",
+      "nextMonth": "Next month",
+      "availableTimes": "Available times",
+      "yourAppointment": "Your appointment",
+      "pickDate": "Pick a date to see availability",
+      "pickTimeFor": "{date} — pick a time",
+      "missingDateTime": "Please pick a date and time for your appointment.",
+      "microcopy": "Free showroom consultation"
     }
   },
   "intro": {

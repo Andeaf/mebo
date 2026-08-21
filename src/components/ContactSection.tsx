@@ -1,8 +1,9 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useRef, useState, type FormEvent } from "react";
+import { useMemo, useRef, useState, type FormEvent } from "react";
 import { company } from "@/lib/company";
+import { booking, bookingTimes, isoWeekday } from "@/lib/booking";
 import FadeUp from "./FadeUp";
 
 function Icon({ path }: { path: string }) {
@@ -29,23 +30,84 @@ const ICONS = {
     "M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.8.7a2 2 0 0 1 1.7 2z",
   whatsapp:
     "M3 21l1.6-4.7A8.4 8.4 0 1 1 8 19.4L3 21zM8.5 9.5c1 2.5 3.5 5 6 6l1.5-1.5 2.5 1c.2 1.5-1 2.5-2.5 2.5-4.5 0-9.5-5-9.5-9.5C6 6.5 7 5.3 8.5 5.5l1 2.5-1 1.5z",
-  mail: "M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM22 6l-10 7L2 6",
-  instagram:
-    "M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM17.5 6.5v.01",
   pin: "M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z",
-  area: "M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4zM8 2v16M16 6v16",
   clock: "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 6v6l4 2",
 } as const;
+
+function toISO(date: Date): string {
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${date.getFullYear()}-${m}-${d}`;
+}
 
 export default function ContactSection() {
   const t = useTranslations("contact");
   const locale = useLocale();
+  const fmtLocale = locale === "nl" ? "nl-NL" : "en-GB";
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [showOptional, setShowOptional] = useState(false);
   // The server drops submissions that arrive within 2s of page load (bots).
   const startedAt = useRef(Date.now());
 
+  // --- Booking state ---------------------------------------------------
+  const today = useMemo(() => {
+    const d = new Date();
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }, []);
+  const [viewYear, setViewYear] = useState(today.getFullYear());
+  const [viewMonth, setViewMonth] = useState(today.getMonth());
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  const [dateError, setDateError] = useState(false);
+
+  const times = useMemo(() => bookingTimes(), []);
+  const openDays = booking.openWeekdays as readonly number[];
+
+  const monthLabel = new Intl.DateTimeFormat(fmtLocale, {
+    month: "long",
+    year: "numeric",
+  }).format(new Date(viewYear, viewMonth, 1));
+
+  // Weekday headers, Monday-first (2024-01-01 was a Monday).
+  const weekdayLabels = useMemo(() => {
+    const fmt = new Intl.DateTimeFormat(fmtLocale, { weekday: "short" });
+    return Array.from({ length: 7 }, (_, i) =>
+      fmt.format(new Date(2024, 0, 1 + i)).slice(0, 2).toUpperCase(),
+    );
+  }, [fmtLocale]);
+
+  const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+  const leadingBlanks = isoWeekday(new Date(viewYear, viewMonth, 1)) - 1;
+  const atCurrentMonth =
+    viewYear === today.getFullYear() && viewMonth === today.getMonth();
+
+  function isSelectable(day: number): boolean {
+    const date = new Date(viewYear, viewMonth, day);
+    return openDays.includes(isoWeekday(date)) && date >= today;
+  }
+
+  function moveMonth(delta: number) {
+    const d = new Date(viewYear, viewMonth + delta, 1);
+    setViewYear(d.getFullYear());
+    setViewMonth(d.getMonth());
+  }
+
+  const summaryDate = selectedDate
+    ? new Intl.DateTimeFormat(fmtLocale, {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+      }).format(selectedDate)
+    : null;
+
+  // --- Submit -----------------------------------------------------------
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (!selectedDate || !selectedTime) {
+      setDateError(true);
+      return;
+    }
     const form = event.currentTarget;
     const data = new FormData(form);
     const projectTypeKey = String(data.get("projectType") ?? "");
@@ -57,6 +119,8 @@ export default function ContactSection() {
       projectType: projectTypeKey ? t(`form.projectTypeOptions.${projectTypeKey}`) : "",
       budget: budgetKey ? t(`form.budgetOptions.${budgetKey}`) : "",
       message: String(data.get("message") ?? ""),
+      appointmentDate: toISO(selectedDate),
+      appointmentTime: selectedTime,
       locale,
       website: String(data.get("website") ?? ""),
       startedAt: startedAt.current,
@@ -81,6 +145,7 @@ export default function ContactSection() {
         `${t("form.email")}: ${payload.email || "-"}`,
         `${t("form.projectType")}: ${payload.projectType || "-"}`,
         `${t("form.budget")}: ${payload.budget || "-"}`,
+        `${t("booking.yourAppointment")}: ${summaryDate}, ${selectedTime}`,
         "",
         payload.message,
       ].join("\n");
@@ -91,122 +156,39 @@ export default function ContactSection() {
   }
 
   const inputClass =
-    "w-full rounded-sm border border-line bg-white px-3.5 py-2.5 text-base text-ink placeholder:text-muted/60 focus:outline-2 focus:outline-ink";
+    "w-full rounded-lg border border-[#E0D9C7] bg-white px-3.5 py-2.5 text-base text-ink placeholder:text-muted/60 focus:outline-none focus:border-[#17150F]";
+  const labelClass = "text-sm text-muted";
 
   return (
     <section id="contact" className="scroll-mt-16 bg-cream-dark px-5 py-20 md:px-8 md:py-28">
       <div className="mx-auto max-w-350">
-        <FadeUp>
-          <p className="text-sm font-medium text-muted">{t("eyebrow")}</p>
-          <h2 className="mt-3 max-w-2xl text-3xl font-medium tracking-tight-3 text-balance md:text-[2.75rem] md:leading-[1.16]">
-            {t("heading")}
-          </h2>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-pretty text-ink-soft">
-            {t("intro")}
-          </p>
-        </FadeUp>
-
-        <div className="mt-12 grid gap-12 md:mt-16 md:grid-cols-2 md:gap-16">
-          {/* Direct channels — always visible, the form is never a blocker */}
+        {status === "success" ? (
           <FadeUp>
-            <ul className="flex flex-col divide-y divide-line">
-              <li className="flex gap-4 py-4 first:pt-0">
-                <Icon path={ICONS.phone} />
-                <div>
-                  <p className="text-sm text-muted">{t("phoneLabel")}</p>
-                  <a
-                    href={`tel:${company.phone}`}
-                    className="font-medium text-ink hover:underline"
-                  >
-                    {company.phoneDisplay}
-                  </a>
-                </div>
-              </li>
-              <li className="flex gap-4 py-4">
-                <Icon path={ICONS.whatsapp} />
-                <div>
-                  <p className="text-sm text-muted">{t("whatsappLabel")}</p>
-                  <a
-                    href={company.whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-ink hover:underline"
-                  >
-                    {t("whatsappValue")}
-                  </a>
-                </div>
-              </li>
-              <li className="flex gap-4 py-4">
-                <Icon path={ICONS.mail} />
-                <div>
-                  <p className="text-sm text-muted">{t("emailLabel")}</p>
-                  <a
-                    href={`mailto:${company.email}`}
-                    className="font-medium text-ink hover:underline"
-                  >
-                    {company.email}
-                  </a>
-                </div>
-              </li>
-              <li className="flex gap-4 py-4">
-                <Icon path={ICONS.instagram} />
-                <div>
-                  <p className="text-sm text-muted">{t("instagramLabel")}</p>
-                  <a
-                    href={company.instagramUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-ink hover:underline"
-                  >
-                    {company.instagramHandle}
-                  </a>
-                </div>
-              </li>
-              <li className="flex gap-4 py-4">
-                <Icon path={ICONS.pin} />
-                <div>
-                  <p className="text-sm text-muted">{t("visitLabel")}</p>
-                  <p className="font-medium text-ink">
-                    {company.address.street}, {company.address.postalCode}{" "}
-                    {company.address.city}
-                  </p>
-                </div>
-              </li>
-              <li className="flex gap-4 py-4">
-                <Icon path={ICONS.area} />
-                <div>
-                  <p className="text-sm text-muted">{t("areaLabel")}</p>
-                  <p className="font-medium text-ink">{t("areaValue")}</p>
-                </div>
-              </li>
-              <li className="flex gap-4 py-4 last:pb-0">
-                <Icon path={ICONS.clock} />
-                <div>
-                  <p className="text-sm text-muted">{t("hoursLabel")}</p>
-                  <p className="font-medium text-ink">{t("hoursValue")}</p>
-                </div>
-              </li>
-            </ul>
+            <div className="mx-auto flex max-w-xl flex-col gap-3 rounded-2xl border border-[#E6DFCE] bg-white p-8">
+              <h2 className="text-2xl font-medium tracking-tight-3">{t("form.title")}</h2>
+              <p className="text-base leading-relaxed text-pretty text-ink-soft">
+                {t("form.success")}
+              </p>
+            </div>
           </FadeUp>
+        ) : (
+          <form
+            onSubmit={handleSubmit}
+            className="grid items-start gap-12 lg:grid-cols-[1fr_440px] lg:gap-16"
+          >
+            {/* --- Left column: the form ----------------------------------- */}
+            <FadeUp>
+              <h2 className="text-3xl font-medium tracking-tight-3 text-balance md:text-[2.75rem] md:leading-[1.16]">
+                {t("form.title")}
+              </h2>
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-pretty text-ink-soft">
+                {t("intro")}
+              </p>
 
-          <FadeUp delay={0.1}>
-            {status === "success" ? (
-              <div className="flex flex-col gap-3 rounded-sm border border-line bg-white p-6">
-                <h3 className="text-lg font-medium tracking-tight-3">
-                  {t("form.title")}
-                </h3>
-                <p className="text-base leading-relaxed text-pretty text-ink-soft">
-                  {t("form.success")}
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <h3 className="text-lg font-medium tracking-tight-3">
-                  {t("form.title")}
-                </h3>
+              <div className="mt-10 flex flex-col gap-4">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <label className="flex flex-col gap-1.5">
-                    <span className="text-sm text-muted">{t("form.name")}</span>
+                    <span className={labelClass}>{t("form.name")}</span>
                     <input
                       name="name"
                       type="text"
@@ -216,7 +198,7 @@ export default function ContactSection() {
                     />
                   </label>
                   <label className="flex flex-col gap-1.5">
-                    <span className="text-sm text-muted">{t("form.phone")}</span>
+                    <span className={labelClass}>{t("form.phone")}</span>
                     <input
                       name="phone"
                       type="tel"
@@ -227,54 +209,61 @@ export default function ContactSection() {
                   </label>
                 </div>
                 <label className="flex flex-col gap-1.5">
-                  <span className="text-sm text-muted">{t("form.email")}</span>
-                  <input
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    className={inputClass}
-                  />
+                  <span className={labelClass}>{t("form.email")}</span>
+                  <input name="email" type="email" autoComplete="email" className={inputClass} />
                 </label>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <label className="flex flex-col gap-1.5">
-                    <span className="text-sm text-muted">{t("form.projectType")}</span>
-                    <select
-                      name="projectType"
-                      required
-                      defaultValue=""
-                      className={inputClass}
-                    >
-                      <option value="" disabled>
-                        {t("form.selectPlaceholder")}
-                      </option>
-                      <option value="keuken">{t("form.projectTypeOptions.keuken")}</option>
-                      <option value="meubel">{t("form.projectTypeOptions.meubel")}</option>
-                      <option value="beide">{t("form.projectTypeOptions.beide")}</option>
-                      <option value="anders">{t("form.projectTypeOptions.anders")}</option>
-                    </select>
-                  </label>
-                  <label className="flex flex-col gap-1.5">
-                    <span className="text-sm text-muted">{t("form.budget")}</span>
-                    <select name="budget" defaultValue="" className={inputClass}>
-                      <option value="">{t("form.selectPlaceholder")}</option>
-                      <option value="b1">{t("form.budgetOptions.b1")}</option>
-                      <option value="b2">{t("form.budgetOptions.b2")}</option>
-                      <option value="b3">{t("form.budgetOptions.b3")}</option>
-                      <option value="b4">{t("form.budgetOptions.b4")}</option>
-                      <option value="b5">{t("form.budgetOptions.b5")}</option>
-                    </select>
-                  </label>
-                </div>
                 <label className="flex flex-col gap-1.5">
-                  <span className="text-sm text-muted">{t("form.message")}</span>
+                  <span className={labelClass}>{t("form.message")}</span>
                   <textarea
                     name="message"
-                    rows={5}
                     required
                     placeholder={t("form.messagePlaceholder")}
-                    className={inputClass}
+                    className={`${inputClass} min-h-[120px]`}
                   />
                 </label>
+
+                {/* Divider interrupted by the optional-details toggle */}
+                <div className="mt-2 flex items-center gap-4">
+                  <span className="h-px flex-1 bg-[#DED6C4]" aria-hidden />
+                  <button
+                    type="button"
+                    onClick={() => setShowOptional((v) => !v)}
+                    aria-expanded={showOptional}
+                    className="cursor-pointer text-[13px] text-[#8B8370] transition-colors hover:text-[#17150F]"
+                  >
+                    {showOptional
+                      ? `− ${t("form.hideOptional")}`
+                      : `+ ${t("form.moreOptional")}`}
+                  </button>
+                  <span className="h-px flex-1 bg-[#DED6C4]" aria-hidden />
+                </div>
+
+                {showOptional && (
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <label className="flex flex-col gap-1.5">
+                      <span className={labelClass}>{t("form.projectType")}</span>
+                      <select name="projectType" defaultValue="" className={inputClass}>
+                        <option value="">{t("form.selectPlaceholder")}</option>
+                        <option value="keuken">{t("form.projectTypeOptions.keuken")}</option>
+                        <option value="meubel">{t("form.projectTypeOptions.meubel")}</option>
+                        <option value="beide">{t("form.projectTypeOptions.beide")}</option>
+                        <option value="anders">{t("form.projectTypeOptions.anders")}</option>
+                      </select>
+                    </label>
+                    <label className="flex flex-col gap-1.5">
+                      <span className={labelClass}>{t("form.budget")}</span>
+                      <select name="budget" defaultValue="" className={inputClass}>
+                        <option value="">{t("form.selectPlaceholder")}</option>
+                        <option value="b1">{t("form.budgetOptions.b1")}</option>
+                        <option value="b2">{t("form.budgetOptions.b2")}</option>
+                        <option value="b3">{t("form.budgetOptions.b3")}</option>
+                        <option value="b4">{t("form.budgetOptions.b4")}</option>
+                        <option value="b5">{t("form.budgetOptions.b5")}</option>
+                      </select>
+                    </label>
+                  </div>
+                )}
+
                 {/* Honeypot — invisible to visitors, tempting for bots */}
                 <div className="hidden" aria-hidden="true">
                   <label>
@@ -282,23 +271,184 @@ export default function ContactSection() {
                     <input name="website" type="text" tabIndex={-1} autoComplete="off" />
                   </label>
                 </div>
+
+                {/* Direct channels — the form is never a blocker */}
+                <div className="mt-2 grid gap-x-8 gap-y-4 sm:grid-cols-2">
+                  <div className="flex gap-3">
+                    <Icon path={ICONS.phone} />
+                    <a
+                      href={`tel:${company.phone}`}
+                      className="font-medium text-ink hover:underline"
+                    >
+                      {company.phoneDisplay}
+                    </a>
+                  </div>
+                  <div className="flex gap-3">
+                    <Icon path={ICONS.whatsapp} />
+                    <a
+                      href={company.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-ink hover:underline"
+                    >
+                      {t("whatsappLabel")} — {t("whatsappValue")}
+                    </a>
+                  </div>
+                  <div className="flex gap-3">
+                    <Icon path={ICONS.pin} />
+                    <p className="font-medium text-ink">
+                      {company.address.street}, {company.address.postalCode}{" "}
+                      {company.address.city}
+                    </p>
+                  </div>
+                  <div className="flex gap-3">
+                    <Icon path={ICONS.clock} />
+                    <p className="font-medium text-ink">{t("hoursValue")}</p>
+                  </div>
+                </div>
+              </div>
+            </FadeUp>
+
+            {/* --- Right column: booking card ------------------------------ */}
+            <FadeUp delay={0.1} className="self-start lg:sticky lg:top-24">
+              <div className="rounded-2xl border border-[#E6DFCE] bg-white p-[30px] shadow-[0_18px_40px_-24px_rgba(33,33,33,0.18)]">
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="text-lg font-medium tracking-tight-3">{t("booking.title")}</h3>
+                  <span className="text-sm text-muted">{t("booking.duration")}</span>
+                </div>
+
+                {/* Month navigation */}
+                <div className="mt-5 flex items-center justify-between">
+                  <button
+                    type="button"
+                    onClick={() => moveMonth(-1)}
+                    disabled={atCurrentMonth}
+                    aria-label={t("booking.prevMonth")}
+                    className="grid size-9 cursor-pointer place-items-center rounded-full border border-[#E6DFCE] text-ink transition-colors hover:bg-[#E7DFCC] disabled:cursor-default disabled:opacity-35 disabled:hover:bg-transparent"
+                  >
+                    &#8249;
+                  </button>
+                  <p className="text-base font-medium">{monthLabel}</p>
+                  <button
+                    type="button"
+                    onClick={() => moveMonth(1)}
+                    aria-label={t("booking.nextMonth")}
+                    className="grid size-9 cursor-pointer place-items-center rounded-full border border-[#E6DFCE] text-ink transition-colors hover:bg-[#E7DFCC]"
+                  >
+                    &#8250;
+                  </button>
+                </div>
+
+                {/* Calendar */}
+                <div className="mt-4 grid grid-cols-7 gap-1 text-center">
+                  {weekdayLabels.map((label) => (
+                    <span key={label} className="py-1 text-[11px] font-medium uppercase text-muted">
+                      {label}
+                    </span>
+                  ))}
+                  {Array.from({ length: leadingBlanks }, (_, i) => (
+                    <span key={`blank-${i}`} />
+                  ))}
+                  {Array.from({ length: daysInMonth }, (_, i) => {
+                    const day = i + 1;
+                    const enabled = isSelectable(day);
+                    const iso = toISO(new Date(viewYear, viewMonth, day));
+                    const selected = selectedDate !== null && toISO(selectedDate) === iso;
+                    return (
+                      <button
+                        key={iso}
+                        type="button"
+                        disabled={!enabled}
+                        onClick={() => {
+                          setSelectedDate(new Date(viewYear, viewMonth, day));
+                          setDateError(false);
+                        }}
+                        className={`h-10 cursor-pointer rounded-lg text-sm transition-colors ${
+                          selected
+                            ? "bg-[#1D1A16] font-medium text-[#F7F3EC]"
+                            : enabled
+                              ? "text-ink hover:bg-[#E7DFCC]"
+                              : "cursor-default text-[#C6BDA9]"
+                        }`}
+                      >
+                        {day}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <hr className="mt-5 border-[#DED6C4]" />
+
+                {/* Time slots */}
+                <p className="mt-5 text-[11px] font-medium uppercase tracking-wide text-muted">
+                  {t("booking.availableTimes")}
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {times.map((time) => {
+                    const selected = selectedTime === time;
+                    return (
+                      <button
+                        key={time}
+                        type="button"
+                        onClick={() => {
+                          setSelectedTime(time);
+                          setDateError(false);
+                        }}
+                        className={`cursor-pointer rounded-full border px-4 py-2 text-sm transition-colors ${
+                          selected
+                            ? "border-[#1D1A16] bg-[#1D1A16] font-medium text-[#F7F3EC]"
+                            : "border-[#E0D9C7] text-ink hover:bg-[#E7DFCC]"
+                        }`}
+                      >
+                        {time}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <hr className="mt-5 border-[#DED6C4]" />
+
+                {/* Summary */}
+                <p className="mt-5 text-[11px] font-medium uppercase tracking-wide text-muted">
+                  {t("booking.yourAppointment")}
+                </p>
+                <p
+                  className={`mt-2 text-base ${
+                    summaryDate && selectedTime ? "font-medium text-ink" : "text-muted"
+                  }`}
+                  aria-live="polite"
+                >
+                  {summaryDate
+                    ? selectedTime
+                      ? `${summaryDate}, ${selectedTime}`
+                      : t("booking.pickTimeFor", { date: summaryDate })
+                    : t("booking.pickDate")}
+                </p>
+                {dateError && (
+                  <p className="mt-2 text-sm text-pretty text-[#9a3324]">
+                    {t("booking.missingDateTime")}
+                  </p>
+                )}
+
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="mt-1 cursor-pointer self-start rounded-sm bg-ink px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:bg-ink-soft disabled:cursor-default disabled:opacity-60"
+                  className="mt-5 w-full cursor-pointer rounded-lg bg-ink px-5 py-3 text-sm font-medium text-cream transition-colors hover:bg-[#332C24] disabled:cursor-default disabled:opacity-60"
                 >
                   {status === "sending" ? t("form.sending") : t("form.submit")}
                 </button>
                 {status === "error" && (
-                  <p className="text-sm text-pretty text-[#9a3324]">
+                  <p className="mt-3 text-sm text-pretty text-[#9a3324]">
                     {t("form.errorMailto")}
                   </p>
                 )}
-                <p className="text-sm text-pretty text-muted">{t("form.note")}</p>
-              </form>
-            )}
-          </FadeUp>
-        </div>
+                <p className="mt-3 text-center text-sm text-muted">
+                  {t("booking.microcopy")} · {company.address.street}, {company.address.city}
+                </p>
+              </div>
+            </FadeUp>
+          </form>
+        )}
       </div>
     </section>
   );
