@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useMemo, useRef, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { company } from "@/lib/company";
 import { booking, bookingTimes, isoWeekday } from "@/lib/booking";
 import FadeUp from "./FadeUp";
@@ -50,13 +50,20 @@ export default function ContactSection() {
   const startedAt = useRef(Date.now());
 
   // --- Booking state ---------------------------------------------------
-  const today = useMemo(() => {
+  // The page is statically prerendered, so "today" is only known on the
+  // client: null until mount keeps server HTML and first client render
+  // identical (no hydration mismatch — React does not patch mismatched
+  // `disabled` attributes, which would leave stale past days clickable).
+  const [today, setToday] = useState<Date | null>(null);
+  const [viewYear, setViewYear] = useState(() => new Date().getFullYear());
+  const [viewMonth, setViewMonth] = useState(() => new Date().getMonth());
+  useEffect(() => {
     const d = new Date();
     d.setHours(0, 0, 0, 0);
-    return d;
+    setToday(d);
+    setViewYear(d.getFullYear());
+    setViewMonth(d.getMonth());
   }, []);
-  const [viewYear, setViewYear] = useState(today.getFullYear());
-  const [viewMonth, setViewMonth] = useState(today.getMonth());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [dateError, setDateError] = useState(false);
@@ -80,11 +87,12 @@ export default function ContactSection() {
   const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
   const leadingBlanks = isoWeekday(new Date(viewYear, viewMonth, 1)) - 1;
   const atCurrentMonth =
-    viewYear === today.getFullYear() && viewMonth === today.getMonth();
+    today === null ||
+    (viewYear === today.getFullYear() && viewMonth === today.getMonth());
 
   function isSelectable(day: number): boolean {
     const date = new Date(viewYear, viewMonth, day);
-    return openDays.includes(isoWeekday(date)) && date >= today;
+    return openDays.includes(isoWeekday(date)) && (today === null || date >= today);
   }
 
   function moveMonth(delta: number) {
