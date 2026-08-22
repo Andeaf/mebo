@@ -47,6 +47,7 @@
   "showcase": {
     "heading": "Projects",
     "title": "One team. From sketch to installation.",
+    "projectCount": "{count, plural, one {# project} other {# projects}}",
     "instagram": "See more projects on Instagram",
     "imageAlt": "Black custom kitchen with wooden niche and lighting, a Mebo project"
   },
@@ -60,6 +61,8 @@
     "alt04": "Light kitchen with island and wood accents, a Mebo project",
     "alt05": "Rustic wood kitchen with island, a Mebo project",
     "alt06": "Classic cream kitchen with island, a Mebo project",
+    "swipeHint": "Swipe for more",
+    "allProjects": "All projects",
     "close": "Close",
     "prev": "Previous photo",
     "next": "Next photo"

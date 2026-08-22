@@ -4,6 +4,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
+import { company } from "@/lib/company";
 import { galleryProjects } from "@/lib/projects";
 import FadeUp from "./FadeUp";
 
@@ -42,8 +43,56 @@ export default function ProjectsGrid() {
   const active = lightbox ? galleryProjects[lightbox.project] : null;
 
   return (
-    <section className="bg-cream px-2 pb-2 md:px-3 md:pb-3">
-      <ul className="grid list-none grid-cols-1 gap-2 sm:grid-cols-2 md:gap-3 lg:grid-cols-3 xl:grid-cols-4">
+    <section className="bg-cream pb-12 md:px-3 md:pb-3">
+      {/* Mobile: horizontal snap carousel; the desktop grid is hidden below md. */}
+      <FadeUp className="md:hidden">
+        <ul className="flex list-none gap-3 overflow-x-auto px-5 scroll-px-5 snap-x snap-mandatory [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {galleryProjects.map((p, i) => (
+            <li key={p.id} className="flex-none snap-start">
+              <button
+                type="button"
+                onClick={() => setLightbox({ project: i, photo: 0 })}
+                className="relative block aspect-[4/3.4] w-[260px] cursor-pointer overflow-hidden rounded-[10px]"
+              >
+                <Image
+                  src={p.images[0]}
+                  alt={t(`alt${p.id}`)}
+                  fill
+                  sizes="260px"
+                  className="object-cover"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-[linear-gradient(to_top,rgba(15,12,8,0.55),transparent_45%)]"
+                />
+                <span className="absolute bottom-3 left-4 text-left text-white">
+                  <span className="block text-[14.5px] font-semibold">
+                    {t("projectLabel", { number: p.id })}
+                  </span>
+                  <span className="block text-xs text-white/75">
+                    {t("photoCount", { count: p.images.length })}
+                  </span>
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-4 flex items-center justify-between px-5">
+          <p className="text-xs text-muted">
+            <span aria-hidden>←</span> {t("swipeHint")}
+          </p>
+          <a
+            href={company.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-semibold underline decoration-ink/30 underline-offset-4 transition-opacity hover:opacity-75"
+          >
+            {t("allProjects")} <span aria-hidden>→</span>
+          </a>
+        </div>
+      </FadeUp>
+
+      <ul className="hidden list-none grid-cols-1 gap-2 sm:grid-cols-2 md:grid md:gap-3 lg:grid-cols-3 xl:grid-cols-4">
         {galleryProjects.map((p, i) => (
           <li key={p.id}>
             <FadeUp delay={i * 0.08}>

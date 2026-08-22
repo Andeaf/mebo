@@ -47,6 +47,7 @@
   "showcase": {
     "heading": "Projecten",
     "title": "Eén team. Van schets tot montage.",
+    "projectCount": "{count, plural, one {# project} other {# projecten}}",
     "instagram": "Bekijk meer projecten op Instagram",
     "imageAlt": "Zwarte maatwerk keuken met houten nis en verlichting, project van Mebo"
   },
@@ -60,6 +61,8 @@
     "alt04": "Lichte keuken met kookeiland en houtaccenten, project van Mebo",
     "alt05": "Landelijke keuken in hout met kookeiland, project van Mebo",
     "alt06": "Klassieke crèmekleurige keuken met kookeiland, project van Mebo",
+    "swipeHint": "Veeg voor meer",
+    "allProjects": "Alle projecten",
     "close": "Sluiten",
     "prev": "Vorige foto",
     "next": "Volgende foto"
