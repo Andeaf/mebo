@@ -154,10 +154,6 @@ export default function IntroTypewriter() {
           </span>
         )}
       </span>
-      <span className="absolute right-5 bottom-5 text-[11px] tracking-[0.14em] text-neutral-400 uppercase">
-        {t("skip")} — {""}
-        <kbd className="not-italic">esc</kbd>
-      </span>
     </div>
   );
 }
