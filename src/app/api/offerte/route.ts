@@ -22,7 +22,13 @@ const MAX_BOOKINGS_PER_IP_PER_DAY = 3;
 
 function field(value: unknown, max: number): string {
   if (typeof value !== "string") return "";
-  return value.replace(/[\r\n]+/g, " ").trim().slice(0, max);
+  // U+FFFD is the "�" replacement character left behind by a broken
+  // encoding upstream — drop it rather than let it reach the emails.
+  return value
+    .replace(/�/g, "")
+    .replace(/[\r\n]+/g, " ")
+    .trim()
+    .slice(0, max);
 }
 
 function isBookableSlot(date: string, time: string): boolean {
@@ -60,7 +66,9 @@ export async function POST(request: Request) {
   const website = field(data.website, 200); // honeypot
   const startedAt = typeof data.startedAt === "number" ? data.startedAt : 0;
   const message =
-    typeof data.message === "string" ? data.message.trim().slice(0, 4000) : "";
+    typeof data.message === "string"
+      ? data.message.replace(/�/g, "").trim().slice(0, 4000)
+      : "";
 
   // Honeypot filled or submitted within 2s of page load: almost certainly a
   // bot — pretend success so it learns nothing.

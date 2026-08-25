@@ -55,52 +55,104 @@ export function buildIcs(info: AppointmentInfo, uid: string): string {
   ].join("\r\n");
 }
 
+// Visitor emails are bilingual: the visitor's own language first, the other
+// underneath, separated by a divider — Mebo's clients are a mix of Dutch
+// and international households.
+const LANG_DIVIDER = "\n\n----------\n\n";
+
+function langOrder(locale: string): ("nl" | "en")[] {
+  return locale === "en" ? ["en", "nl"] : ["nl", "en"];
+}
+
+function receivedText(lang: "nl" | "en", info: AppointmentInfo): string {
+  const when = `${formatDate(info.date, info.time, lang)}, ${info.time}`;
+  if (lang === "en") {
+    return [
+      `Dear ${info.name},`,
+      "",
+      "Thank you for your request. We have received your preferred appointment:",
+      "",
+      `    ${when} (±45 min)`,
+      `    Showroom: ${showroomAddress}`,
+      "",
+      "Your time slot is reserved and awaiting our confirmation. You will receive a confirmation email within 1–2 working days.",
+      "",
+      `Questions in the meantime? Call or message us at ${company.phoneDisplay}, or reply to this email.`,
+      "",
+      "Kind regards,",
+      `${company.legalName}`,
+      company.siteUrl,
+    ].join("\n");
+  }
+  return [
+    `Beste ${info.name},`,
+    "",
+    "Bedankt voor je aanvraag. We hebben je gewenste afspraak ontvangen:",
+    "",
+    `    ${when} (±45 min)`,
+    `    Showroom: ${showroomAddress}`,
+    "",
+    "Je tijdslot is gereserveerd en wacht op onze bevestiging. Binnen 1–2 werkdagen ontvang je een bevestiging per e-mail.",
+    "",
+    `Vragen in de tussentijd? Bel of app ons via ${company.phoneDisplay}, of beantwoord deze e-mail.`,
+    "",
+    "Met vriendelijke groet,",
+    `${company.legalName}`,
+    company.siteUrl,
+  ].join("\n");
+}
+
+function confirmedText(lang: "nl" | "en", info: AppointmentInfo): string {
+  const when = `${formatDate(info.date, info.time, lang)}, ${info.time}`;
+  if (lang === "en") {
+    return [
+      `Dear ${info.name},`,
+      "",
+      "Good news: your appointment is confirmed!",
+      "",
+      `    ${when} (±45 min)`,
+      `    Showroom: ${showroomAddress}`,
+      "",
+      "The attached calendar file adds the appointment to your agenda with one tap.",
+      "",
+      `Need to reschedule? Call or message us at ${company.phoneDisplay}, or reply to this email.`,
+      "",
+      "See you soon!",
+      `${company.legalName}`,
+      company.siteUrl,
+    ].join("\n");
+  }
+  return [
+    `Beste ${info.name},`,
+    "",
+    "Goed nieuws: je afspraak is bevestigd!",
+    "",
+    `    ${when} (±45 min)`,
+    `    Showroom: ${showroomAddress}`,
+    "",
+    "Met het bijgevoegde agendabestand zet je de afspraak met één tik in je agenda.",
+    "",
+    `Verhinderd of liever een ander moment? Bel of app ons via ${company.phoneDisplay}, of beantwoord deze e-mail.`,
+    "",
+    "Tot snel!",
+    `${company.legalName}`,
+    company.siteUrl,
+  ].join("\n");
+}
+
 // "Request received, awaiting confirmation" — sent to the visitor right
 // after booking.
 export function visitorReceivedEmail(info: AppointmentInfo): {
   subject: string;
   text: string;
 } {
-  const when = `${formatDate(info.date, info.time, info.locale)}, ${info.time}`;
-  if (info.locale === "en") {
-    return {
-      subject: "We received your appointment request — Mebo",
-      text: [
-        `Dear ${info.name},`,
-        "",
-        `Thank you for your request. We have received your preferred appointment:`,
-        "",
-        `    ${when} (±45 min)`,
-        `    Showroom: ${showroomAddress}`,
-        "",
-        "Your time slot is reserved and awaiting our confirmation. You will receive a confirmation email within 1–2 working days.",
-        "",
-        `Questions in the meantime? Call or message us at ${company.phoneDisplay}, or reply to this email.`,
-        "",
-        "Kind regards,",
-        `${company.legalName}`,
-        company.siteUrl,
-      ].join("\n"),
-    };
-  }
+  const order = langOrder(info.locale);
   return {
-    subject: "We hebben je afspraakaanvraag ontvangen — Mebo",
-    text: [
-      `Beste ${info.name},`,
-      "",
-      "Bedankt voor je aanvraag. We hebben je gewenste afspraak ontvangen:",
-      "",
-      `    ${when} (±45 min)`,
-      `    Showroom: ${showroomAddress}`,
-      "",
-      "Je tijdslot is gereserveerd en wacht op onze bevestiging. Binnen 1–2 werkdagen ontvang je een bevestiging per e-mail.",
-      "",
-      `Vragen in de tussentijd? Bel of app ons via ${company.phoneDisplay}, of beantwoord deze e-mail.`,
-      "",
-      "Met vriendelijke groet,",
-      `${company.legalName}`,
-      company.siteUrl,
-    ].join("\n"),
+    subject:
+      order[0] === "en"
+        ? "We received your appointment request — Mebo"
+        : "We hebben je afspraakaanvraag ontvangen — Mebo",
+    text: order.map((lang) => receivedText(lang, info)).join(LANG_DIVIDER),
   };
 }
 
@@ -110,46 +162,13 @@ export function visitorConfirmedEmail(info: AppointmentInfo): {
   subject: string;
   text: string;
 } {
-  const when = `${formatDate(info.date, info.time, info.locale)}, ${info.time}`;
-  if (info.locale === "en") {
-    return {
-      subject: "Your appointment is confirmed — Mebo",
-      text: [
-        `Dear ${info.name},`,
-        "",
-        "Good news: your appointment is confirmed!",
-        "",
-        `    ${when} (±45 min)`,
-        `    Showroom: ${showroomAddress}`,
-        "",
-        "The attached calendar file adds the appointment to your agenda with one tap.",
-        "",
-        `Need to reschedule? Call or message us at ${company.phoneDisplay}, or reply to this email.`,
-        "",
-        "See you soon!",
-        `${company.legalName}`,
-        company.siteUrl,
-      ].join("\n"),
-    };
-  }
+  const order = langOrder(info.locale);
   return {
-    subject: "Je afspraak is bevestigd — Mebo",
-    text: [
-      `Beste ${info.name},`,
-      "",
-      "Goed nieuws: je afspraak is bevestigd!",
-      "",
-      `    ${when} (±45 min)`,
-      `    Showroom: ${showroomAddress}`,
-      "",
-      "Met het bijgevoegde agendabestand zet je de afspraak met één tik in je agenda.",
-      "",
-      `Verhinderd of liever een ander moment? Bel of app ons via ${company.phoneDisplay}, of beantwoord deze e-mail.`,
-      "",
-      "Tot snel!",
-      `${company.legalName}`,
-      company.siteUrl,
-    ].join("\n"),
+    subject:
+      order[0] === "en"
+        ? "Your appointment is confirmed — Mebo"
+        : "Je afspraak is bevestigd — Mebo",
+    text: order.map((lang) => confirmedText(lang, info)).join(LANG_DIVIDER),
   };
 }
 
