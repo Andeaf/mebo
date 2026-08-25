@@ -163,7 +163,7 @@
       "title": "Make an appointment",
       "name": "Name",
       "phone": "Phone number",
-      "email": "Email address (optional)",
+      "email": "Email address",
       "projectType": "Project type (optional)",
       "projectTypeOptions": {
         "keuken": "Custom kitchen",
@@ -184,7 +184,7 @@
       "messagePlaceholder": "E.g. a custom kitchen with a cooking island, or a 3-metre wall of cabinets…",
       "submit": "Send request",
       "sending": "Sending…",
-      "success": "Thank you for your request! We will contact you within 1–2 working days.",
+      "success": "Thank you for your request! Your time slot is reserved — you will receive an email confirmation of your appointment within 1–2 working days.",
       "errorMailto": "Direct sending didn't work — we've prepared your message in your email app instead. You can also call or message us.",
       "note": "We respond within 1–2 working days. Prefer direct contact? Call or message us.",
       "subject": "Appointment request via mebokeukens.nl",
@@ -201,6 +201,7 @@
       "pickDate": "Pick a date to see availability",
       "pickTimeFor": "{date} — pick a time",
       "missingDateTime": "Please pick a date and time for your appointment.",
+      "slotTaken": "This time was just booked by someone else — please pick another moment.",
       "microcopy": "Free showroom consultation"
     }
   },
@@ -239,7 +240,7 @@
           "We only process data you provide to us yourself, or that is needed to keep the website running:"
         ],
         "list": [
-          "Appointment form: your name, phone number, email address (optional), your preferred date and time, and what you tell us about your project, such as the project type and an indicative budget.",
+          "Appointment form: your name, phone number, email address, your preferred date and time, and what you tell us about your project, such as the project type and an indicative budget.",
           "Direct contact: if you call, email or message us, we process the details you share with us.",
           "Technical data: our hosting provider briefly processes IP addresses in server logs to keep the website secure and available, and compiles anonymous visitor statistics (visitor and page-view counts, without cookies and without individual profiles).",
           "Advertising cookies: only if you accept them via the cookie banner — see the cookie statement."
@@ -267,7 +268,8 @@
         ],
         "list": [
           "Vercel — website hosting.",
-          "Resend — delivery of the appointment form to our mailbox.",
+          "Resend — delivery of the appointment form and the confirmation emails.",
+          "Neon — database storing appointment requests and booked time slots.",
           "Google Workspace — our business email (info@mebokeukens.nl)."
         ],
         "after": [

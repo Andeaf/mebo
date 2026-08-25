@@ -1,7 +1,14 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type FormEvent,
+} from "react";
 import { company } from "@/lib/company";
 import { booking, bookingTimes, isoWeekday } from "@/lib/booking";
 import { trackLead } from "@/lib/marketing";
@@ -56,10 +63,12 @@ export default function ContactSection() {
   // identical (no hydration mismatch — React does not patch mismatched
   // `disabled` attributes, which would leave stale past days clickable).
   const [today, setToday] = useState<Date | null>(null);
+  const [nowHour, setNowHour] = useState<number | null>(null);
   const [viewYear, setViewYear] = useState(() => new Date().getFullYear());
   const [viewMonth, setViewMonth] = useState(() => new Date().getMonth());
   useEffect(() => {
     const d = new Date();
+    setNowHour(d.getHours());
     d.setHours(0, 0, 0, 0);
     setToday(d);
     setViewYear(d.getFullYear());
@@ -68,9 +77,55 @@ export default function ContactSection() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [dateError, setDateError] = useState(false);
+  const [slotTaken, setSlotTaken] = useState(false);
 
   const times = useMemo(() => bookingTimes(), []);
   const openDays = booking.openWeekdays as readonly number[];
+
+  // Booked slots per date ("YYYY-MM-DD" → ["13:00", …]), fetched per viewed
+  // month from the server so taken slots grey out for everyone.
+  const [booked, setBooked] = useState<Record<string, string[]>>({});
+  const loadAvailability = useCallback((year: number, month0: number) => {
+    fetch(`/api/availability?year=${year}&month=${month0 + 1}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: { booked?: Record<string, string[]> } | null) => {
+        if (data?.booked) setBooked((prev) => ({ ...prev, ...data.booked }));
+      })
+      .catch(() => {
+        // Availability is progressive enhancement — on failure the calendar
+        // simply shows every slot, like before.
+      });
+  }, []);
+  useEffect(() => {
+    loadAvailability(viewYear, viewMonth);
+  }, [viewYear, viewMonth, loadAvailability]);
+
+  // Times still bookable on a date: not taken, and not already past on the
+  // current day. (The server re-validates all of this.)
+  const availableTimesFor = useCallback(
+    (date: Date): string[] => {
+      const iso = toISO(date);
+      const taken = booked[iso] ?? [];
+      const isToday = today !== null && toISO(today) === iso;
+      return times.filter(
+        (time) =>
+          !taken.includes(time) &&
+          !(isToday && nowHour !== null && Number(time.slice(0, 2)) <= nowHour),
+      );
+    },
+    [booked, times, today, nowHour],
+  );
+
+  // A slot that got booked from under the visitor's selection drops out.
+  useEffect(() => {
+    if (
+      selectedDate &&
+      selectedTime &&
+      !availableTimesFor(selectedDate).includes(selectedTime)
+    ) {
+      setSelectedTime(null);
+    }
+  }, [selectedDate, selectedTime, availableTimesFor]);
 
   const monthLabel = new Intl.DateTimeFormat(fmtLocale, {
     month: "long",
@@ -93,7 +148,10 @@ export default function ContactSection() {
 
   function isSelectable(day: number): boolean {
     const date = new Date(viewYear, viewMonth, day);
-    return openDays.includes(isoWeekday(date)) && (today === null || date >= today);
+    if (!openDays.includes(isoWeekday(date))) return false;
+    if (today !== null && date < today) return false;
+    // Fully booked (or, for today, out of remaining hours) → grey out.
+    return availableTimesFor(date).length > 0;
   }
 
   function moveMonth(delta: number) {
@@ -142,6 +200,15 @@ export default function ContactSection() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      if (res.status === 409) {
+        // Someone booked this slot a moment earlier — refresh availability
+        // and let the visitor pick again, keeping the rest of the form.
+        setStatus("idle");
+        setSlotTaken(true);
+        setSelectedTime(null);
+        loadAvailability(selectedDate.getFullYear(), selectedDate.getMonth());
+        return;
+      }
       if (!res.ok) throw new Error(`status ${res.status}`);
       setStatus("success");
       // No-op unless the visitor accepted marketing cookies and the ad
@@ -222,7 +289,13 @@ export default function ContactSection() {
                 </div>
                 <label className="flex flex-col gap-1.5">
                   <span className={labelClass}>{t("form.email")}</span>
-                  <input name="email" type="email" autoComplete="email" className={inputClass} />
+                  <input
+                    name="email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                    className={inputClass}
+                  />
                 </label>
                 <label className="flex flex-col gap-1.5">
                   <span className={labelClass}>{t("form.message")}</span>
@@ -343,6 +416,7 @@ export default function ContactSection() {
                         onClick={() => {
                           setSelectedDate(new Date(viewYear, viewMonth, day));
                           setDateError(false);
+                          setSlotTaken(false);
                         }}
                         className={`h-11 cursor-pointer rounded-lg text-sm transition-colors lg:h-10 ${
                           selected
@@ -367,18 +441,25 @@ export default function ContactSection() {
                 <div className="mt-3 grid grid-cols-3 gap-2 lg:flex lg:flex-wrap">
                   {times.map((time) => {
                     const selected = selectedTime === time;
+                    const available =
+                      selectedDate === null ||
+                      availableTimesFor(selectedDate).includes(time);
                     return (
                       <button
                         key={time}
                         type="button"
+                        disabled={!available}
                         onClick={() => {
                           setSelectedTime(time);
                           setDateError(false);
+                          setSlotTaken(false);
                         }}
-                        className={`cursor-pointer rounded-lg border px-2 py-3 text-center text-sm transition-colors lg:rounded-full lg:px-4 lg:py-2 ${
+                        className={`rounded-lg border px-2 py-3 text-center text-sm transition-colors lg:rounded-full lg:px-4 lg:py-2 ${
                           selected
-                            ? "border-[#1D1A16] bg-[#1D1A16] font-medium text-[#F7F3EC]"
-                            : "border-[#E0D9C7] text-ink hover:bg-[#E7DFCC]"
+                            ? "cursor-pointer border-[#1D1A16] bg-[#1D1A16] font-medium text-[#F7F3EC]"
+                            : available
+                              ? "cursor-pointer border-[#E0D9C7] text-ink hover:bg-[#E7DFCC]"
+                              : "cursor-default border-[#EAE4D6] text-[#C6BDA9] line-through"
                         }`}
                       >
                         {time}
@@ -408,6 +489,11 @@ export default function ContactSection() {
                 {dateError && (
                   <p className="mt-2 text-sm text-pretty text-[#9a3324]">
                     {t("booking.missingDateTime")}
+                  </p>
+                )}
+                {slotTaken && (
+                  <p className="mt-2 text-sm text-pretty text-[#9a3324]" role="alert">
+                    {t("booking.slotTaken")}
                   </p>
                 )}
 

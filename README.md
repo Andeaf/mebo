@@ -48,6 +48,25 @@ in `src/app/[locale]/layout.tsx`. Cijfers bekijken: Vercel-dashboard →
 project **mebo** → tabblad **Analytics** (daar eenmalig "Enable" aanklikken
 als dat nog niet is gebeurd).
 
+## Afsprakendatabase (dubbele boekingen blokkeren)
+
+Geboekte tijdsloten worden opgeslagen in Neon Postgres (gratis, via de
+Vercel Marketplace) en verschijnen grijs in de kalender. Een partiële
+unieke index maakt dubbel boeken onmogelijk, ook bij gelijktijdige
+aanvragen.
+
+- Env var: `DATABASE_URL` (zet de Neon-integratie automatisch). Zonder deze
+  variabele toont de kalender alles als vrij — het oude gedrag.
+- Flow: klant boekt → slot geblokkeerd (status `pending`) → klant krijgt
+  een "aanvraag ontvangen"-mail, de eigenaar een mail met knoppen
+  **Bevestigen** / **Tijdslot vrijgeven** (`/api/beheer?token=…`).
+  Bevestigen stuurt de klant automatisch een bevestigingsmail met
+  agendabestand (.ics); vrijgeven zet het slot weer open op de site.
+- Anti-misbruik: max 3 boekingen per IP per dag, plus de bestaande
+  honeypot- en timingchecks. E-mailadres is nu een verplicht veld.
+- Het schema wordt bij het eerste gebruik automatisch aangemaakt
+  (`src/lib/db.ts`); beschikbaarheid komt uit `GET /api/availability`.
+
 ## Advertentiepixels & cookiebanner
 
 De site is voorbereid op betaalde advertenties (Meta, TikTok, Google/YouTube,

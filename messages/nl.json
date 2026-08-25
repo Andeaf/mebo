@@ -163,7 +163,7 @@
       "title": "Maak een afspraak",
       "name": "Naam",
       "phone": "Telefoonnummer",
-      "email": "E-mailadres (optioneel)",
+      "email": "E-mailadres",
       "projectType": "Type project (optioneel)",
       "projectTypeOptions": {
         "keuken": "Keuken op maat",
@@ -184,7 +184,7 @@
       "messagePlaceholder": "Bijv. een keuken op maat met kookeiland, of een kastenwand van 3 meter…",
       "submit": "Verstuur aanvraag",
       "sending": "Versturen…",
-      "success": "Bedankt voor uw aanvraag! We nemen binnen 1–2 werkdagen contact met u op.",
+      "success": "Bedankt voor uw aanvraag! Uw tijdslot is gereserveerd — u ontvangt binnen 1–2 werkdagen per e-mail een bevestiging van uw afspraak.",
       "errorMailto": "Direct verzenden lukte niet — we hebben uw bericht klaargezet in uw e-mailprogramma. U kunt ons ook bellen of appen.",
       "note": "We reageren binnen 1–2 werkdagen. Liever direct contact? Bel of app ons.",
       "subject": "Afspraakaanvraag via mebokeukens.nl",
@@ -201,6 +201,7 @@
       "pickDate": "Kies een datum om de beschikbaarheid te zien",
       "pickTimeFor": "{date} — kies een tijd",
       "missingDateTime": "Kies een datum en tijd voor uw afspraak.",
+      "slotTaken": "Dit tijdstip is zojuist door iemand anders geboekt — kies een ander moment.",
       "microcopy": "Gratis showroomadvies"
     }
   },
@@ -239,7 +240,7 @@
           "Wij verwerken alleen gegevens die u zelf aan ons verstrekt of die nodig zijn om de website te laten werken:"
         ],
         "list": [
-          "Afspraakformulier: uw naam, telefoonnummer, e-mailadres (optioneel), de gewenste datum en tijd, en wat u over uw project vertelt, zoals het type project en een indicatief budget.",
+          "Afspraakformulier: uw naam, telefoonnummer, e-mailadres, de gewenste datum en tijd, en wat u over uw project vertelt, zoals het type project en een indicatief budget.",
           "Direct contact: belt, mailt of appt u ons, dan verwerken wij de gegevens die u daarbij deelt.",
           "Technische gegevens: onze hostingprovider verwerkt kortstondig IP-adressen in serverlogs om de website veilig en bereikbaar te houden, en stelt anonieme bezoekersstatistieken op (aantallen bezoekers en paginaweergaven, zonder cookies en zonder individuele profielen).",
           "Advertentiecookies: alleen als u die via de cookiebanner accepteert — zie de cookieverklaring."
@@ -269,7 +270,8 @@
         ],
         "list": [
           "Vercel — hosting van de website.",
-          "Resend — verzending van het afspraakformulier naar onze mailbox.",
+          "Resend — verzending van het afspraakformulier en de bevestigingsmails.",
+          "Neon — database waarin afspraakaanvragen en geboekte tijdsloten worden opgeslagen.",
           "Google Workspace — onze zakelijke e-mail (info@mebokeukens.nl)."
         ],
         "after": [
