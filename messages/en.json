@@ -241,7 +241,7 @@
         "list": [
           "Appointment form: your name, phone number, email address (optional), your preferred date and time, and what you tell us about your project, such as the project type and an indicative budget.",
           "Direct contact: if you call, email or message us, we process the details you share with us.",
-          "Technical data: our hosting provider briefly processes IP addresses in server logs to keep the website secure and available.",
+          "Technical data: our hosting provider briefly processes IP addresses in server logs to keep the website secure and available, and compiles anonymous visitor statistics (visitor and page-view counts, without cookies and without individual profiles).",
           "Advertising cookies: only if you accept them via the cookie banner — see the cookie statement."
         ]
       },

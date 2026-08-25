@@ -41,6 +41,13 @@ npm run placeholders  # grijze placeholder-foto's opnieuw genereren
 Contactgegevens (telefoon, e-mail, adres, Instagram) komen van het openbare
 Instagram-profiel `@mebo.keukens` en staan centraal in `src/lib/company.ts`.
 
+## Bezoekersstatistieken
+
+Vercel Web Analytics (cookieloos, geen toestemming nodig) via `<Analytics />`
+in `src/app/[locale]/layout.tsx`. Cijfers bekijken: Vercel-dashboard →
+project **mebo** → tabblad **Analytics** (daar eenmalig "Enable" aanklikken
+als dat nog niet is gebeurd).
+
 ## Advertentiepixels & cookiebanner
 
 De site is voorbereid op betaalde advertenties (Meta, TikTok, Google/YouTube,

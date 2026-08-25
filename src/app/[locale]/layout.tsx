@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Cormorant, Hanken_Grotesk } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
+import { Analytics } from "@vercel/analytics/next";
 import { routing } from "@/i18n/routing";
 import { company } from "@/lib/company";
 import CookieConsent from "@/components/CookieConsent";
@@ -87,6 +88,8 @@ export default async function LocaleLayout({
           <CookieConsent />
           <MarketingPixels />
         </NextIntlClientProvider>
+        {/* Cookieless visitor stats (Vercel Web Analytics) — no consent needed */}
+        <Analytics />
       </body>
     </html>
   );
