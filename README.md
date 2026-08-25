@@ -40,3 +40,33 @@ npm run placeholders  # grijze placeholder-foto's opnieuw genereren
 
 Contactgegevens (telefoon, e-mail, adres, Instagram) komen van het openbare
 Instagram-profiel `@mebo.keukens` en staan centraal in `src/lib/company.ts`.
+
+## Advertentiepixels & cookiebanner
+
+De site is voorbereid op betaalde advertenties (Meta, TikTok, Google/YouTube,
+Pinterest) met een AVG-conforme opt-in cookiebanner:
+
+- **Zonder pixel-ID's gebeurt er niets**: geen advertentiescripts, geen
+  cookiebanner, geen advertentiecookies. De juridische pagina's (`/privacy`
+  en `/cookies`) staan er wel alvast.
+- Zodra minstens één van onderstaande env vars is gezet (Vercel → Settings →
+  Environment Variables, daarna redeployen), verschijnt de banner
+  automatisch en laden de pixels pas **ná** een klik op "Accepteren"
+  (`src/components/MarketingPixels.tsx`).
+- Env vars en waar je het ID vindt:
+  - `NEXT_PUBLIC_META_PIXEL_ID` — Meta Events Manager (één pixel voor
+    Facebook + Instagram).
+  - `NEXT_PUBLIC_TIKTOK_PIXEL_ID` — TikTok Ads Manager → Assets → Events.
+  - `NEXT_PUBLIC_GOOGLE_ADS_ID` — Google Ads → Tools → Google tag
+    (vorm `AW-…`); dekt ook YouTube-campagnes.
+  - `NEXT_PUBLIC_GOOGLE_ADS_LEAD_LABEL` — conversielabel voor de
+    afspraakaanvraag (vorm `AW-…/…`), optioneel.
+  - `NEXT_PUBLIC_PINTEREST_TAG_ID` — Pinterest Ads → Conversions.
+- Bij een succesvol verstuurde afspraakaanvraag vuurt de site een
+  lead-event naar elk geladen platform (`trackLead()` in
+  `src/lib/marketing.ts`), zodat de algoritmes leren wie echt converteert.
+- Nieuwe pixel toevoegen? Werk dan ook de cookietabel in `messages/*.json`
+  (`cookiesPage`) en `PIXEL_COOKIES` in `src/lib/consent.ts` bij.
+- Juridische teksten: namespaces `privacy` en `cookiesPage` in
+  `messages/nl.json` / `messages/en.json`; datum "Laatst bijgewerkt"
+  aanpassen bij wijzigingen.

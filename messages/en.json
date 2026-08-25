@@ -215,12 +215,178 @@
       "OAK FRONTS"
     ]
   },
+  "cookieBanner": {
+    "aria": "Cookie preferences",
+    "title": "Cookies",
+    "body": "We would like to use cookies to measure our ads on social media and show them to people interested in custom work. Functional cookies are always set; advertising cookies only with your consent.",
+    "link": "Read the cookie statement",
+    "refuse": "Refuse",
+    "accept": "Accept"
+  },
+  "privacy": {
+    "metaTitle": "Privacy statement — Mebo | Custom kitchens and furniture",
+    "metaDescription": "How Mebo Keukens handles your personal data: what we process, why, how long we keep it and the rights you have.",
+    "updated": "Last updated: 25 August 2026",
+    "title": "Privacy statement",
+    "intro": [
+      "Mebo Keukens (Mebo CNS v.o.f.), located at Plein 1945 50, 1971 GC IJmuiden, the Netherlands, and registered with the Dutch Chamber of Commerce under number 91028248, is responsible for the processing of personal data as described in this privacy statement.",
+      "We handle your data with care: we only process what is needed to handle your request, and we never sell your data. Questions? Email us at info@mebokeukens.nl."
+    ],
+    "sections": [
+      {
+        "heading": "What data we process",
+        "paragraphs": [
+          "We only process data you provide to us yourself, or that is needed to keep the website running:"
+        ],
+        "list": [
+          "Appointment form: your name, phone number, email address (optional), your preferred date and time, and what you tell us about your project, such as the project type and an indicative budget.",
+          "Direct contact: if you call, email or message us, we process the details you share with us.",
+          "Technical data: our hosting provider briefly processes IP addresses in server logs to keep the website secure and available.",
+          "Advertising cookies: only if you accept them via the cookie banner — see the cookie statement."
+        ]
+      },
+      {
+        "heading": "What we use your data for",
+        "paragraphs": ["We use your data only for the following purposes:"],
+        "list": [
+          "To answer your request and prepare an appointment or quote (necessary to take steps at your request prior to entering into a contract, art. 6(1)(b) GDPR).",
+          "To keep the website secure and available (legitimate interest, art. 6(1)(f) GDPR).",
+          "To measure and show our ads on social media — only with your consent via the cookie banner (art. 6(1)(a) GDPR). You can withdraw that consent at any time."
+        ]
+      },
+      {
+        "heading": "How long we keep your data",
+        "paragraphs": [
+          "We keep your data no longer than necessary. Requests and quote correspondence are kept for up to two years after our last contact, so we can help you properly with a follow-up question. If you become a customer, we keep invoices and records for seven years, as required by Dutch tax law."
+        ]
+      },
+      {
+        "heading": "Who we share your data with",
+        "paragraphs": [
+          "We never sell your data. We only share it with service providers (processors) needed to run the website and our mailbox:"
+        ],
+        "list": [
+          "Vercel — website hosting.",
+          "Resend — delivery of the appointment form to our mailbox.",
+          "Google Workspace — our business email (info@mebokeukens.nl)."
+        ],
+        "after": [
+          "If you accept advertising cookies, the ad platforms Meta, TikTok, Google and Pinterest also receive data about your visit. The cookie statement explains which cookies these are and how to change your choice."
+        ]
+      },
+      {
+        "heading": "Transfers outside the EEA",
+        "paragraphs": [
+          "Some of these providers process data in the United States. This happens on the basis of the EU-US Data Privacy Framework and/or the European Commission's standard contractual clauses."
+        ]
+      },
+      {
+        "heading": "Your rights",
+        "paragraphs": ["You have the right to:"],
+        "list": [
+          "see which data we hold about you;",
+          "have incorrect data corrected;",
+          "have your data deleted;",
+          "have processing restricted, or object to it;",
+          "receive your data in a portable format (data portability);",
+          "withdraw consent you have given at any time, for example via the cookie settings at the bottom of the page."
+        ],
+        "after": [
+          "Send your request to info@mebokeukens.nl; we respond within one month. If you are unhappy with how we handle your data, you can file a complaint with the Dutch Data Protection Authority (Autoriteit Persoonsgegevens)."
+        ]
+      },
+      {
+        "heading": "Changes",
+        "paragraphs": [
+          "We may update this privacy statement, for example when we start using new services. The current version is always on this page, with the date of the latest change at the top."
+        ]
+      }
+    ],
+    "seeAlso": "Also see the cookie statement"
+  },
+  "cookiesPage": {
+    "metaTitle": "Cookie statement — Mebo | Custom kitchens and furniture",
+    "metaDescription": "Which cookies www.mebokeukens.nl uses and why: functional cookies to make the site work, and advertising cookies only with your consent.",
+    "updated": "Last updated: 25 August 2026",
+    "title": "Cookie statement",
+    "intro": [
+      "Cookies are small text files stored on your device when you visit a website. This page explains which cookies www.mebokeukens.nl uses and why.",
+      "Functional cookies are always set: the website does not work properly without them. Advertising cookies are only set after you accept them via the cookie banner. You can change your choice at any time via 'Cookie settings' at the bottom of the page."
+    ],
+    "tableHeaders": {
+      "name": "Cookie",
+      "provider": "Set by",
+      "purpose": "Purpose",
+      "duration": "Retention"
+    },
+    "functional": {
+      "heading": "Functional cookies (always active)",
+      "intro": "These cookies are needed to make the website work properly. Under Dutch law, no consent is required for this type of cookie.",
+      "rows": [
+        {
+          "name": "NEXT_LOCALE",
+          "provider": "Mebo (this website)",
+          "purpose": "Remembers your language choice (Dutch or English) after you switch languages.",
+          "duration": "Session"
+        },
+        {
+          "name": "mebo-consent",
+          "provider": "Mebo (this website)",
+          "purpose": "Remembers your cookie choice, so we don't ask again on every visit.",
+          "duration": "6 months"
+        }
+      ]
+    },
+    "marketing": {
+      "heading": "Advertising cookies (only with your consent)",
+      "intro": "These cookies let ad platforms measure whether our ads work — for example when someone sees an ad on Instagram and then books an appointment through the website — and show our ads to people who are likely to be interested. They are only set after you click 'Accept', and only during periods in which we advertise.",
+      "rows": [
+        {
+          "name": "_fbp",
+          "provider": "Meta",
+          "purpose": "Measures the reach and effect of our ads on Facebook and Instagram.",
+          "duration": "3 months"
+        },
+        {
+          "name": "_ttp",
+          "provider": "TikTok",
+          "purpose": "Measures the reach and effect of our ads on TikTok.",
+          "duration": "13 months"
+        },
+        {
+          "name": "_gcl_au",
+          "provider": "Google",
+          "purpose": "Measures conversions from our ads via Google Ads and YouTube.",
+          "duration": "3 months"
+        },
+        {
+          "name": "_pin_unauth",
+          "provider": "Pinterest",
+          "purpose": "Measures the reach and effect of our ads on Pinterest.",
+          "duration": "1 year"
+        }
+      ],
+      "thirdParty": "These platforms are themselves responsible for what they do with this data. Read their own privacy policies:"
+    },
+    "manage": {
+      "heading": "Changing or withdrawing your choice",
+      "body": [
+        "You can change or withdraw your consent at any time via 'Cookie settings' at the bottom of every page. If you withdraw consent, we remove the advertising cookies set through this website.",
+        "You can also always delete or block cookies yourself in your browser settings."
+      ],
+      "settings": "Open cookie settings"
+    },
+    "seeAlso": "Also see the privacy statement"
+  },
   "footer": {
     "tagline": "Custom kitchens and furniture, from IJmuiden.",
     "contactHeading": "Contact",
     "followHeading": "Follow us",
     "address": "Plein 1945 50, 1971 GC IJmuiden, the Netherlands",
     "kvk": "CoC 91028248",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "privacy": "Privacy statement",
+    "cookies": "Cookie statement",
+    "cookieSettings": "Cookie settings"
   }
 }

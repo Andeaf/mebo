@@ -215,12 +215,180 @@
       "EIKEN FRONTEN"
     ]
   },
+  "cookieBanner": {
+    "aria": "Cookievoorkeuren",
+    "title": "Cookies",
+    "body": "Wij willen graag cookies gebruiken om onze advertenties op sociale media te meten en te tonen aan mensen met interesse in maatwerk. Functionele cookies plaatsen we altijd; advertentiecookies alleen met uw toestemming.",
+    "link": "Lees de cookieverklaring",
+    "refuse": "Weigeren",
+    "accept": "Accepteren"
+  },
+  "privacy": {
+    "metaTitle": "Privacyverklaring — Mebo | Keukens en meubels op maat",
+    "metaDescription": "Lees hoe Mebo Keukens omgaat met uw persoonsgegevens: welke gegevens wij verwerken, waarvoor, hoe lang we ze bewaren en welke rechten u heeft.",
+    "updated": "Laatst bijgewerkt: 25 augustus 2026",
+    "title": "Privacyverklaring",
+    "intro": [
+      "Mebo Keukens (Mebo CNS v.o.f.), gevestigd aan Plein 1945 50, 1971 GC IJmuiden en ingeschreven bij de Kamer van Koophandel onder nummer 91028248, is verantwoordelijk voor de verwerking van persoonsgegevens zoals beschreven in deze privacyverklaring.",
+      "Wij gaan zorgvuldig met uw gegevens om: we verwerken alleen wat nodig is om uw aanvraag te behandelen en we verkopen uw gegevens nooit. Vragen? Mail ons via info@mebokeukens.nl."
+    ],
+    "sections": [
+      {
+        "heading": "Welke gegevens wij verwerken",
+        "paragraphs": [
+          "Wij verwerken alleen gegevens die u zelf aan ons verstrekt of die nodig zijn om de website te laten werken:"
+        ],
+        "list": [
+          "Afspraakformulier: uw naam, telefoonnummer, e-mailadres (optioneel), de gewenste datum en tijd, en wat u over uw project vertelt, zoals het type project en een indicatief budget.",
+          "Direct contact: belt, mailt of appt u ons, dan verwerken wij de gegevens die u daarbij deelt.",
+          "Technische gegevens: onze hostingprovider verwerkt kortstondig IP-adressen in serverlogs om de website veilig en bereikbaar te houden.",
+          "Advertentiecookies: alleen als u die via de cookiebanner accepteert — zie de cookieverklaring."
+        ]
+      },
+      {
+        "heading": "Waarvoor wij uw gegevens gebruiken",
+        "paragraphs": [
+          "Wij gebruiken uw gegevens uitsluitend voor de volgende doelen:"
+        ],
+        "list": [
+          "Om uw aanvraag te beantwoorden en een afspraak of offerte voor te bereiden (noodzakelijk om op uw verzoek stappen te zetten vóór een overeenkomst, art. 6 lid 1 sub b AVG).",
+          "Om de website veilig en bereikbaar te houden (gerechtvaardigd belang, art. 6 lid 1 sub f AVG).",
+          "Om onze advertenties op sociale media te meten en te tonen — alleen met uw toestemming via de cookiebanner (art. 6 lid 1 sub a AVG). U kunt die toestemming op elk moment intrekken."
+        ]
+      },
+      {
+        "heading": "Hoe lang wij gegevens bewaren",
+        "paragraphs": [
+          "Wij bewaren uw gegevens niet langer dan nodig. Aanvragen en offertecorrespondentie bewaren we tot maximaal twee jaar na het laatste contact, zodat we u bij een vervolgvraag goed kunnen helpen. Wordt u klant, dan bewaren we facturen en administratie zeven jaar; dat is wettelijk verplicht."
+        ]
+      },
+      {
+        "heading": "Met wie wij gegevens delen",
+        "paragraphs": [
+          "Wij verkopen uw gegevens nooit. We delen ze alleen met dienstverleners (verwerkers) die nodig zijn om de website en onze mailbox te laten draaien:"
+        ],
+        "list": [
+          "Vercel — hosting van de website.",
+          "Resend — verzending van het afspraakformulier naar onze mailbox.",
+          "Google Workspace — onze zakelijke e-mail (info@mebokeukens.nl)."
+        ],
+        "after": [
+          "Accepteert u advertentiecookies, dan ontvangen ook de advertentieplatformen Meta, TikTok, Google en Pinterest gegevens over uw bezoek. In de cookieverklaring leest u welke cookies dat zijn en hoe u uw keuze aanpast."
+        ]
+      },
+      {
+        "heading": "Doorgifte buiten de EER",
+        "paragraphs": [
+          "Sommige van deze dienstverleners verwerken gegevens in de Verenigde Staten. Dat gebeurt op basis van het EU-VS Data Privacy Framework en/of de standaardcontractbepalingen van de Europese Commissie."
+        ]
+      },
+      {
+        "heading": "Uw rechten",
+        "paragraphs": ["U heeft het recht om:"],
+        "list": [
+          "in te zien welke gegevens wij van u hebben;",
+          "onjuiste gegevens te laten corrigeren;",
+          "uw gegevens te laten verwijderen;",
+          "de verwerking te laten beperken of er bezwaar tegen te maken;",
+          "uw gegevens in een leesbaar bestand te ontvangen (dataportabiliteit);",
+          "gegeven toestemming op elk moment in te trekken, bijvoorbeeld via de cookie-instellingen onderaan de pagina."
+        ],
+        "after": [
+          "Stuur uw verzoek naar info@mebokeukens.nl; we reageren binnen een maand. Bent u niet tevreden over hoe wij met uw gegevens omgaan, dan kunt u een klacht indienen bij de Autoriteit Persoonsgegevens."
+        ]
+      },
+      {
+        "heading": "Wijzigingen",
+        "paragraphs": [
+          "Wij kunnen deze privacyverklaring aanpassen, bijvoorbeeld wanneer we nieuwe diensten gaan gebruiken. De actuele versie staat altijd op deze pagina, met bovenaan de datum van de laatste wijziging."
+        ]
+      }
+    ],
+    "seeAlso": "Bekijk ook de cookieverklaring"
+  },
+  "cookiesPage": {
+    "metaTitle": "Cookieverklaring — Mebo | Keukens en meubels op maat",
+    "metaDescription": "Welke cookies www.mebokeukens.nl gebruikt en waarom: functionele cookies voor de werking van de site en advertentiecookies alleen met uw toestemming.",
+    "updated": "Laatst bijgewerkt: 25 augustus 2026",
+    "title": "Cookieverklaring",
+    "intro": [
+      "Cookies zijn kleine tekstbestanden die bij een bezoek aan een website op uw apparaat worden opgeslagen. Op deze pagina leest u welke cookies www.mebokeukens.nl gebruikt en waarom.",
+      "Functionele cookies plaatsen we altijd: zonder werkt de website niet goed. Advertentiecookies plaatsen we alleen nadat u ze via de cookiebanner heeft geaccepteerd. Uw keuze kunt u op elk moment aanpassen via 'Cookie-instellingen' onderaan de pagina."
+    ],
+    "tableHeaders": {
+      "name": "Cookie",
+      "provider": "Geplaatst door",
+      "purpose": "Doel",
+      "duration": "Bewaartermijn"
+    },
+    "functional": {
+      "heading": "Functionele cookies (altijd actief)",
+      "intro": "Deze cookies zijn nodig om de website goed te laten werken. Voor dit soort cookies is volgens de Telecommunicatiewet geen toestemming vereist.",
+      "rows": [
+        {
+          "name": "NEXT_LOCALE",
+          "provider": "Mebo (deze website)",
+          "purpose": "Onthoudt uw taalkeuze (Nederlands of Engels) nadat u van taal wisselt.",
+          "duration": "Sessie"
+        },
+        {
+          "name": "mebo-consent",
+          "provider": "Mebo (deze website)",
+          "purpose": "Onthoudt uw cookiekeuze, zodat we er niet bij elk bezoek opnieuw om vragen.",
+          "duration": "6 maanden"
+        }
+      ]
+    },
+    "marketing": {
+      "heading": "Advertentiecookies (alleen met uw toestemming)",
+      "intro": "Met deze cookies kunnen advertentieplatformen meten of onze advertenties werken — bijvoorbeeld wanneer iemand een advertentie op Instagram ziet en daarna via de website een afspraak maakt — en onze advertenties tonen aan mensen die waarschijnlijk interesse hebben. Ze worden pas geplaatst nadat u op 'Accepteren' heeft geklikt, en alleen in periodes waarin wij adverteren.",
+      "rows": [
+        {
+          "name": "_fbp",
+          "provider": "Meta",
+          "purpose": "Meet het bereik en effect van onze advertenties op Facebook en Instagram.",
+          "duration": "3 maanden"
+        },
+        {
+          "name": "_ttp",
+          "provider": "TikTok",
+          "purpose": "Meet het bereik en effect van onze advertenties op TikTok.",
+          "duration": "13 maanden"
+        },
+        {
+          "name": "_gcl_au",
+          "provider": "Google",
+          "purpose": "Meet conversies van onze advertenties via Google Ads en YouTube.",
+          "duration": "3 maanden"
+        },
+        {
+          "name": "_pin_unauth",
+          "provider": "Pinterest",
+          "purpose": "Meet het bereik en effect van onze advertenties op Pinterest.",
+          "duration": "1 jaar"
+        }
+      ],
+      "thirdParty": "Deze platformen zijn zelf verantwoordelijk voor wat zij verder met deze gegevens doen. Lees hun eigen privacyverklaringen:"
+    },
+    "manage": {
+      "heading": "Uw keuze aanpassen of intrekken",
+      "body": [
+        "U kunt uw toestemming op elk moment aanpassen of intrekken via 'Cookie-instellingen' onderaan elke pagina. Trekt u uw toestemming in, dan verwijderen wij de advertentiecookies die via deze website zijn geplaatst.",
+        "Daarnaast kunt u cookies altijd zelf verwijderen of blokkeren via de instellingen van uw browser."
+      ],
+      "settings": "Cookie-instellingen openen"
+    },
+    "seeAlso": "Bekijk ook de privacyverklaring"
+  },
   "footer": {
     "tagline": "Keukens en meubels op maat, uit IJmuiden.",
     "contactHeading": "Contact",
     "followHeading": "Volg ons",
     "address": "Plein 1945 50, 1971 GC IJmuiden",
     "kvk": "KvK 91028248",
-    "rights": "Alle rechten voorbehouden."
+    "rights": "Alle rechten voorbehouden.",
+    "privacy": "Privacyverklaring",
+    "cookies": "Cookieverklaring",
+    "cookieSettings": "Cookie-instellingen"
   }
 }

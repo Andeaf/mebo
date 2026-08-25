@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { company } from "@/lib/company";
 import { booking, bookingTimes, isoWeekday } from "@/lib/booking";
+import { trackLead } from "@/lib/marketing";
 import FadeUp from "./FadeUp";
 
 function Icon({ path }: { path: string }) {
@@ -143,6 +144,9 @@ export default function ContactSection() {
       });
       if (!res.ok) throw new Error(`status ${res.status}`);
       setStatus("success");
+      // No-op unless the visitor accepted marketing cookies and the ad
+      // pixels are loaded (see src/lib/marketing.ts).
+      trackLead();
     } catch {
       // Server unavailable or not configured — compose the email in the
       // visitor's own mail app instead, so the request is never lost.

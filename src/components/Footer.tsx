@@ -1,5 +1,8 @@
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { company } from "@/lib/company";
+import { hasAnyPixel } from "@/lib/marketing";
+import CookieSettingsLink from "./CookieSettingsLink";
 import MeboLogo from "./MeboLogo";
 
 export default function Footer() {
@@ -52,6 +55,20 @@ export default function Footer() {
           <p>
             © {year} {company.legalName} · {t("kvk")}
           </p>
+          <nav className="flex flex-wrap gap-x-4 gap-y-1">
+            <Link href="/privacy" className="hover:text-ink">
+              {t("privacy")}
+            </Link>
+            <Link href="/cookies" className="hover:text-ink">
+              {t("cookies")}
+            </Link>
+            {hasAnyPixel && (
+              <CookieSettingsLink
+                label={t("cookieSettings")}
+                className="cursor-pointer hover:text-ink"
+              />
+            )}
+          </nav>
           <p>{t("rights")}</p>
         </div>
       </div>

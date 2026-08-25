@@ -5,6 +5,8 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { company } from "@/lib/company";
+import CookieConsent from "@/components/CookieConsent";
+import MarketingPixels from "@/components/MarketingPixels";
 import "../globals.css";
 
 const hanken = Hanken_Grotesk({
@@ -82,6 +84,8 @@ export default async function LocaleLayout({
       <body>
         <NextIntlClientProvider messages={messages}>
           {children}
+          <CookieConsent />
+          <MarketingPixels />
         </NextIntlClientProvider>
       </body>
     </html>
