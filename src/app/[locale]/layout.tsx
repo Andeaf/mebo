@@ -40,6 +40,10 @@ export async function generateMetadata({
     metadataBase: new URL(company.siteUrl),
     title: t("title"),
     description: t("description"),
+    // Pinterest website claim for the @mebokeukens business account.
+    verification: {
+      other: { "p:domain_verify": "665de8af6326c8b747afb1b7efe2fbc9" },
+    },
     alternates: {
       canonical: locale === "nl" ? "/" : `/${locale}`,
       languages: {
