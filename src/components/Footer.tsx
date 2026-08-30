@@ -48,6 +48,16 @@ export default function Footer() {
                   Instagram
                 </a>
               </li>
+              <li>
+                <a
+                  href={company.pinterestUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-ink"
+                >
+                  Pinterest
+                </a>
+              </li>
             </ul>
           </div>
         </div>

@@ -11,6 +11,7 @@ export const company = {
   email: "info@mebokeukens.nl",
   instagramUrl: "https://www.instagram.com/mebo.keukens/",
   instagramHandle: "@mebo.keukens",
+  pinterestUrl: "https://www.pinterest.com/mebokeukens/",
   address: {
     street: "Plein 1945 50",
     postalCode: "1971 GC",
