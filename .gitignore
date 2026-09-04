@@ -15,6 +15,9 @@
 # design reference material (screenshots of third-party sites)
 /design-refs/
 
+# local backups (Google Takeout etc.) — never commit
+/Archive/
+
 # debug
 npm-debug.log*
 

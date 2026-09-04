@@ -7,7 +7,6 @@ import ProcessCards from "@/components/ProcessCards";
 import Showcase from "@/components/Showcase";
 import ProjectsGrid from "@/components/ProjectsGrid";
 import FeatureBlocks from "@/components/FeatureBlocks";
-import MaterialColors from "@/components/MaterialColors";
 import StatementMoment from "@/components/StatementMoment";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -68,7 +67,6 @@ export default async function HomePage({
         <Showcase />
         <ProjectsGrid />
         <FeatureBlocks />
-        <MaterialColors />
         <StatementMoment />
         <ContactSection />
       </main>

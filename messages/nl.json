@@ -42,7 +42,19 @@
         "title": "Ons eigen team monteert, door heel Nederland",
         "imageAlt": "Monteur van Mebo plaatst een keuken op maat bij een klant thuis"
       }
-    ]
+    ],
+    "designer": {
+      "eyebrow": "Ontwerp in samenwerking met",
+      "studio": "{studio} · ontwerpbureau in {city}",
+      "intro": "Sinds {year} ontwerpt Klaas interieurs en exterieurs die je herkent aan minimalisme, strakke lijnen en luxe materialen, verrijkt met een persoonlijke touch. Hij neemt de tijd om u te leren kennen, want een keuken die echt past begint bij hoe u wilt wonen. Samen met onze werkplaats vertaalt hij dat naar een ontwerp dat tot in het laatste detail klopt.",
+      "services": [
+        "Keukenarchitectuur",
+        "Kleur- en materiaalplan",
+        "Licht- en interieurontwerp",
+        "Van schets tot realisatie"
+      ],
+      "openLabel": "Meer over de ontwerper waarmee wij samenwerken"
+    }
   },
   "showcase": {
     "heading": "Projecten",
@@ -59,8 +71,6 @@
     "alt02": "Maatwerkkeuken in walnoot en natuursteen, project van Mebo",
     "alt03": "Witte maatwerkkeuken met marmeren achterwand, project van Mebo",
     "alt04": "Lichte keuken met kookeiland en houtaccenten, project van Mebo",
-    "alt05": "Landelijke keuken in hout met kookeiland, project van Mebo",
-    "alt06": "Klassieke crèmekleurige keuken met kookeiland, project van Mebo",
     "swipeHint": "Veeg voor meer",
     "allProjects": "Alle projecten",
     "close": "Sluiten",
@@ -84,22 +94,24 @@
     }
   ],
   "materials": {
-    "eyebrow": "Kleuren",
-    "title": "Melamine of fineer? Vergelijk de kleuren.",
-    "intro": "Twee afwerkingen, elk met een eigen karakter: melamine is praktisch en verkrijgbaar in vrijwel elke kleur, fineer heeft de warmte van echt hout. Klik op een staal en vergelijk.",
-    "note": "Kleuren op het scherm zijn indicatief. In onze showroom bekijkt u de echte stalen bij daglicht.",
-    "palLabel": "Melamine",
-    "veneerLabel": "Fineer",
-    "palColors": [
-      "Alpine wit",
-      "Kasjmier",
-      "Greige",
-      "Lichtgrijs",
-      "Steengrijs",
-      "Saliegroen",
-      "Antraciet",
-      "Mat zwart"
+    "eyebrow": "Productie in samenwerking met",
+    "partnerMeta": "Fronten en meubelcomponenten uit {city}",
+    "intro": "Samen met Global Design maken wij fronten op maat: gelakt in vrijwel elke RAL-kleur, of gefineerd in echt hout. Klik op een staal en vergelijk.",
+    "note": "Kleuren op het scherm zijn indicatief; RAL-tinten zijn benaderd. In onze showroom bekijkt u de echte stalen bij daglicht.",
+    "openLabel": "Bekijk onze kleuren en afwerkingen",
+    "closeLabel": "Sluiten",
+    "paintedLabel": "Gelakt · RAL",
+    "paintedColors": [
+      "Zuiver wit",
+      "Crèmewit",
+      "Parelwit",
+      "Zijdegrijs",
+      "Agaatgrijs",
+      "Bleekgroen",
+      "Antracietgrijs",
+      "Diepzwart"
     ],
+    "veneerLabel": "Fineer",
     "veneerColors": [
       "Essen licht",
       "Naturel eiken",
@@ -286,7 +298,9 @@
       },
       {
         "heading": "Uw rechten",
-        "paragraphs": ["U heeft het recht om:"],
+        "paragraphs": [
+          "U heeft het recht om:"
+        ],
         "list": [
           "in te zien welke gegevens wij van u hebben;",
           "onjuiste gegevens te laten corrigeren;",

@@ -42,7 +42,19 @@
         "title": "Our own team installs, throughout the Netherlands",
         "imageAlt": "Mebo installer fitting a custom kitchen at a client's home"
       }
-    ]
+    ],
+    "designer": {
+      "eyebrow": "Design in collaboration with",
+      "studio": "{studio} · design studio in {city}",
+      "intro": "Since {year}, Klaas has been designing interiors and exteriors recognisable by their minimalism, clean lines and luxurious materials, enriched with a personal touch. He takes the time to get to know you, because a kitchen that truly fits starts with how you want to live. Together with our workshop, he turns that into a design that is right down to the last detail.",
+      "services": [
+        "Kitchen architecture",
+        "Colour and material plan",
+        "Lighting and interior design",
+        "From sketch to realisation"
+      ],
+      "openLabel": "More about the designer we work with"
+    }
   },
   "showcase": {
     "heading": "Projects",
@@ -59,8 +71,6 @@
     "alt02": "Custom kitchen in walnut and stone, a Mebo project",
     "alt03": "White custom kitchen with marble splashback, a Mebo project",
     "alt04": "Light kitchen with island and wood accents, a Mebo project",
-    "alt05": "Rustic wood kitchen with island, a Mebo project",
-    "alt06": "Classic cream kitchen with island, a Mebo project",
     "swipeHint": "Swipe for more",
     "allProjects": "All projects",
     "close": "Close",
@@ -84,22 +94,24 @@
     }
   ],
   "materials": {
-    "eyebrow": "Colours",
-    "title": "Melamine or veneer? Compare the colours.",
-    "intro": "Two finishes, each with its own character: melamine is practical and available in nearly any colour, veneer has the warmth of real wood. Click a swatch and compare.",
-    "note": "On-screen colours are indicative. Visit our showroom to see the real samples in daylight.",
-    "palLabel": "Melamine",
-    "veneerLabel": "Veneer",
-    "palColors": [
-      "Alpine white",
-      "Cashmere",
-      "Greige",
-      "Light grey",
-      "Stone grey",
-      "Sage green",
-      "Anthracite",
-      "Matte black"
+    "eyebrow": "Production in collaboration with",
+    "partnerMeta": "Fronts and furniture components from {city}",
+    "intro": "Together with Global Design we make fronts to measure: painted in virtually any RAL colour, or veneered in real wood. Click a swatch to compare.",
+    "note": "On-screen colours are indicative and RAL shades are approximated. In our showroom you can see the real samples in daylight.",
+    "openLabel": "View our colours and finishes",
+    "closeLabel": "Close",
+    "paintedLabel": "Painted · RAL",
+    "paintedColors": [
+      "Pure white",
+      "Cream white",
+      "Pearl white",
+      "Silk grey",
+      "Agate grey",
+      "Pale green",
+      "Anthracite grey",
+      "Jet black"
     ],
+    "veneerLabel": "Veneer",
     "veneerColors": [
       "Light ash",
       "Natural oak",
@@ -248,7 +260,9 @@
       },
       {
         "heading": "What we use your data for",
-        "paragraphs": ["We use your data only for the following purposes:"],
+        "paragraphs": [
+          "We use your data only for the following purposes:"
+        ],
         "list": [
           "To answer your request and prepare an appointment or quote (necessary to take steps at your request prior to entering into a contract, art. 6(1)(b) GDPR).",
           "To keep the website secure and available (legitimate interest, art. 6(1)(f) GDPR).",
@@ -284,7 +298,9 @@
       },
       {
         "heading": "Your rights",
-        "paragraphs": ["You have the right to:"],
+        "paragraphs": [
+          "You have the right to:"
+        ],
         "list": [
           "see which data we hold about you;",
           "have incorrect data corrected;",
