@@ -21,6 +21,4 @@ export const galleryProjects: GalleryProject[] = [
   project("02", 11),
   project("03", 14),
   project("04", 8),
-  project("05", 6),
-  project("06", 10),
 ];
