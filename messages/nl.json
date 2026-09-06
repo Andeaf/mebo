@@ -101,16 +101,6 @@
     "openLabel": "Bekijk onze kleuren en afwerkingen",
     "closeLabel": "Sluiten",
     "paintedLabel": "Gelakt · RAL",
-    "paintedColors": [
-      "Zuiver wit",
-      "Crèmewit",
-      "Parelwit",
-      "Zijdegrijs",
-      "Agaatgrijs",
-      "Bleekgroen",
-      "Antracietgrijs",
-      "Diepzwart"
-    ],
     "veneerLabel": "Fineer",
     "veneerColors": [
       "Essen licht",
@@ -120,7 +110,8 @@
       "Walnoot",
       "Wengé",
       "Zwart eiken"
-    ]
+    ],
+    "allColorsLink": "Alle RAL-kleuren bekijken"
   },
   "moment": {
     "word": "Maatwerk.",
@@ -156,6 +147,40 @@
       }
     ],
     "cta": "Neem contact op"
+  },
+  "colours": {
+    "metaTitle": "RAL-kleuren voor gelakte fronten — Mebo | Keukens op maat",
+    "metaDescription": "Kies uit {count} RAL Classic-kleuren voor de gelakte fronten van uw keuken of kast op maat. Vergelijk, selecteer uw favorieten en bespreek ze in onze showroom in IJmuiden.",
+    "eyebrow": "Kleuren",
+    "title": "Vrijwel elke RAL-kleur, gelakt op maat.",
+    "intro": "Fronten en meubeldelen lakken wij in de volledige RAL Classic-waaier: {count} kleuren, mat of hoogglans. Kies hieronder uw favorieten en neem ze mee naar het afspraakformulier — in de showroom bekijkt u de echte stalen bij daglicht.",
+    "partner": "Productie in samenwerking met",
+    "ncsNote": "Ook NCS-tinten zijn mogelijk; vraag ernaar bij uw afspraak.",
+    "note": "Kleuren op het scherm zijn indicatief: RAL publiceert geen bindende schermwaarden en elk scherm geeft ze anders weer. Beslis altijd op een fysieke staal.",
+    "filterLabel": "Filter op kleurfamilie",
+    "filterAll": "Alle",
+    "groups": {
+      "1": "Geel & beige",
+      "2": "Oranje",
+      "3": "Rood",
+      "4": "Violet",
+      "5": "Blauw",
+      "6": "Groen",
+      "7": "Grijs",
+      "8": "Bruin",
+      "9": "Wit & zwart"
+    },
+    "searchLabel": "Zoek op RAL-nummer of naam",
+    "searchPlaceholder": "Bijv. 7016 of antraciet",
+    "results": "{count, plural, =1 {1 kleur} other {# kleuren}}",
+    "selectHint": "Klik op een kleur om die te selecteren.",
+    "noResults": "Geen kleuren gevonden voor „{query}”.",
+    "selectedCount": "{count, plural, =1 {1 kleur gekozen} other {# kleuren gekozen}}",
+    "maxHint": "Maximaal {max} kleuren tegelijk.",
+    "remove": "{code} verwijderen",
+    "clear": "Selectie wissen",
+    "cta": "Bespreek deze kleuren in de showroom",
+    "backLink": "Terug naar onze werkwijze"
   },
   "contact": {
     "eyebrow": "Contact",
@@ -201,7 +226,8 @@
       "note": "We reageren binnen 1–2 werkdagen. Liever direct contact? Bel of app ons.",
       "subject": "Afspraakaanvraag via mebokeukens.nl",
       "moreOptional": "Meer optionele gegevens",
-      "hideOptional": "Verberg optionele gegevens"
+      "hideOptional": "Verberg optionele gegevens",
+      "coloursPrefill": "Gekozen RAL-kleuren: {list}."
     },
     "booking": {
       "title": "Kies een datum en tijd",

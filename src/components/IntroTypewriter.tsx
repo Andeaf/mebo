@@ -45,7 +45,9 @@ export default function IntroTypewriter() {
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce || sessionStorage.getItem(SEEN_KEY)) {
+    // Deep links to a section (/#contact from the colour page, /#werkwijze)
+    // go straight there instead of replaying the intro first.
+    if (reduce || sessionStorage.getItem(SEEN_KEY) || window.location.hash) {
       setVisible(false);
       return;
     }

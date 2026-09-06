@@ -101,16 +101,6 @@
     "openLabel": "View our colours and finishes",
     "closeLabel": "Close",
     "paintedLabel": "Painted · RAL",
-    "paintedColors": [
-      "Pure white",
-      "Cream white",
-      "Pearl white",
-      "Silk grey",
-      "Agate grey",
-      "Pale green",
-      "Anthracite grey",
-      "Jet black"
-    ],
     "veneerLabel": "Veneer",
     "veneerColors": [
       "Light ash",
@@ -120,7 +110,8 @@
       "Walnut",
       "Wenge",
       "Black oak"
-    ]
+    ],
+    "allColorsLink": "View all RAL colours"
   },
   "moment": {
     "word": "Made to measure.",
@@ -156,6 +147,40 @@
       }
     ],
     "cta": "Get in touch"
+  },
+  "colours": {
+    "metaTitle": "RAL colours for painted fronts — Mebo | Kitchens made to measure",
+    "metaDescription": "Choose from {count} RAL Classic colours for the painted fronts of your made-to-measure kitchen or cabinet. Compare, pick your favourites and discuss them in our showroom in IJmuiden.",
+    "eyebrow": "Colours",
+    "title": "Virtually any RAL colour, painted to measure.",
+    "intro": "We paint fronts and furniture parts in the full RAL Classic fan deck: {count} colours, matt or high gloss. Pick your favourites below and take them along to the appointment form — in the showroom you will see the real samples in daylight.",
+    "partner": "Production in collaboration with",
+    "ncsNote": "NCS shades are possible too; ask about them at your appointment.",
+    "note": "On-screen colours are indicative: RAL publishes no binding screen values and every display renders them differently. Always decide on a physical sample.",
+    "filterLabel": "Filter by colour family",
+    "filterAll": "All",
+    "groups": {
+      "1": "Yellow & beige",
+      "2": "Orange",
+      "3": "Red",
+      "4": "Violet",
+      "5": "Blue",
+      "6": "Green",
+      "7": "Grey",
+      "8": "Brown",
+      "9": "White & black"
+    },
+    "searchLabel": "Search by RAL number or name",
+    "searchPlaceholder": "E.g. 7016 or anthracite",
+    "results": "{count, plural, =1 {1 colour} other {# colours}}",
+    "selectHint": "Click a colour to select it.",
+    "noResults": "No colours found for “{query}”.",
+    "selectedCount": "{count, plural, =1 {1 colour selected} other {# colours selected}}",
+    "maxHint": "Up to {max} colours at a time.",
+    "remove": "Remove {code}",
+    "clear": "Clear selection",
+    "cta": "Discuss these colours in the showroom",
+    "backLink": "Back to how we work"
   },
   "contact": {
     "eyebrow": "Contact",
@@ -201,7 +226,8 @@
       "note": "We respond within 1–2 working days. Prefer direct contact? Call or message us.",
       "subject": "Appointment request via mebokeukens.nl",
       "moreOptional": "More optional details",
-      "hideOptional": "Hide optional details"
+      "hideOptional": "Hide optional details",
+      "coloursPrefill": "Chosen RAL colours: {list}."
     },
     "booking": {
       "title": "Pick a date & time",

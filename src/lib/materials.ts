@@ -1,20 +1,22 @@
 // Finish palettes shown in the "Productie" panel.
 //
 // Painted fronts: Mebo's production partner Global Design (Suceava) paints to
-// the RAL K7 fan deck, so these are real RAL Classic references — the number
-// and name are the official ones, the hex is only a screen approximation
-// (RAL does not publish binding hex values). The copy carries that caveat.
-// Sources: frontmdf.ro / global-design.ro (RAL K7 for painted MDF fronts).
-export const PAINTED_COLORS = [
-  { ral: "9010", hex: "#F1F0EA" },
-  { ral: "9001", hex: "#EAE6DA" },
-  { ral: "1013", hex: "#E3D9C6" },
-  { ral: "7044", hex: "#CAC4B0" },
-  { ral: "7038", hex: "#B5B8B1" },
-  { ral: "6021", hex: "#89AC76" },
-  { ral: "7016", hex: "#383E42" },
-  { ral: "9005", hex: "#0E0E10" },
+// the RAL Classic / NCS fan decks. The full RAL list lives in `ral.ts` and has
+// its own page (/kleuren); the panel shows a short, kitchen-friendly selection.
+import { ralByCode } from "./ral";
+
+export const FEATURED_RAL = [
+  "9010",
+  "9001",
+  "1013",
+  "7044",
+  "7038",
+  "6021",
+  "7016",
+  "9005",
 ] as const;
+
+export const PAINTED_COLORS = FEATURED_RAL.map(ralByCode);
 
 // Veneered MDF panels — wood species, not a branded colour system.
 export const VENEER_COLORS = [

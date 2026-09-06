@@ -12,6 +12,7 @@ import {
 import { company } from "@/lib/company";
 import { booking, bookingTimes, isoWeekday } from "@/lib/booking";
 import { trackLead } from "@/lib/marketing";
+import { parseRalCodes, ralName } from "@/lib/ral";
 import FadeUp from "./FadeUp";
 
 function Icon({ path }: { path: string }) {
@@ -54,6 +55,22 @@ export default function ContactSection() {
   const fmtLocale = locale === "nl" ? "nl-NL" : "en-GB";
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [showOptional, setShowOptional] = useState(false);
+  // The colour page (/kleuren) links here with ?kleuren=9010,7016 — those
+  // codes open the form with the chosen shades already in the message.
+  const [message, setMessage] = useState("");
+  useEffect(() => {
+    const chosen = parseRalCodes(
+      new URLSearchParams(window.location.search).get("kleuren"),
+    );
+    if (chosen.length === 0) return;
+    const list = chosen
+      .map((c) => `RAL ${c.code} ${ralName(c, locale)}`)
+      .join(", ");
+    setMessage((current) =>
+      current ? current : `${t("form.coloursPrefill", { list })}
+`,
+    );
+  }, [locale, t]);
   // The server drops submissions that arrive within 2s of page load (bots).
   const startedAt = useRef(Date.now());
 
@@ -302,6 +319,8 @@ export default function ContactSection() {
                   <textarea
                     name="message"
                     required
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     placeholder={t("form.messagePlaceholder")}
                     className={`${inputClass} min-h-[120px]`}
                   />

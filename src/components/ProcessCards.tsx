@@ -4,9 +4,11 @@ import Image from "next/image";
 import { useState } from "react";
 import type { FocusEvent, ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { designer, productionPartner } from "@/lib/company";
 import { PAINTED_COLORS, VENEER_COLORS } from "@/lib/materials";
+import { ralName } from "@/lib/ral";
 import MaterialPanel from "./MaterialPanel";
 
 const CARD_IMAGES = [
@@ -35,6 +37,7 @@ const REVEAL_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 export default function ProcessCards() {
   const t = useTranslations("process");
   const tm = useTranslations("materials");
+  const locale = useLocale();
   const reduceMotion = useReducedMotion();
   const [openCard, setOpenCard] = useState<number | null>(null);
 
@@ -153,8 +156,8 @@ export default function ProcessCards() {
           swatchAspect="aspect-16/9 md:aspect-5/2"
           label={tm("paintedLabel")}
           colors={PAINTED_COLORS.map((c) => c.hex)}
-          colorName={(i) => tm(`paintedColors.${i}`)}
-          colorMeta={(i) => `RAL ${PAINTED_COLORS[i].ral}`}
+          colorName={(i) => ralName(PAINTED_COLORS[i], locale)}
+          colorMeta={(i) => `RAL ${PAINTED_COLORS[i].code}`}
         />
         <MaterialPanel
           tone="dark"
@@ -166,9 +169,19 @@ export default function ProcessCards() {
         />
       </motion.div>
 
-      <motion.p variants={item} className="text-xs text-white/55">
-        {tm("note")}
-      </motion.p>
+      <motion.div
+        variants={item}
+        className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2"
+      >
+        <p className="max-w-xl text-xs text-white/55">{tm("note")}</p>
+        <Link
+          href="/kleuren"
+          className="inline-flex items-center gap-2 text-sm font-medium text-white underline decoration-white/40 underline-offset-4 transition-opacity hover:opacity-75"
+        >
+          {tm("allColorsLink")}
+          <span aria-hidden>→</span>
+        </Link>
+      </motion.div>
     </>
   );
 

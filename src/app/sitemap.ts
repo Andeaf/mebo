@@ -52,6 +52,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     {
+      url: `${company.siteUrl}/kleuren`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          nl: `${company.siteUrl}/kleuren`,
+          en: `${company.siteUrl}/en/kleuren`,
+        },
+      },
+    },
+    {
+      url: `${company.siteUrl}/en/kleuren`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+      alternates: {
+        languages: {
+          nl: `${company.siteUrl}/kleuren`,
+          en: `${company.siteUrl}/en/kleuren`,
+        },
+      },
+    },
+    {
       url: `${company.siteUrl}/privacy`,
       lastModified: new Date(),
       changeFrequency: "yearly",
