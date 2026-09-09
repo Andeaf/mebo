@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import type { FocusEvent, ReactNode } from "react";
+import { useEffect, useState } from "react";
+import type { ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -19,6 +19,8 @@ const CARD_IMAGES = [
 
 // Cards 0 (design) and 1 (production) open a panel over the cards beside them.
 // Card 0 unrolls to the right, card 1 opens outwards from its own centre.
+// A panel opens and closes only on a click of the card's "+", never on
+// hover, so it stays put while you read it.
 const PANEL_CARDS = [0, 1] as const;
 
 const PANEL_POSITION: Record<number, string> = {
@@ -40,6 +42,16 @@ export default function ProcessCards() {
   const locale = useLocale();
   const reduceMotion = useReducedMotion();
   const [openCard, setOpenCard] = useState<number | null>(null);
+
+  // Escape closes the open panel — the expected way out of an overlay.
+  useEffect(() => {
+    if (openCard === null) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpenCard(null);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [openCard]);
 
   const services = t.raw("designer.services") as string[];
 
@@ -188,14 +200,6 @@ export default function ProcessCards() {
   const panelContent = (index: number) =>
     index === 0 ? designerContent : colorsContent;
 
-  // Keyboard users get the same panel: it opens on focus and closes once focus
-  // has left both the card and the links inside the panel.
-  const handleBlur = (event: FocusEvent<HTMLDivElement>, index: number) => {
-    if (!event.currentTarget.contains(event.relatedTarget)) {
-      setOpenCard((current) => (current === index ? null : current));
-    }
-  };
-
   const contentWrapper = (children: ReactNode, className: string) => (
     <motion.div
       variants={group}
@@ -219,18 +223,7 @@ export default function ProcessCards() {
           const isOpen = openCard === i;
 
           return (
-            <div
-              key={src}
-              className={hasPanel ? "relative" : undefined}
-              onMouseEnter={hasPanel ? () => setOpenCard(i) : undefined}
-              onMouseLeave={
-                hasPanel
-                  ? () => setOpenCard((c) => (c === i ? null : c))
-                  : undefined
-              }
-              onFocus={hasPanel ? () => setOpenCard(i) : undefined}
-              onBlur={hasPanel ? (e) => handleBlur(e, i) : undefined}
-            >
+            <div key={src} className={hasPanel ? "relative" : undefined}>
               <motion.article
                 initial={reduceMotion ? false : { opacity: 0, y: 28 }}
                 whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -258,16 +251,20 @@ export default function ProcessCards() {
                   </h3>
                 </div>
 
-                {/* Tap target on touch devices; a quiet hover hint on desktop,
-                    where the panel opens by itself. */}
+                {/* The only way in and out. Turned into a cross it closes the
+                    panel again. While open it sits above its own panel (z-30) so
+                    it stays reachable; closed it stays under a neighbour's open
+                    panel (z-10) instead of floating on top of it. */}
                 {hasPanel && (
                   <button
                     type="button"
                     onClick={() => setOpenCard(isOpen ? null : i)}
                     aria-expanded={isOpen}
-                    aria-label={panelLabel(i)}
-                    className={`absolute top-5 right-5 z-10 grid size-9 place-items-center rounded-full border border-white/35 text-white transition-all duration-500 ease-out md:pointer-events-none ${
-                      isOpen ? "rotate-45 border-white/70 bg-white/15" : "bg-white/10"
+                    aria-label={isOpen ? tm("closeLabel") : panelLabel(i)}
+                    className={`absolute top-5 right-5 grid size-9 cursor-pointer place-items-center rounded-full border text-white backdrop-blur-sm transition-all duration-500 ease-out ${
+                      isOpen
+                        ? "z-30 rotate-45 border-white/70 bg-white/15"
+                        : "z-10 border-white/35 bg-white/10 hover:border-white/70 hover:bg-white/20"
                     }`}
                   >
                     <svg
@@ -286,10 +283,13 @@ export default function ProcessCards() {
               </motion.article>
 
               {hasPanel && (
-                <AnimatePresence>
-                  {isOpen && (
-                    <>
-                      {/* Desktop: unrolls over the neighbouring cards. */}
+                <>
+                  {/* Desktop: unrolls over the neighbouring cards. One
+                      AnimatePresence per element: sharing a single one, through
+                      a fragment, leaves a closed panel behind fully drawn, where
+                      it swallows the next click on the "+". */}
+                  <AnimatePresence>
+                    {isOpen && (
                       <motion.aside
                         key={`panel-${i}`}
                         initial={
@@ -319,8 +319,12 @@ export default function ProcessCards() {
                           "flex h-full flex-col justify-between gap-5 overflow-y-auto p-7 lg:p-9",
                         )}
                       </motion.aside>
+                    )}
+                  </AnimatePresence>
 
-                      {/* Touch: a sheet that rises from the bottom. */}
+                  {/* Touch: a sheet that rises from the bottom. */}
+                  <AnimatePresence>
+                    {isOpen && (
                       <motion.div
                         key={`scrim-${i}`}
                         initial={{ opacity: 0 }}
@@ -330,6 +334,10 @@ export default function ProcessCards() {
                         onClick={() => setOpenCard(null)}
                         className="fixed inset-0 z-40 bg-black/50 md:hidden"
                       />
+                    )}
+                  </AnimatePresence>
+                  <AnimatePresence>
+                    {isOpen && (
                       <motion.aside
                         key={`sheet-${i}`}
                         initial={reduceMotion ? { opacity: 0 } : { y: "100%" }}
@@ -365,9 +373,9 @@ export default function ProcessCards() {
                           "flex flex-col gap-7 px-6 pt-14 pb-10",
                         )}
                       </motion.aside>
-                    </>
-                  )}
-                </AnimatePresence>
+                    )}
+                  </AnimatePresence>
+                </>
               )}
             </div>
           );
