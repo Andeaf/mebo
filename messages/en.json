@@ -196,6 +196,7 @@
     "areaValue": "IJmuiden and surroundings — installation throughout the Netherlands",
     "hoursLabel": "Opening hours",
     "hoursValue": "Tue–Fri 11.00–16.30",
+    "hoursNote": "* Appointments are also possible outside these hours, from 8.00 to 20.00. Visiting to discuss your project is by appointment only.",
     "form": {
       "title": "Make an appointment",
       "name": "Name",

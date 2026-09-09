@@ -3,9 +3,11 @@
 export const booking = {
   // ISO weekdays the showroom takes appointments (1 = Monday … 7 = Sunday).
   openWeekdays: [2, 3, 4, 5], // Tue–Fri
-  // First and last bookable slot, whole hours (opening hours 11.00–16.30).
-  firstHour: 11,
-  lastHour: 16,
+  // First and last bookable slot, whole hours. Appointments run wider than
+  // the showroom's opening hours (11.00–16.30): outside them the door opens
+  // by appointment only.
+  firstHour: 8,
+  lastHour: 20,
 } as const;
 
 export function bookingTimes(): string[] {

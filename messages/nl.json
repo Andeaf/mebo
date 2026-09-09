@@ -196,6 +196,7 @@
     "areaValue": "IJmuiden en omgeving — montage door heel Nederland",
     "hoursLabel": "Openingstijden",
     "hoursValue": "Di–vr 11.00–16.30",
+    "hoursNote": "* Afspraken zijn ook buiten deze tijden mogelijk, van 8.00 tot 20.00. Langskomen om uw project te bespreken kan uitsluitend op afspraak.",
     "form": {
       "title": "Maak een afspraak",
       "name": "Naam",

@@ -457,7 +457,7 @@ export default function ContactSection() {
                 <p className="mt-5 text-[11px] font-medium uppercase tracking-wide text-muted">
                   {t("booking.availableTimes")}
                 </p>
-                <div className="mt-3 grid grid-cols-3 gap-2 lg:flex lg:flex-wrap">
+                <div className="mt-3 grid grid-cols-4 gap-2 lg:flex lg:flex-wrap">
                   {times.map((time) => {
                     const selected = selectedTime === time;
                     const available =
@@ -566,7 +566,12 @@ export default function ContactSection() {
                 </div>
                 <div className="flex gap-3">
                   <Icon path={ICONS.clock} />
-                  <p className="font-medium text-ink">{t("hoursValue")}</p>
+                  <div>
+                    <p className="font-medium text-ink">{t("hoursValue")}*</p>
+                    <p className="mt-1 text-sm text-pretty text-muted">
+                      {t("hoursNote")}
+                    </p>
+                  </div>
                 </div>
               </div>
             </FadeUp>
