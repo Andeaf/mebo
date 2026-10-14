@@ -18,7 +18,6 @@ export const company = {
     city: "IJmuiden",
     countryCode: "NL",
   },
-  // TODO: confirm with owner
   kvk: "91028248",
 } as const;
 

@@ -7,22 +7,11 @@
 
 # production
 /build
+/dist/
 
-# misc
-.DS_Store
-*.pem
-
-# design reference material (screenshots of third-party sites)
-/design-refs/
-
-# local backups (Google Takeout etc.) — never commit
-/Archive/
-
-# debug
-npm-debug.log*
-
-# env files
+# env files (keep the template)
 .env*
+!.env.example
 
 # typescript
 *.tsbuildinfo
@@ -30,3 +19,47 @@ next-env.d.ts
 
 # vercel
 .vercel
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# tests / coverage
+/coverage/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# editors and AI tool folders
+.vscode/
+.idea/
+.claude/
+.cursor/
+*.swp
+
+# keys and certificates — never commit
+*.pem
+*.key
+*.p12
+*.p8
+*.pfx
+*.jks
+*.keystore
+*.crt
+*.cer
+
+# internal notes: no Markdown except the public README and SECURITY policy
+*.md
+!/README.md
+!/SECURITY.md
+
+# design reference material (screenshots of third-party sites)
+/design-refs/
+
+# local backups (Google Takeout etc.) — never commit
+/Archive/
