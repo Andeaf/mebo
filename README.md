@@ -70,6 +70,7 @@ what is still open.
 | Data | Neon serverless Postgres via `@neondatabase/serverless` 1.1 |
 | Email | Resend HTTP API (no SDK), plain-text and HTML with `.ics` attachments |
 | Analytics | Vercel Web Analytics 2.0 |
+| Testing | Vitest 5, GitHub Actions |
 | Hosting | Vercel, domain and DNS at TransIP |
 | Runtime | Node.js 24 |
 
@@ -118,6 +119,7 @@ Other scripts:
 ```bash
 npm run build          # production build (also runs the type check)
 npm run start          # serve the production build
+npm test               # unit tests (Vitest)
 npx tsc --noEmit       # type check only
 ```
 
@@ -141,13 +143,27 @@ as free. See [`.env.example`](.env.example) for comments on each one.
 
 ## Testing
 
-There is no automated test suite yet. Continuous integration runs the
-TypeScript check and a full production build on every push and pull request.
-The booking flow (availability, request, owner confirm and release, visitor
-emails) has been verified manually end-to-end on the production deployment.
+```bash
+npm test
+```
 
-A natural next step is a Playwright smoke test for the booking flow and unit
-tests for slot validation and the `.ics` builder.
+Unit tests (Vitest, in `tests/`) cover the logic that decides what can be
+booked and what gets sent:
+
+- **Slot validation:** open weekdays, the hour grid, past days and the
+  same-day cut-off.
+- **Showroom clock:** today's date and hour in Europe/Amsterdam on a UTC
+  server, across midnight and daylight saving time.
+- **Emails and calendar file:** the `.ics` event, the owner's confirm and
+  release links, bilingual visitor emails, and HTML escaping of what the
+  visitor typed.
+- **Content integrity:** Dutch and English define the same translation keys,
+  the RAL palette is complete and consistent, and every gallery photo exists.
+
+The suite runs in CI together with the type check and a production build, on
+every push and pull request. The full booking flow against the real database
+and email provider (reservation, owner confirm and release, visitor emails)
+is verified by hand.
 
 ## Design decisions worth discussing
 
@@ -186,7 +202,7 @@ tests for slot validation and the `.ics` builder.
 - The per-IP limit relies on the `x-forwarded-for` header set by the host.
 - Project photos are currently the Instagram-resolution versions; originals
   are being collected.
-- No automated tests (see Testing).
+- No end-to-end tests yet; the full booking flow is verified by hand.
 
 ## Roadmap
 
@@ -194,7 +210,8 @@ tests for slot validation and the `.ics` builder.
 - Downloadable PDF brochure.
 - Custom 404 page.
 - Replace gallery photos with original high-resolution captures.
-- Automated tests for the booking flow (see Testing).
+- End-to-end test of the booking flow (Playwright) against a disposable
+  database branch.
 
 ## License
 
