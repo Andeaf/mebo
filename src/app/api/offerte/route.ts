@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { randomUUID } from "node:crypto";
 import { company } from "@/lib/company";
-import { booking, bookingTimes, isoWeekday } from "@/lib/booking";
+import { isBookableSlot } from "@/lib/booking";
 import { dbReady, hasDb, hourAmsterdam, sql, todayAmsterdam } from "@/lib/db";
 import {
   buildIcs,
@@ -29,22 +29,6 @@ function field(value: unknown, max: number): string {
     .replace(/[\r\n]+/g, " ")
     .trim()
     .slice(0, max);
-}
-
-function isBookableSlot(date: string, time: string): boolean {
-  const day = new Date(`${date}T12:00:00`);
-  if (Number.isNaN(day.getTime())) return false;
-  if (!(booking.openWeekdays as readonly number[]).includes(isoWeekday(day))) {
-    return false;
-  }
-  if (!bookingTimes().includes(time)) return false;
-  const today = todayAmsterdam();
-  if (date < today) return false;
-  // Same-day requests: only slots that are still ahead of the clock.
-  if (date === today && Number(time.slice(0, 2)) <= hourAmsterdam()) {
-    return false;
-  }
-  return true;
 }
 
 export async function POST(request: Request) {
@@ -88,7 +72,12 @@ export async function POST(request: Request) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return NextResponse.json({ error: "invalid_email" }, { status: 400 });
   }
-  if (!isBookableSlot(appointmentDate, appointmentTime)) {
+  if (
+    !isBookableSlot(appointmentDate, appointmentTime, {
+      today: todayAmsterdam(),
+      hour: hourAmsterdam(),
+    })
+  ) {
     return NextResponse.json({ error: "invalid_slot" }, { status: 400 });
   }
 

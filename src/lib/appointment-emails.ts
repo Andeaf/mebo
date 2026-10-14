@@ -1,4 +1,5 @@
 import { company } from "@/lib/company";
+import { escapeHtml } from "@/lib/html";
 
 // Email content for the appointment flow. The owner reads Dutch, so the
 // notification is always Dutch; the visitor gets their own language (the
@@ -211,10 +212,8 @@ export function ownerEmail(
     `✗ Tijdslot vrijgeven (komt weer beschikbaar op de site): ${releaseUrl}`,
   ].join("\n");
 
-  const esc = (s: string) =>
-    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   const row = (label: string, value: string) =>
-    `<tr><td style="padding:4px 16px 4px 0;color:#6f6b64;white-space:nowrap;vertical-align:top">${label}</td><td style="padding:4px 0">${esc(value)}</td></tr>`;
+    `<tr><td style="padding:4px 16px 4px 0;color:#6f6b64;white-space:nowrap;vertical-align:top">${label}</td><td style="padding:4px 0">${escapeHtml(value)}</td></tr>`;
   const html = `
 <div style="font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:#212121;max-width:560px">
   <h2 style="font-size:18px;margin:0 0 12px">Nieuwe afspraakaanvraag</h2>
@@ -226,7 +225,7 @@ export function ownerEmail(
     ${row("Type project", details.projectType || "-")}
     ${row("Budget", details.budget || "-")}
   </table>
-  ${details.message ? `<p style="font-size:14px;white-space:pre-wrap;border-left:3px solid #e3e0da;padding-left:12px;margin:16px 0">${esc(details.message)}</p>` : ""}
+  ${details.message ? `<p style="font-size:14px;white-space:pre-wrap;border-left:3px solid #e3e0da;padding-left:12px;margin:16px 0">${escapeHtml(details.message)}</p>` : ""}
   <p style="font-size:13px;color:#6f6b64;margin:16px 0 8px">Het tijdslot is voorlopig geblokkeerd op de website.</p>
   <p style="margin:0 0 24px">
     <a href="${confirmUrl}" style="display:inline-block;background:#212121;color:#f7f6f3;text-decoration:none;padding:10px 18px;border-radius:8px;font-size:14px;margin-right:8px">✓&nbsp;Afspraak bevestigen</a>

@@ -22,3 +22,26 @@ export function bookingTimes(): string[] {
 export function isoWeekday(date: Date): number {
   return date.getDay() === 0 ? 7 : date.getDay();
 }
+
+// Server-side check of a requested slot, mirroring what the calendar offers:
+// an open weekday, an hour on the grid, and not in the past. `now` is the
+// showroom's current date ("YYYY-MM-DD") and hour (0-23) in Europe/Amsterdam,
+// passed in so the rule does not depend on the server clock and stays testable.
+export function isBookableSlot(
+  date: string,
+  time: string,
+  now: { today: string; hour: number },
+): boolean {
+  const day = new Date(`${date}T12:00:00`);
+  if (Number.isNaN(day.getTime())) return false;
+  if (!(booking.openWeekdays as readonly number[]).includes(isoWeekday(day))) {
+    return false;
+  }
+  if (!bookingTimes().includes(time)) return false;
+  if (date < now.today) return false;
+  // Same-day requests: only slots that are still ahead of the clock.
+  if (date === now.today && Number(time.slice(0, 2)) <= now.hour) {
+    return false;
+  }
+  return true;
+}

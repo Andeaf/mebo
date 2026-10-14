@@ -6,6 +6,7 @@ import {
 } from "@/lib/appointment-emails";
 import { sendEmail } from "@/lib/resend";
 import { company } from "@/lib/company";
+import { escapeHtml } from "@/lib/html";
 
 // Owner-only action links from the notification email:
 //   /api/beheer?token=…&action=confirm  → confirm + email the visitor
@@ -27,15 +28,6 @@ type Row = {
 
 // Everything interpolated into the HTML below comes from the database, and
 // the visitor typed some of it (their name), so escape it on the way out.
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
 function page(rawTitle: string, rawBody: string): Response {
   const title = escapeHtml(rawTitle);
   const body = escapeHtml(rawBody);
