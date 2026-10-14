@@ -118,8 +118,6 @@ Other scripts:
 ```bash
 npm run build          # production build (also runs the type check)
 npm run start          # serve the production build
-npm run placeholders   # design aid: overwrites the section photos and OG image
-                       # with grey placeholders (do not run on production assets)
 npx tsc --noEmit       # type check only
 ```
 
