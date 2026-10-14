@@ -25,7 +25,20 @@ type Row = {
   status: string;
 };
 
-function page(title: string, body: string): Response {
+// Everything interpolated into the HTML below comes from the database, and
+// the visitor typed some of it (their name), so escape it on the way out.
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function page(rawTitle: string, rawBody: string): Response {
+  const title = escapeHtml(rawTitle);
+  const body = escapeHtml(rawBody);
   return new Response(
     `<!doctype html>
 <html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>${title} — Mebo</title></head>
