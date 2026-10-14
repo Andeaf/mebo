@@ -54,4 +54,16 @@ describe("isBookableSlot", () => {
     expect(isBookableSlot("2026-13-01", "14:00", now)).toBe(false);
     expect(isBookableSlot("not-a-date", "14:00", now)).toBe(false);
   });
+
+  // JavaScript rolls impossible dates over (31 April becomes 1 May), so a
+  // crafted request could otherwise book a day that does not exist.
+  it("rejects calendar dates that do not exist", () => {
+    expect(isBookableSlot("2026-04-31", "14:00", now)).toBe(false); // would be Friday 1 May
+    expect(isBookableSlot("2026-11-31", "14:00", now)).toBe(false); // would be Tuesday 1 December
+    expect(isBookableSlot("2028-02-30", "14:00", now)).toBe(false); // would be Wednesday 1 March
+  });
+
+  it("accepts 29 February in a leap year", () => {
+    expect(isBookableSlot("2028-02-29", "14:00", now)).toBe(true); // Tuesday
+  });
 });

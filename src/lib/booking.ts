@@ -34,6 +34,14 @@ export function isBookableSlot(
 ): boolean {
   const day = new Date(`${date}T12:00:00`);
   if (Number.isNaN(day.getTime())) return false;
+  // Date rolls impossible days over (31 April becomes 1 May): only accept the
+  // date if it reads back unchanged.
+  const readBack = [
+    day.getFullYear(),
+    String(day.getMonth() + 1).padStart(2, "0"),
+    String(day.getDate()).padStart(2, "0"),
+  ].join("-");
+  if (readBack !== date) return false;
   if (!(booking.openWeekdays as readonly number[]).includes(isoWeekday(day))) {
     return false;
   }

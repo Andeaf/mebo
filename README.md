@@ -150,8 +150,8 @@ npm test
 Unit tests (Vitest, in `tests/`) cover the logic that decides what can be
 booked and what gets sent:
 
-- **Slot validation:** open weekdays, the hour grid, past days and the
-  same-day cut-off.
+- **Slot validation:** open weekdays, the hour grid, past days, the
+  same-day cut-off and dates that do not exist.
 - **Showroom clock:** today's date and hour in Europe/Amsterdam on a UTC
   server, across midnight and daylight saving time.
 - **Emails and calendar file:** the `.ics` event, the owner's confirm and
